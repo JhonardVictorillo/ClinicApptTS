@@ -5,6 +5,8 @@
  */
 package internalpages;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author NoName
@@ -16,6 +18,10 @@ public class patientform extends javax.swing.JInternalFrame {
      */
     public patientform() {
         initComponents();
+        
+         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
     }
 
     /**
@@ -30,118 +36,107 @@ public class patientform extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        fname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        middlename = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        lname = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        malebutton = new javax.swing.JRadioButton();
+        femalebutton = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        contact = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Doctors = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        Email = new javax.swing.JTextField();
         addbutton = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         cancelbutton = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        address = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel2.setText("Firstname:");
         jPanel2.add(jLabel2);
         jLabel2.setBounds(30, 20, 80, 16);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(120, 10, 180, 30);
+        jPanel2.add(fname);
+        fname.setBounds(120, 10, 180, 30);
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Middlename:");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(20, 60, 90, 16);
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(120, 50, 180, 30);
+        jPanel2.add(middlename);
+        middlename.setBounds(120, 50, 180, 30);
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Lastname:");
         jPanel2.add(jLabel4);
         jLabel4.setBounds(20, 100, 90, 16);
-        jPanel2.add(jTextField3);
-        jTextField3.setBounds(120, 90, 180, 30);
-
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel5.setText("suffix:");
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(30, 140, 38, 16);
-        jPanel2.add(jTextField4);
-        jTextField4.setBounds(120, 130, 60, 30);
+        jPanel2.add(lname);
+        lname.setBounds(120, 90, 180, 30);
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Gender:");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(30, 170, 60, 20);
+        jLabel6.setBounds(30, 140, 60, 20);
 
-        jRadioButton1.setText("MALE");
-        jPanel2.add(jRadioButton1);
-        jRadioButton1.setBounds(120, 170, 60, 23);
+        malebutton.setText("MALE");
+        jPanel2.add(malebutton);
+        malebutton.setBounds(120, 140, 60, 23);
 
-        jRadioButton2.setText("FEMALE");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        femalebutton.setText("FEMALE");
+        femalebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                femalebuttonActionPerformed(evt);
             }
         });
-        jPanel2.add(jRadioButton2);
-        jRadioButton2.setBounds(210, 170, 93, 23);
+        jPanel2.add(femalebutton);
+        femalebutton.setBounds(200, 140, 93, 23);
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Contact No.:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(20, 210, 80, 16);
-        jPanel2.add(jTextField5);
-        jTextField5.setBounds(120, 210, 180, 30);
+        jLabel7.setBounds(20, 180, 80, 16);
+        jPanel2.add(contact);
+        contact.setBounds(120, 170, 180, 30);
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Note :");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(30, 250, 60, 16);
-        jPanel2.add(jTextField6);
-        jTextField6.setBounds(30, 270, 280, 60);
+        jLabel8.setBounds(20, 250, 60, 16);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Date of Birth:");
         jPanel2.add(jLabel9);
         jLabel9.setBounds(340, 20, 90, 20);
-
-        jTextField7.setText("jTextField7");
-        jPanel2.add(jTextField7);
-        jTextField7.setBounds(450, 10, 170, 30);
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -175,28 +170,30 @@ public class patientform extends javax.swing.JInternalFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Doctor: ");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(390, 110, 50, 20);
+        jLabel13.setBounds(380, 140, 50, 20);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(450, 100, 160, 30);
+        Doctors.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(Doctors);
+        Doctors.setBounds(440, 130, 190, 30);
 
-        jLabel14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel14.setText("Schedule Room:");
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel14.setText("  Procedure do you want to make an appointment for?");
+        jLabel14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0)));
         jPanel2.add(jLabel14);
-        jLabel14.setBounds(330, 160, 110, 20);
+        jLabel14.setBounds(320, 180, 320, 20);
+        jLabel14.getAccessibleContext().setAccessibleName("<html>Which procedure do you want to make an appointment for?<html>");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please Select", "Medical Examination", "Doctor check", "Check-Up" }));
         jPanel2.add(jComboBox2);
-        jComboBox2.setBounds(450, 150, 160, 30);
+        jComboBox2.setBounds(440, 210, 200, 30);
 
         jLabel15.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Email:");
         jPanel2.add(jLabel15);
-        jLabel15.setBounds(380, 210, 54, 16);
-        jPanel2.add(jTextField8);
-        jTextField8.setBounds(450, 200, 160, 30);
+        jLabel15.setBounds(380, 100, 54, 16);
+        jPanel2.add(Email);
+        Email.setBounds(440, 90, 200, 30);
 
         addbutton.setBackground(new java.awt.Color(204, 204, 204));
         addbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -204,7 +201,7 @@ public class patientform extends javax.swing.JInternalFrame {
 
         jLabel16.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("ADD");
+        jLabel16.setText("SAVE");
         addbutton.add(jLabel16);
         jLabel16.setBounds(0, 0, 80, 30);
 
@@ -224,14 +221,32 @@ public class patientform extends javax.swing.JInternalFrame {
         jPanel2.add(cancelbutton);
         cancelbutton.setBounds(520, 300, 90, 30);
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(20, 270, 370, 80);
+        jPanel2.add(address);
+        address.setBounds(120, 210, 180, 30);
+
+        jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel18.setText("Address:");
+        jPanel2.add(jLabel18);
+        jLabel18.setBounds(30, 214, 60, 20);
+
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jPanel2.add(jFormattedTextField3);
+        jFormattedTextField3.setBounds(440, 10, 190, 30);
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 50, 630, 350);
+        jPanel2.setBounds(10, 40, 650, 360);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NEW PATIENT/APPOINTMENT");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 20, 320, 20);
+        jLabel1.setBounds(20, 10, 320, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,18 +262,24 @@ public class patientform extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void femalebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femalebuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_femalebuttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Doctors;
+    private javax.swing.JTextField Email;
     private javax.swing.JPanel addbutton;
+    private javax.swing.JTextField address;
     private javax.swing.JPanel cancelbutton;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField contact;
+    private javax.swing.JRadioButton femalebutton;
+    private javax.swing.JTextField fname;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -268,25 +289,20 @@ public class patientform extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField lname;
+    private javax.swing.JRadioButton malebutton;
+    private javax.swing.JTextField middlename;
     // End of variables declaration//GEN-END:variables
 }

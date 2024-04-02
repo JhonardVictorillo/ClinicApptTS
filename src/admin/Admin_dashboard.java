@@ -58,14 +58,17 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         LOGOUT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel1.setLayout(null);
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel4.setLayout(null);
 
         APPOINTMENT.setBackground(new java.awt.Color(0, 204, 204));
@@ -149,6 +152,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setLayout(null);
 
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-appointment-100.png"))); // NOI18N
         jPanel5.add(jLabel7);
@@ -162,7 +166,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel6.setLayout(null);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-user-list-100.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-user-100.png"))); // NOI18N
         jPanel6.add(jLabel8);
         jLabel8.setBounds(0, 0, 130, 110);
 
@@ -194,6 +198,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel9.setBounds(640, 330, 130, 110);
 
         jPanel10.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel10.setLayout(null);
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -215,14 +220,23 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel2.setBounds(580, 40, 210, 190);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome to Clinic Care ");
         jPanel10.add(jLabel1);
-        jLabel1.setBounds(40, 50, 480, 60);
+        jLabel1.setBounds(40, 10, 480, 60);
 
         jLabel12.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Appointment Tracker ");
         jPanel10.add(jLabel12);
-        jLabel12.setBounds(60, 110, 450, 60);
+        jLabel12.setBounds(50, 70, 450, 60);
+
+        jLabel13.setFont(new java.awt.Font("Verdana", 2, 14)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("<html>A tool designed to manage appointments for healthcare providers. It helps clinics schedule patients, send reminders, and track appointment history. This can improve efficiency, reduce wait times, and provide a better patient experience.<html>");
+        jPanel10.add(jLabel13);
+        jLabel13.setBounds(20, 130, 540, 100);
+        jLabel13.getAccessibleContext().setAccessibleDescription("");
 
         jPanel4.add(jPanel10);
         jPanel10.setBounds(0, 0, 800, 240);
@@ -231,6 +245,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel4.setBounds(0, 40, 800, 500);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(null);
 
         LOGOUT.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -362,6 +377,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -3,7 +3,10 @@ package clinicapptts;
 
 import user.*;
 import admin.*;
+import config.dbConnector;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,8 +26,23 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+    } 
+      public static boolean loginAcc(String username,String password){
+           dbConnector connect = new dbConnector();
+    try{
+      String sql ="SELECT * FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
+      ResultSet rs = connect.getData(sql);
+      return rs.next();
+      
+        
+    
+    }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "DataBase Connection Error");
+        return false;
     }
-     Color navcolor = new Color(0,204,204);
+    
+    }
+       Color navcolor = new Color(0,204,204);
     Color bodycolor = new Color(153,204,255);
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,6 +54,7 @@ public class LoginForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -43,8 +62,6 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         userName = new javax.swing.JTextField();
         userPass = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         SIGNIN = new javax.swing.JPanel();
         signinButton = new javax.swing.JLabel();
@@ -61,6 +78,9 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clinicapptts/login.png"))); // NOI18N
         jLabel8.setText("jLabel8");
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/resizebg.png"))); // NOI18N
+        jLabel10.setText("jLabel10");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -80,22 +100,22 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel5.setText("Tracker System");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
-        jPanel2.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 210, 30));
 
+        userName.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Username:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        userName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userNameActionPerformed(evt);
+            }
+        });
+        jPanel2.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 210, 40));
+
+        userPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Password", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         userPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userPassActionPerformed(evt);
             }
         });
-        jPanel2.add(userPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 210, 30));
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel6.setText("username:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 70, -1));
-
-        jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel7.setText("Password:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 70, -1));
+        jPanel2.add(userPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 210, 40));
 
         jLabel9.setText("Forgot password?");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, 20));
@@ -159,16 +179,18 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setText("LOGIN");
-        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 90, 80, 30));
+        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 60)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CLINIC");
-        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 260, 50));
+        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 270, 60));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 490));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
@@ -178,17 +200,18 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/clinicCare-removebg-preview (1).png"))); // NOI18N
         jLabel11.setText("jLabel11");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 320));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 320));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 270, 320));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 280, 320));
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 50)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("CARE");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 180, 40));
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 30, 230, 60));
 
-        jPanel5.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 300, 490));
+        jPanel5.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 290, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,7 +221,7 @@ public class LoginForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -230,51 +253,17 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SIGNINMouseClicked
 
     private void signinButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinButtonMouseClicked
-         String account = "Admin";
-       String user = "Nards";
-       String password = "12345";
-       
-       
-       
-       switch(account){
-          case"Admin":
-        if(user.equals(userName.getText())&& password.equals(userPass.getText())){
-       
-       Admin_dashboard dash = new Admin_dashboard();
-       JOptionPane.showMessageDialog(null,"LoginSuccefully");
-       dash.setVisible(true);
-       this.dispose();
-       
-       }else{
-                JOptionPane.showMessageDialog(null,"Invalid");
-               
-               
-               }
-       
-       break;
-    case"user":
-        if(user.equals(userName.getText())&& password.equals(userPass.getText())){
-       
-       desk_dashboard dash = new desk_dashboard();
-       JOptionPane.showMessageDialog(null,"LoginSuccefully");
-       dash.setVisible(true);
-       this.dispose();
-       
-       }else{
-                JOptionPane.showMessageDialog(null,"Invalid");
-               
-               
-               }
-        
-        break;
+    if(loginAcc(userName.getText(),userPass.getText())){
+    JOptionPane.showMessageDialog(null,"Login Success!");
+    Admin_dashboard adminDash = new Admin_dashboard();
+    adminDash.setVisible(true);
+    this.dispose();
     
-    }
-      
-      
-       
-      
-        
-        
+    }else{
+    JOptionPane.showMessageDialog(null,"Database Connection Error");
+    
+    }     
+   
     }//GEN-LAST:event_signinButtonMouseClicked
 
     private void signinButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinButtonMouseExited
@@ -286,6 +275,10 @@ public class LoginForm extends javax.swing.JFrame {
      register.setVisible(true);
      this.dispose();
     }//GEN-LAST:event_creatAccountMouseClicked
+
+    private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,13 +320,12 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel creatAccount;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

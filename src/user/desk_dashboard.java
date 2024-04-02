@@ -2,6 +2,7 @@ package user;
 
 
 import clinicapptts.LoginForm;
+import internalpages.*;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -30,19 +31,17 @@ public class desk_dashboard extends javax.swing.JFrame {
         DASHBOARD = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         PATIENT = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        patientButton = new javax.swing.JLabel();
         APPOINTMENT = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        CALENDAR = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        apptButton = new javax.swing.JLabel();
         DOCTOR = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        doctorButton = new javax.swing.JLabel();
         REPORTS = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        reportsButton = new javax.swing.JLabel();
         LOGOUT = new javax.swing.JPanel();
         LAGOUTBUTTON = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        maindesktop = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -62,12 +61,13 @@ public class desk_dashboard extends javax.swing.JFrame {
                 DASHBOARDMouseExited(evt);
             }
         });
-        DASHBOARD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        DASHBOARD.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("DASHBOARD");
-        DASHBOARD.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 190, 40));
+        DASHBOARD.add(jLabel1);
+        jLabel1.setBounds(0, 1, 190, 40);
 
         NAV.add(DASHBOARD, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 190, 40));
 
@@ -80,15 +80,24 @@ public class desk_dashboard extends javax.swing.JFrame {
                 PATIENTMouseExited(evt);
             }
         });
-        PATIENT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PATIENT.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/group_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
-        jLabel2.setText("PATIENTS");
-        PATIENT.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
+        patientButton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        patientButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        patientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/group_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
+        patientButton.setText("PATIENTS");
+        patientButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                patientButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                patientButtonMouseEntered(evt);
+            }
+        });
+        PATIENT.add(patientButton);
+        patientButton.setBounds(30, 0, 150, 40);
 
-        NAV.add(PATIENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 160, 40));
+        NAV.add(PATIENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 210, 40));
 
         APPOINTMENT.setBackground(new java.awt.Color(0, 204, 204));
         APPOINTMENT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,34 +108,21 @@ public class desk_dashboard extends javax.swing.JFrame {
                 APPOINTMENTMouseExited(evt);
             }
         });
-        APPOINTMENT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        APPOINTMENT.setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-appointment-48.png"))); // NOI18N
-        jLabel3.setText("APPOINTMENTS");
-        APPOINTMENT.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 40));
-
-        NAV.add(APPOINTMENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 190, 40));
-
-        CALENDAR.setBackground(new java.awt.Color(0, 204, 204));
-        CALENDAR.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CALENDARMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CALENDARMouseExited(evt);
+        apptButton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        apptButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        apptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-appointment-48.png"))); // NOI18N
+        apptButton.setText("APPOINTMENTS");
+        apptButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                apptButtonMouseClicked(evt);
             }
         });
-        CALENDAR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        APPOINTMENT.add(apptButton);
+        apptButton.setBounds(12, 0, 160, 40);
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/calendar_month_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
-        jLabel4.setText("CALENDAR");
-        CALENDAR.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 40));
-
-        NAV.add(CALENDAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, 40));
+        NAV.add(APPOINTMENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 210, 40));
 
         DOCTOR.setBackground(new java.awt.Color(0, 204, 204));
         DOCTOR.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,15 +133,21 @@ public class desk_dashboard extends javax.swing.JFrame {
                 DOCTORMouseExited(evt);
             }
         });
-        DOCTOR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        DOCTOR.setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-doctor-48.png"))); // NOI18N
-        jLabel5.setText("DOCTORS");
-        DOCTOR.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
+        doctorButton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        doctorButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        doctorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-doctor-48.png"))); // NOI18N
+        doctorButton.setText("DOCTORS");
+        doctorButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doctorButtonMouseClicked(evt);
+            }
+        });
+        DOCTOR.add(doctorButton);
+        doctorButton.setBounds(20, 0, 170, 40);
 
-        NAV.add(DOCTOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 190, 40));
+        NAV.add(DOCTOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 200, 40));
 
         REPORTS.setBackground(new java.awt.Color(0, 204, 204));
         REPORTS.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,15 +158,21 @@ public class desk_dashboard extends javax.swing.JFrame {
                 REPORTSMouseExited(evt);
             }
         });
-        REPORTS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        REPORTS.setLayout(null);
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-business-report-48.png"))); // NOI18N
-        jLabel6.setText("REPORTS");
-        REPORTS.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 40));
+        reportsButton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        reportsButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reportsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-business-report-48.png"))); // NOI18N
+        reportsButton.setText("REPORTS");
+        reportsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportsButtonMouseClicked(evt);
+            }
+        });
+        REPORTS.add(reportsButton);
+        reportsButton.setBounds(10, 0, 170, 40);
 
-        NAV.add(REPORTS, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 190, 40));
+        NAV.add(REPORTS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 210, 40));
 
         LOGOUT.setBackground(new java.awt.Color(0, 204, 204));
         LOGOUT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,15 +188,16 @@ public class desk_dashboard extends javax.swing.JFrame {
         LAGOUTBUTTON.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         LAGOUTBUTTON.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LAGOUTBUTTON.setText("SIGN OUT");
+        LAGOUTBUTTON.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         LAGOUTBUTTON.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LAGOUTBUTTONMouseClicked(evt);
             }
         });
         LOGOUT.add(LAGOUTBUTTON);
-        LAGOUTBUTTON.setBounds(0, 10, 120, 20);
+        LAGOUTBUTTON.setBounds(10, 0, 110, 30);
 
-        NAV.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 120, 40));
+        NAV.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 120, 30));
 
         jPanel1.add(NAV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 530));
 
@@ -207,20 +216,20 @@ public class desk_dashboard extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 680, 40));
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 255, 255));
+        maindesktop.setBackground(new java.awt.Color(153, 204, 255));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout maindesktopLayout = new javax.swing.GroupLayout(maindesktop);
+        maindesktop.setLayout(maindesktopLayout);
+        maindesktopLayout.setHorizontalGroup(
+            maindesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 680, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        maindesktopLayout.setVerticalGroup(
+            maindesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 490, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 680, 490));
+        jPanel1.add(maindesktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 680, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,14 +270,6 @@ public class desk_dashboard extends javax.swing.JFrame {
         APPOINTMENT.setBackground(navcolor);
     }//GEN-LAST:event_APPOINTMENTMouseExited
 
-    private void CALENDARMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CALENDARMouseEntered
-        CALENDAR.setBackground(bodycolor);
-    }//GEN-LAST:event_CALENDARMouseEntered
-
-    private void CALENDARMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CALENDARMouseExited
-        CALENDAR.setBackground(navcolor);
-    }//GEN-LAST:event_CALENDARMouseExited
-
     private void DOCTORMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DOCTORMouseEntered
        DOCTOR.setBackground(bodycolor);
     }//GEN-LAST:event_DOCTORMouseEntered
@@ -299,6 +300,31 @@ public class desk_dashboard extends javax.swing.JFrame {
        this.dispose();
        JOptionPane.showMessageDialog(null,"Signout successfully");
     }//GEN-LAST:event_LAGOUTBUTTONMouseClicked
+
+    private void patientButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientButtonMouseClicked
+      patients Patients = new patients();
+      maindesktop.add(Patients).setVisible(true);
+    }//GEN-LAST:event_patientButtonMouseClicked
+
+    private void apptButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apptButtonMouseClicked
+        appointment Appointment = new appointment();
+        maindesktop.add(Appointment).setVisible(true);
+    }//GEN-LAST:event_apptButtonMouseClicked
+
+    private void doctorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doctorButtonMouseClicked
+        doctors Doctors = new doctors();
+        maindesktop.add(Doctors).setVisible(true);
+    }//GEN-LAST:event_doctorButtonMouseClicked
+
+    private void reportsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsButtonMouseClicked
+        reports_dash RepDash = new reports_dash();
+        maindesktop.add(RepDash).setVisible(true);
+    }//GEN-LAST:event_reportsButtonMouseClicked
+
+    private void patientButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patientButtonMouseEntered
+     
+       
+    }//GEN-LAST:event_patientButtonMouseEntered
 
     /**
      * @param args the command line arguments
@@ -337,7 +363,6 @@ public class desk_dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel APPOINTMENT;
-    private javax.swing.JPanel CALENDAR;
     private javax.swing.JPanel DASHBOARD;
     private javax.swing.JPanel DOCTOR;
     private javax.swing.JLabel LAGOUTBUTTON;
@@ -345,14 +370,13 @@ public class desk_dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel NAV;
     private javax.swing.JPanel PATIENT;
     private javax.swing.JPanel REPORTS;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel apptButton;
+    private javax.swing.JLabel doctorButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    public javax.swing.JDesktopPane maindesktop;
+    private javax.swing.JLabel patientButton;
+    private javax.swing.JLabel reportsButton;
     // End of variables declaration//GEN-END:variables
 }

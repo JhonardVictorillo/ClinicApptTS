@@ -5,6 +5,8 @@
  */
 package internalpages;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author once
@@ -16,6 +18,10 @@ public class patients extends javax.swing.JInternalFrame {
      */
     public patients() {
         initComponents();
+        
+         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
     }
 
     /**
@@ -27,20 +33,113 @@ public class patients extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        add = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        editbutton = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        deletebutton = new javax.swing.JLabel();
+        searchbar = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        patienttable = new javax.swing.JTable();
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("jLabel4");
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setText("PATIENT RECORDS");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(20, 10, 260, 40);
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(null);
+
+        add.setBackground(new java.awt.Color(255, 255, 255));
+        add.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add.setText("ADD");
+        jPanel2.add(add);
+        add.setBounds(0, 0, 110, 30);
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(39, 100, 110, 30);
+
+        jPanel3.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
+
+        editbutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        editbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editbutton.setText("EDIT");
+        jPanel3.add(editbutton);
+        editbutton.setBounds(0, 0, 110, 30);
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(160, 100, 110, 30);
+
+        jPanel4.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(null);
+
+        deletebutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        deletebutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deletebutton.setText("DELETE");
+        jPanel4.add(deletebutton);
+        deletebutton.setBounds(0, 0, 100, 30);
+
+        jPanel1.add(jPanel4);
+        jPanel4.setBounds(280, 100, 100, 30);
+
+        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.add(searchbar);
+        searchbar.setBounds(440, 100, 200, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("SEARCH:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(440, 80, 80, 17);
+
+        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel5.setLayout(null);
+
+        patienttable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        patienttable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "LASTNAME", "FIRSTNAME", "MIDDLE NAME", "GENDER", "AGE", "ADDRESS"
+            }
+        ));
+        jScrollPane1.setViewportView(patienttable);
+
+        jPanel5.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 90, 620, 100);
+
+        jPanel1.add(jPanel5);
+        jPanel5.setBounds(10, 60, 640, 400);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
         );
 
         pack();
@@ -48,6 +147,19 @@ public class patients extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel add;
+    private javax.swing.JLabel deletebutton;
+    private javax.swing.JLabel editbutton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable patienttable;
+    private javax.swing.JTextField searchbar;
     // End of variables declaration//GEN-END:variables
 }

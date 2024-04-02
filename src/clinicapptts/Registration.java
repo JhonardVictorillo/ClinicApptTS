@@ -1,5 +1,8 @@
 package clinicapptts;
 
+import config.dbConnector;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,17 +43,23 @@ public class Registration extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        account = new javax.swing.JComboBox<>();
+        Fname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
+        Re_enterpass = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Lname = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         CREATEBUTTON = new javax.swing.JPanel();
+        createbutton = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        cancelbutton = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +67,7 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
@@ -87,15 +96,16 @@ public class Registration extends javax.swing.JFrame {
         jPanel5.add(jLabel12);
         jLabel12.setBounds(70, 130, 140, 23);
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 280, 380));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 280, 440));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 60)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 204, 204));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("CLINIC");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 300, 70));
+        jLabel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 70));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 520));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 570));
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,74 +114,118 @@ public class Registration extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel6.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CREATE ACCOUNT");
-        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 30));
+        jPanel6.add(jLabel1);
+        jLabel1.setBounds(0, 0, 180, 30);
 
-        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 180, -1));
+        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 180, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DOCTOR", "DESK" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        account.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DOCTOR", "DESK" }));
+        account.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        account.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                accountActionPerformed(evt);
             }
         });
-        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
+        jPanel4.add(account, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 230, 30));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Fname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        Fname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                FnameActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 230, 30));
+        jPanel4.add(Fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 230, 30));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
-        jLabel2.setText("COMPLETE NAME:");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
-        jPanel4.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 230, 30));
+        jLabel2.setText("FIRST NAME:");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 30));
+
+        Re_enterpass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        Re_enterpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                Re_enterpassActionPerformed(evt);
             }
         });
-        jPanel4.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 230, 30));
+        jPanel4.add(Re_enterpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 230, 30));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel3.setText("PASSWORD:");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel4.setText("RE-ENTER PASSWORD:");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
-        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, 30));
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
-        jLabel5.setText("USERNAME:");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        Lname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.add(Lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, 30));
+
+        jLabel5.setText("LASTNAME:");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         CREATEBUTTON.setBackground(new java.awt.Color(0, 204, 204));
         CREATEBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         CREATEBUTTON.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        createbutton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        createbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        createbutton.setText("CREATE");
+        createbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                createbuttonMouseClicked(evt);
+            }
+        });
+        CREATEBUTTON.add(createbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
+
+        jPanel4.add(CREATEBUTTON, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 90, 30));
+
+        username.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 230, 30));
+
+        jLabel13.setText("USERNAME");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
+
+        cancelbutton.setBackground(new java.awt.Color(0, 204, 204));
+        cancelbutton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        cancelbutton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("CREATE");
-        CREATEBUTTON.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+        jLabel6.setText("CANCEL");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        cancelbutton.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
 
-        jPanel4.add(CREATEBUTTON, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
+        jPanel4.add(cancelbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 90, 30));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 380));
+        email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 230, 30));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel14.setText("Email Address:");
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 20));
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 440));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 60)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("CARE");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 60));
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-62, 20, 340, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 320, 520));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 320, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,24 +235,48 @@ public class Registration extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
          
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_accountActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void Re_enterpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Re_enterpassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_Re_enterpassActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void FnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_FnameActionPerformed
+
+    private void createbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createbuttonMouseClicked
+       dbConnector dbc = new dbConnector();
+       
+       if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+Fname.getText()+"','"+Lname.getText()+"','"+email.getText()+"','"+username.getText()+"','"+password.getText()+"','Pending')")){
+       
+       JOptionPane.showMessageDialog(null, "Inserted Successfully!");
+       
+       LoginForm Lform = new LoginForm();
+       Lform.setVisible(true);
+       this.dispose();
+       
+    }else{
+                JOptionPane.showMessageDialog(null, "Connection Error!");
+                
+            }
+       
+    }//GEN-LAST:event_createbuttonMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        LoginForm LForm = new LoginForm();
+        LForm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -237,11 +315,19 @@ public class Registration extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CREATEBUTTON;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField Fname;
+    private javax.swing.JTextField Lname;
+    private javax.swing.JPasswordField Re_enterpass;
+    private javax.swing.JComboBox<String> account;
+    private javax.swing.JPanel cancelbutton;
+    private javax.swing.JLabel createbutton;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -256,9 +342,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
