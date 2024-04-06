@@ -41,6 +41,12 @@ public class appointment extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        ADDBUTTON = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        UPDATEBUTTON = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        DELETEBUTTON = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);
@@ -53,6 +59,7 @@ public class appointment extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(null);
 
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -67,14 +74,53 @@ public class appointment extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 70, 600, 94);
+        jScrollPane1.setBounds(10, 90, 600, 94);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("SEARCH:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(380, 27, 60, 20);
+        jLabel2.setBounds(420, 20, 60, 20);
         jPanel2.add(jTextField1);
-        jTextField1.setBounds(440, 20, 170, 30);
+        jTextField1.setBounds(420, 50, 170, 30);
+
+        ADDBUTTON.setBackground(new java.awt.Color(0, 204, 204));
+        ADDBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
+        ADDBUTTON.setLayout(null);
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("ADD");
+        ADDBUTTON.add(jLabel3);
+        jLabel3.setBounds(0, 0, 100, 30);
+
+        jPanel2.add(ADDBUTTON);
+        ADDBUTTON.setBounds(30, 50, 100, 30);
+
+        UPDATEBUTTON.setBackground(new java.awt.Color(0, 204, 204));
+        UPDATEBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
+        UPDATEBUTTON.setLayout(null);
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("UPDATE");
+        UPDATEBUTTON.add(jLabel4);
+        jLabel4.setBounds(0, 0, 100, 30);
+
+        jPanel2.add(UPDATEBUTTON);
+        UPDATEBUTTON.setBounds(150, 50, 100, 30);
+
+        DELETEBUTTON.setBackground(new java.awt.Color(0, 204, 204));
+        DELETEBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
+        DELETEBUTTON.setLayout(null);
+
+        jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("DELETE");
+        DELETEBUTTON.add(jLabel5);
+        jLabel5.setBounds(0, 0, 90, 30);
+
+        jPanel2.add(DELETEBUTTON);
+        DELETEBUTTON.setBounds(270, 50, 90, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 60, 640, 380);
@@ -95,8 +141,14 @@ public class appointment extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ADDBUTTON;
+    private javax.swing.JPanel DELETEBUTTON;
+    private javax.swing.JPanel UPDATEBUTTON;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

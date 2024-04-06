@@ -5,7 +5,12 @@
  */
 package internalpages;
 
+import config.dbConnector;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -19,10 +24,44 @@ public class patients extends javax.swing.JInternalFrame {
     public patients() {
         initComponents();
         
+        
+        displaydata();
+        
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
     }
+    
+     Color navcolor = new Color(0,204,204);
+    Color bodycolor = new Color(153,204,255);
+    
+    
+    
+    
+    
+    public void displaydata(){
+    try{
+      dbConnector DBconnector = new dbConnector();
+      ResultSet rs = DBconnector.getData("SELECT * FROM tbl_patients");
+      patienttable.setModel(DbUtils.resultSetToTableModel(rs));
+    
+    
+    }catch(SQLException ex){
+        System.out.println("Errors:"+ex.getMessage());
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,17 +75,19 @@ public class patients extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        ADDBUT = new javax.swing.JPanel();
         add = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        editbutton = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        deletebutton = new javax.swing.JLabel();
         searchbar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         patienttable = new javax.swing.JTable();
+        EDITBUT = new javax.swing.JPanel();
+        editbutton = new javax.swing.JLabel();
+        DELETEBUT = new javax.swing.JPanel();
+        deletebutton = new javax.swing.JLabel();
+        REFRESHBUT = new javax.swing.JPanel();
+        refresh = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
@@ -58,45 +99,32 @@ public class patients extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(20, 10, 260, 40);
 
-        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(null);
+        ADDBUT.setBackground(new java.awt.Color(0, 204, 204));
+        ADDBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        ADDBUT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ADDBUTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ADDBUTMouseExited(evt);
+            }
+        });
+        ADDBUT.setLayout(null);
 
         add.setBackground(new java.awt.Color(255, 255, 255));
         add.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add.setText("ADD");
-        jPanel2.add(add);
-        add.setBounds(0, 0, 110, 30);
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
+        ADDBUT.add(add);
+        add.setBounds(0, 0, 70, 30);
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(39, 100, 110, 30);
-
-        jPanel3.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(null);
-
-        editbutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        editbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editbutton.setText("EDIT");
-        jPanel3.add(editbutton);
-        editbutton.setBounds(0, 0, 110, 30);
-
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(160, 100, 110, 30);
-
-        jPanel4.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        jPanel4.setLayout(null);
-
-        deletebutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deletebutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deletebutton.setText("DELETE");
-        jPanel4.add(deletebutton);
-        deletebutton.setBounds(0, 0, 100, 30);
-
-        jPanel1.add(jPanel4);
-        jPanel4.setBounds(280, 100, 100, 30);
+        jPanel1.add(ADDBUT);
+        ADDBUT.setBounds(39, 100, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.add(searchbar);
@@ -114,19 +142,84 @@ public class patients extends javax.swing.JInternalFrame {
         patienttable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         patienttable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "LASTNAME", "FIRSTNAME", "MIDDLE NAME", "GENDER", "AGE", "ADDRESS"
+                "ID", "LASTNAME", "FIRSTNAME", "MIDDLE NAME", "GENDER", "AGE", "ADDRESS", "CONTACTS"
             }
         ));
         jScrollPane1.setViewportView(patienttable);
 
         jPanel5.add(jScrollPane1);
         jScrollPane1.setBounds(10, 90, 620, 100);
+
+        EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
+        EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        EDITBUT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EDITBUTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EDITBUTMouseExited(evt);
+            }
+        });
+        EDITBUT.setLayout(null);
+
+        editbutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        editbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editbutton.setText("EDIT");
+        EDITBUT.add(editbutton);
+        editbutton.setBounds(0, 0, 70, 30);
+
+        jPanel5.add(EDITBUT);
+        EDITBUT.setBounds(120, 40, 70, 30);
+
+        DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
+        DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        DELETEBUT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DELETEBUTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DELETEBUTMouseExited(evt);
+            }
+        });
+        DELETEBUT.setLayout(null);
+
+        deletebutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        deletebutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deletebutton.setText("DELETE");
+        DELETEBUT.add(deletebutton);
+        deletebutton.setBounds(0, 0, 70, 30);
+
+        jPanel5.add(DELETEBUT);
+        DELETEBUT.setBounds(210, 40, 70, 30);
+
+        REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
+        REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                REFRESHBUTMouseEntered(evt);
+            }
+        });
+        REFRESHBUT.setLayout(null);
+
+        refresh.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        refresh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        refresh.setText("REFRESH");
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+        });
+        REFRESHBUT.add(refresh);
+        refresh.setBounds(0, 0, 70, 30);
+
+        jPanel5.add(REFRESHBUT);
+        REFRESHBUT.setBounds(300, 40, 70, 30);
 
         jPanel1.add(jPanel5);
         jPanel5.setBounds(10, 60, 640, 400);
@@ -145,8 +238,48 @@ public class patients extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMouseClicked
+
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+       displaydata();
+    }//GEN-LAST:event_refreshMouseClicked
+
+    private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
+        EDITBUT.setBackground(navcolor);
+    }//GEN-LAST:event_EDITBUTMouseEntered
+
+    private void EDITBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EDITBUTMouseExited
+
+    private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered
+       ADDBUT.setBackground(navcolor);
+    }//GEN-LAST:event_ADDBUTMouseEntered
+
+    private void ADDBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ADDBUTMouseExited
+
+    private void DELETEBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseEntered
+        DELETEBUT.setBackground(navcolor);
+    }//GEN-LAST:event_DELETEBUTMouseEntered
+
+    private void DELETEBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DELETEBUTMouseExited
+
+    private void REFRESHBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseEntered
+        REFRESHBUT.setBackground(navcolor);
+    }//GEN-LAST:event_REFRESHBUTMouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ADDBUT;
+    private javax.swing.JPanel DELETEBUT;
+    private javax.swing.JPanel EDITBUT;
+    private javax.swing.JPanel REFRESHBUT;
     private javax.swing.JLabel add;
     private javax.swing.JLabel deletebutton;
     private javax.swing.JLabel editbutton;
@@ -154,12 +287,10 @@ public class patients extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable patienttable;
+    private javax.swing.JLabel refresh;
     private javax.swing.JTextField searchbar;
     // End of variables declaration//GEN-END:variables
 }
