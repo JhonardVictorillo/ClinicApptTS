@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2024 at 06:22 PM
+-- Generation Time: Apr 07, 2024 at 03:34 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_patients` (
   `p_id` int(60) NOT NULL,
-  `p_fistname` varchar(60) NOT NULL,
+  `p_firstname` varchar(60) NOT NULL,
   `p_lastname` varchar(60) NOT NULL,
-  `p_middlename` varchar(60) NOT NULL,
+  `p_age` int(60) NOT NULL,
   `p_gender` varchar(60) NOT NULL,
   `p_dateofbirth` varchar(60) NOT NULL,
   `p_contact` varchar(60) NOT NULL,
@@ -42,8 +42,12 @@ CREATE TABLE `tbl_patients` (
 -- Dumping data for table `tbl_patients`
 --
 
-INSERT INTO `tbl_patients` (`p_id`, `p_fistname`, `p_lastname`, `p_middlename`, `p_gender`, `p_dateofbirth`, `p_contact`, `p_address`) VALUES
-(1, 'kent', 'sds', 'd', 'male', '2/23/24', '122345567', 'secret');
+INSERT INTO `tbl_patients` (`p_id`, `p_firstname`, `p_lastname`, `p_age`, `p_gender`, `p_dateofbirth`, `p_contact`, `p_address`) VALUES
+(1, 'kent', 'sds', 34, 'male', '2/23/24', 'secret', '122345567'),
+(2, 'jake', 'bake', 1, 'male', '12/23/22', 'tubud', '099912923'),
+(3, 'jane', 'batas', 34, 'Female', '3/23/23', '2334444', '212133323'),
+(4, 'sdsdd', 'sdsd', 32, 'Male', '3/23/23', '212133323', 'dsdsds'),
+(5, 'lay', 'lapoz', 23, 'Male', '3/2/23', '232323', 'dsds');
 
 --
 -- Indexes for dumped tables
@@ -63,7 +67,7 @@ ALTER TABLE `tbl_patients`
 -- AUTO_INCREMENT for table `tbl_patients`
 --
 ALTER TABLE `tbl_patients`
-  MODIFY `p_id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `p_id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

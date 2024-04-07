@@ -5,7 +5,12 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.dbConnector;
+import internalpages.patients;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import user.desk_dashboard;
 
 /**
  *
@@ -13,6 +18,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class patientform extends javax.swing.JInternalFrame {
 
+    public String gender;
+    public String action;
     /**
      * Creates new form patientform
      */
@@ -24,6 +31,10 @@ public class patientform extends javax.swing.JInternalFrame {
         bi.setNorthPane(null);
     }
 
+     Color navcolor = new Color(0,204,204);
+    Color bodycolor = new Color(153,204,255);
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,52 +44,47 @@ public class patientform extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         fname = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        middlename = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         lname = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        malebutton = new javax.swing.JRadioButton();
-        femalebutton = new javax.swing.JRadioButton();
+        male = new javax.swing.JRadioButton();
+        female = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         contact = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         SAVEbutton = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
+        p_save = new javax.swing.JLabel();
         cancelbutton = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        cancel = new javax.swing.JLabel();
         address = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        birthdate = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        age = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        p_id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+
+        jLabel5.setText("jLabel5");
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel2.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel2.setText("Firstname:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(30, 20, 80, 16);
+        jLabel2.setBounds(30, 60, 80, 16);
         jPanel2.add(fname);
-        fname.setBounds(120, 10, 180, 30);
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Middlename:");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(20, 60, 90, 16);
-        jPanel2.add(middlename);
-        middlename.setBounds(120, 50, 180, 30);
+        fname.setBounds(120, 50, 190, 30);
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -86,144 +92,248 @@ public class patientform extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel4);
         jLabel4.setBounds(20, 100, 90, 16);
         jPanel2.add(lname);
-        lname.setBounds(120, 90, 180, 30);
+        lname.setBounds(120, 90, 190, 30);
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Gender:");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(30, 140, 60, 20);
+        jLabel6.setBounds(40, 180, 60, 20);
 
-        malebutton.setText("MALE");
-        jPanel2.add(malebutton);
-        malebutton.setBounds(120, 140, 60, 23);
-
-        femalebutton.setText("FEMALE");
-        femalebutton.addActionListener(new java.awt.event.ActionListener() {
+        male.setText("MALE");
+        male.setBorder(null);
+        male.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                femalebuttonActionPerformed(evt);
+                maleActionPerformed(evt);
             }
         });
-        jPanel2.add(femalebutton);
-        femalebutton.setBounds(200, 140, 93, 23);
+        jPanel2.add(male);
+        male.setBounds(120, 180, 60, 20);
+
+        female.setText("FEMALE");
+        female.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femaleActionPerformed(evt);
+            }
+        });
+        jPanel2.add(female);
+        female.setBounds(200, 180, 93, 23);
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Contact No.:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(350, 120, 80, 16);
+        jLabel7.setBounds(30, 300, 80, 30);
         jPanel2.add(contact);
-        contact.setBounds(440, 110, 190, 30);
-
-        jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Note :");
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(30, 200, 60, 16);
+        contact.setBounds(120, 300, 190, 30);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Date of Birth:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(340, 20, 90, 20);
+        jLabel9.setBounds(20, 220, 90, 30);
 
         SAVEbutton.setBackground(new java.awt.Color(0, 204, 204));
         SAVEbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        SAVEbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SAVEbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SAVEbuttonMouseExited(evt);
+            }
+        });
         SAVEbutton.setLayout(null);
 
-        jLabel16.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("SAVE");
-        SAVEbutton.add(jLabel16);
-        jLabel16.setBounds(0, 0, 80, 30);
+        p_save.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        p_save.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        p_save.setText("LABEL");
+        p_save.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                p_saveMouseClicked(evt);
+            }
+        });
+        SAVEbutton.add(p_save);
+        p_save.setBounds(0, 0, 80, 30);
 
         jPanel2.add(SAVEbutton);
-        SAVEbutton.setBounds(410, 300, 80, 30);
+        SAVEbutton.setBounds(80, 360, 80, 30);
 
         cancelbutton.setBackground(new java.awt.Color(0, 204, 204));
         cancelbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cancelbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelbuttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancelbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancelbuttonMouseExited(evt);
+            }
+        });
         cancelbutton.setLayout(null);
 
-        jLabel17.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("CANCEL");
-        cancelbutton.add(jLabel17);
-        jLabel17.setBounds(0, 0, 90, 30);
+        cancel.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        cancel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cancel.setText("CANCEL");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        cancelbutton.add(cancel);
+        cancel.setBounds(0, 0, 90, 30);
 
         jPanel2.add(cancelbutton);
-        cancelbutton.setBounds(520, 300, 90, 30);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 220, 370, 130);
+        cancelbutton.setBounds(200, 360, 90, 30);
         jPanel2.add(address);
-        address.setBounds(440, 60, 190, 30);
+        address.setBounds(120, 260, 190, 30);
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel18.setText("Address:");
         jPanel2.add(jLabel18);
-        jLabel18.setBounds(370, 60, 60, 30);
+        jLabel18.setBounds(40, 260, 60, 30);
+        jPanel2.add(birthdate);
+        birthdate.setBounds(120, 220, 190, 30);
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jPanel2.add(jFormattedTextField3);
-        jFormattedTextField3.setBounds(440, 10, 190, 30);
+        jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Age:");
+        jPanel2.add(jLabel8);
+        jLabel8.setBounds(70, 136, 29, 20);
+        jPanel2.add(age);
+        age.setBounds(120, 130, 190, 30);
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Patient ID:");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(24, 10, 80, 30);
+
+        p_id.setEnabled(false);
+        jPanel2.add(p_id);
+        p_id.setBounds(120, 10, 190, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 50, 650, 360);
+        jPanel2.setBounds(160, 50, 350, 410);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NEW PATIENT");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 10, 320, 30);
+        jLabel1.setBounds(180, 10, 320, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void femalebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femalebuttonActionPerformed
+    private void femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleActionPerformed
+        male.setSelected(false);
+       if(female.isSelected()){
+           gender = "Female";
+       
+       }else{
+          gender = null;
+       }
+    }//GEN-LAST:event_femaleActionPerformed
+
+    private void SAVEbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SAVEbuttonMouseEntered
+        SAVEbutton.setBackground(bodycolor);
+    }//GEN-LAST:event_SAVEbuttonMouseEntered
+
+    private void SAVEbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SAVEbuttonMouseExited
+       SAVEbutton.setBackground(navcolor);
+    }//GEN-LAST:event_SAVEbuttonMouseExited
+
+    private void cancelbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelbuttonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_femalebuttonActionPerformed
+    }//GEN-LAST:event_cancelbuttonMouseClicked
+
+    private void cancelbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelbuttonMouseEntered
+      cancelbutton.setBackground(bodycolor);
+    }//GEN-LAST:event_cancelbuttonMouseEntered
+
+    private void cancelbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelbuttonMouseExited
+       cancelbutton.setBackground(navcolor);
+    }//GEN-LAST:event_cancelbuttonMouseExited
+
+    private void p_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_saveMouseClicked
+        if(action.equals("ADD")){
+        dbConnector dbc = new dbConnector();
+        boolean result = dbc.insertData("INSERT INTO  tbl_patients(p_firstname,p_lastname,p_age,p_gender,p_dateofbirth,p_contact,p_address)VALUES('"+fname.getText()+"','"+lname.getText()+"','"+age.getText()+"','"+gender+"','"+birthdate.getText()+"','"+contact.getText()+"','"+address.getText()+"')");
+        if(result = true){
+            JOptionPane.showMessageDialog(null,"Successfully Save!");;
+            
+           desk_dashboard dDash = new desk_dashboard();
+              patients P = new patients();
+              dDash.maindesktop.add(P).setVisible(true);
+              this.dispose();
+              
+        }else{
+            System.out.println("Saving Data Failed!");
+        }
+        
+        }else if(action.equals("Update")){
+        dbConnector dbc = new dbConnector();
+        dbc.UpdateData("UPDATE tbl_patients SET p_firstname = '"+fname.getText()+"',p_lastname = '"+lname.getText()+"',p_age = '"+age.getText()+"',p_gender =  '"+gender+"',p_dateofbirth = '"+birthdate.getText()+"',p_contact = '"+contact.getText()+"', p_address = '"+address.getText()+"'Where p_id = '"+p_id.getText()+"'");
+        
+        }
+    }//GEN-LAST:event_p_saveMouseClicked
+
+    private void maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleActionPerformed
+       female.setSelected(false);
+       if(male.isSelected()){
+           gender = "Male";
+       
+       }else{
+          gender = null;
+       }
+    }//GEN-LAST:event_maleActionPerformed
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+      desk_dashboard dDash = new desk_dashboard();
+              patients P = new patients();
+              dDash.maindesktop.add(P).setVisible(true);
+              this.dispose();
+    }//GEN-LAST:event_cancelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SAVEbutton;
-    private javax.swing.JTextField address;
+    public javax.swing.JTextField address;
+    public javax.swing.JTextField age;
+    public javax.swing.JTextField birthdate;
+    private javax.swing.JLabel cancel;
     private javax.swing.JPanel cancelbutton;
-    private javax.swing.JTextField contact;
-    private javax.swing.JRadioButton femalebutton;
-    private javax.swing.JTextField fname;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
+    public javax.swing.JTextField contact;
+    public javax.swing.JRadioButton female;
+    public javax.swing.JTextField fname;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField lname;
-    private javax.swing.JRadioButton malebutton;
-    private javax.swing.JTextField middlename;
+    public javax.swing.JTextField lname;
+    public javax.swing.JRadioButton male;
+    public javax.swing.JTextField p_id;
+    public javax.swing.JLabel p_save;
     // End of variables declaration//GEN-END:variables
 }

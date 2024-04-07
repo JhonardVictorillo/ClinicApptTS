@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 
 public class dbConnector {
@@ -41,6 +42,27 @@ public class dbConnector {
                return false;
             }
         }
+        
+        
+     public void UpdateData(String sql){
+       try{
+       PreparedStatement pst = connect.prepareStatement(sql);
+           int rowUpdated = pst.executeUpdate();
+           if(rowUpdated>0){
+          
+               JOptionPane.showMessageDialog(null, "Data Updated successfully!");
+           
+           }else{
+               System.out.println("Data Update Failed!");
+           }
        
+       }catch(SQLException ex){
+          System.out.println("Connection Error: "+ex);
+       }
+     
+     
+     
+     }   
+        
     
 }

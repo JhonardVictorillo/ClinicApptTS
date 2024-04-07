@@ -181,9 +181,9 @@
                         <Column editable="true" title="ID" type="java.lang.Object"/>
                         <Column editable="true" title="LASTNAME" type="java.lang.Object"/>
                         <Column editable="true" title="FIRSTNAME" type="java.lang.Object"/>
-                        <Column editable="true" title="MIDDLE NAME" type="java.lang.Object"/>
-                        <Column editable="true" title="GENDER" type="java.lang.Object"/>
                         <Column editable="true" title="AGE" type="java.lang.Object"/>
+                        <Column editable="true" title="GENDER" type="java.lang.Object"/>
+                        <Column editable="true" title="BIRTHDATE" type="java.lang.Object"/>
                         <Column editable="true" title="ADDRESS" type="java.lang.Object"/>
                         <Column editable="true" title="CONTACTS" type="java.lang.Object"/>
                       </Table>
@@ -274,6 +274,9 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="EDIT"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editbuttonMouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="0" width="70" height="30"/>
@@ -340,6 +343,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="REFRESHBUTMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="REFRESHBUTMouseExited"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

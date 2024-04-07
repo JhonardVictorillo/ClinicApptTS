@@ -95,7 +95,7 @@ public class desk_dashboard extends javax.swing.JFrame {
             }
         });
         PATIENT.add(patientButton);
-        patientButton.setBounds(30, 0, 150, 40);
+        patientButton.setBounds(30, 0, 130, 30);
 
         NAV.add(PATIENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 210, 40));
 
@@ -145,7 +145,7 @@ public class desk_dashboard extends javax.swing.JFrame {
             }
         });
         DOCTOR.add(doctorButton);
-        doctorButton.setBounds(20, 0, 170, 40);
+        doctorButton.setBounds(10, 0, 160, 40);
 
         NAV.add(DOCTOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 200, 40));
 
@@ -170,7 +170,7 @@ public class desk_dashboard extends javax.swing.JFrame {
             }
         });
         REPORTS.add(reportsButton);
-        reportsButton.setBounds(10, 0, 170, 40);
+        reportsButton.setBounds(20, 0, 160, 40);
 
         NAV.add(REPORTS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 210, 40));
 

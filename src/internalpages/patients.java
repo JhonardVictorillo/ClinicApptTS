@@ -5,11 +5,15 @@
  */
 package internalpages;
 
+import ADDFORMSINTERNALPAGE.patientform;
 import config.dbConnector;
 import java.awt.Color;
+import user.desk_dashboard;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -36,8 +40,7 @@ public class patients extends javax.swing.JInternalFrame {
     Color bodycolor = new Color(153,204,255);
     
     
-    
-    
+   
     
     public void displaydata(){
     try{
@@ -148,7 +151,7 @@ public class patients extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "LASTNAME", "FIRSTNAME", "MIDDLE NAME", "GENDER", "AGE", "ADDRESS", "CONTACTS"
+                "ID", "LASTNAME", "FIRSTNAME", "AGE", "GENDER", "BIRTHDATE", "ADDRESS", "CONTACTS"
             }
         ));
         jScrollPane1.setViewportView(patienttable);
@@ -171,6 +174,11 @@ public class patients extends javax.swing.JInternalFrame {
         editbutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         editbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         editbutton.setText("EDIT");
+        editbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editbuttonMouseClicked(evt);
+            }
+        });
         EDITBUT.add(editbutton);
         editbutton.setBounds(0, 0, 70, 30);
 
@@ -203,6 +211,9 @@ public class patients extends javax.swing.JInternalFrame {
         REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 REFRESHBUTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                REFRESHBUTMouseExited(evt);
             }
         });
         REFRESHBUT.setLayout(null);
@@ -239,7 +250,12 @@ public class patients extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-        // TODO add your handling code here:
+        desk_dashboard DeskDash = new desk_dashboard();
+           DeskDash.setVisible(true);
+       patientform pform = new patientform();
+        DeskDash.maindesktop.add(pform).setVisible(true);
+        pform.action = "ADD";
+        pform.p_save.setText("SAVE");
     }//GEN-LAST:event_addMouseClicked
 
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
@@ -247,32 +263,69 @@ public class patients extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_refreshMouseClicked
 
     private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
-        EDITBUT.setBackground(navcolor);
+        EDITBUT.setBackground(bodycolor);
     }//GEN-LAST:event_EDITBUTMouseEntered
 
     private void EDITBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseExited
-        // TODO add your handling code here:
+        EDITBUT.setBackground(navcolor);
     }//GEN-LAST:event_EDITBUTMouseExited
 
     private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered
-       ADDBUT.setBackground(navcolor);
+       ADDBUT.setBackground(bodycolor);
     }//GEN-LAST:event_ADDBUTMouseEntered
 
     private void ADDBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseExited
-        // TODO add your handling code here:
+         ADDBUT.setBackground(navcolor);
     }//GEN-LAST:event_ADDBUTMouseExited
 
     private void DELETEBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseEntered
-        DELETEBUT.setBackground(navcolor);
+        DELETEBUT.setBackground(bodycolor);
     }//GEN-LAST:event_DELETEBUTMouseEntered
 
     private void DELETEBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseExited
-        // TODO add your handling code here:
+        DELETEBUT.setBackground(navcolor);
     }//GEN-LAST:event_DELETEBUTMouseExited
 
     private void REFRESHBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseEntered
-        REFRESHBUT.setBackground(navcolor);
+        REFRESHBUT.setBackground(bodycolor);
     }//GEN-LAST:event_REFRESHBUTMouseEntered
+
+    private void REFRESHBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseExited
+         REFRESHBUT.setBackground(navcolor);
+    }//GEN-LAST:event_REFRESHBUTMouseExited
+
+    private void editbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbuttonMouseClicked
+        int rowindex = patienttable.getSelectedRow();
+        if(rowindex<0){
+            JOptionPane.showMessageDialog(null,"Please select an item!");
+        
+        }else{
+        TableModel model = patienttable.getModel();
+        patientform pForm = new patientform();
+        pForm.p_id.setText(""+model.getValueAt(rowindex, 0));
+        pForm.fname.setText(""+model.getValueAt(rowindex, 1));
+        pForm.lname.setText(""+model.getValueAt(rowindex, 2));
+        
+        pForm.gender = model.getValueAt(rowindex, 4).toString(); 
+        
+            String gend = model.getValueAt(rowindex, 3).toString(); 
+            if(gend.equals("MALE")){
+            pForm.male.setSelected(true);
+            }
+            if(gend.equals("FEMALE")){
+            pForm.female.setSelected(true);
+            }
+        pForm.age.setText(""+model.getValueAt(rowindex, 3));
+        pForm.birthdate.setText(""+model.getValueAt(rowindex, 5));
+        pForm.address.setText(""+model.getValueAt(rowindex, 6));
+        pForm.contact.setText(""+model.getValueAt(rowindex, 7));
+        desk_dashboard DeskDash = new desk_dashboard();
+           DeskDash.setVisible(true);
+         DeskDash.maindesktop.add(pForm).setVisible(true);
+         pForm.action = "Update";
+         pForm.p_save.setText("UPDATE");
+        }
+    }//GEN-LAST:event_editbuttonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

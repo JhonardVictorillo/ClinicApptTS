@@ -55,7 +55,7 @@ public class addAppointmentt extends javax.swing.JInternalFrame {
         jLabel2.setText("PATIENT ID:");
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0)));
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(130, 20, 90, 30);
+        jLabel2.setBounds(120, 20, 90, 30);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +102,7 @@ public class addAppointmentt extends javax.swing.JInternalFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please Select", "Medical Examination", "Doctor check", "Check-Up" }));
         jPanel2.add(jComboBox2);
-        jComboBox2.setBounds(70, 220, 210, 30);
+        jComboBox2.setBounds(60, 220, 210, 30);
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
