@@ -55,14 +55,53 @@ public class dbConnector {
            }else{
                System.out.println("Data Update Failed!");
            }
-       
+          pst.close(); 
        }catch(SQLException ex){
           System.out.println("Connection Error: "+ex);
        }
      
-     
-     
+       
      }   
         
+     
+     public void deletedData(int id,String Table){
+        try{
+          PreparedStatement pst = connect.prepareStatement("DELETE FROM tbl_patients WHERE p_id=?");
+          
+            pst.setInt(1, id);
+            int rowDeleted = pst.executeUpdate();
+             if(rowDeleted>0){
+              JOptionPane.showMessageDialog(null, "Data Deleted successfully!");   
+
+             }else{
+                 System.out.println("Deletion Failed!");
+             }
+             pst.close();
+
+                }catch(SQLException ex){
+                    System.out.println("Connection Error:"+ex);
+
+                 }
+                  }
+     
+     public void DeleteduserData(int id,String Table){
+        try{
+          PreparedStatement pst = connect.prepareStatement("DELETE FROM tbl_userdetails WHERE u_id=?");
+          
+            pst.setInt(1, id);
+            int rowDeleted = pst.executeUpdate();
+             if(rowDeleted>0){
+              JOptionPane.showMessageDialog(null, "Data Deleted successfully!");   
+
+             }else{
+                 System.out.println("Deletion Failed!");
+             }
+             pst.close();
+
+                }catch(SQLException ex){
+                    System.out.println("Connection Error:"+ex);
+
+                 }
+                  }
     
 }

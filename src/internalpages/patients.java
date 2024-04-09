@@ -5,7 +5,7 @@
  */
 package internalpages;
 
-import ADDFORMSINTERNALPAGE.patientform;
+import ADDFORMSINTERNALPAGE.*;
 import config.dbConnector;
 import java.awt.Color;
 import user.desk_dashboard;
@@ -52,11 +52,7 @@ public class patients extends javax.swing.JInternalFrame {
     }catch(SQLException ex){
         System.out.println("Errors:"+ex.getMessage());
     
-    
-    
     }
-    
-    
     
     
     
@@ -200,6 +196,11 @@ public class patients extends javax.swing.JInternalFrame {
         deletebutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deletebutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         deletebutton.setText("DELETE");
+        deletebutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletebuttonMouseClicked(evt);
+            }
+        });
         DELETEBUT.add(deletebutton);
         deletebutton.setBounds(0, 0, 70, 30);
 
@@ -250,10 +251,12 @@ public class patients extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-        desk_dashboard DeskDash = new desk_dashboard();
-           DeskDash.setVisible(true);
-       patientform pform = new patientform();
-        DeskDash.maindesktop.add(pform).setVisible(true);
+//        desk_dashboard DeskDash = new desk_dashboard();
+//           DeskDash.setVisible(true);
+//       patientform pform = new patientform();
+//        DeskDash.maindesktop.add(pform).setVisible(true);
+  addpatientform pform = new addpatientform();
+       pform.setVisible(true);
         pform.action = "ADD";
         pform.p_save.setText("SAVE");
     }//GEN-LAST:event_addMouseClicked
@@ -301,7 +304,7 @@ public class patients extends javax.swing.JInternalFrame {
         
         }else{
         TableModel model = patienttable.getModel();
-        patientform pForm = new patientform();
+        addpatientform pForm = new addpatientform();
         pForm.p_id.setText(""+model.getValueAt(rowindex, 0));
         pForm.fname.setText(""+model.getValueAt(rowindex, 1));
         pForm.lname.setText(""+model.getValueAt(rowindex, 2));
@@ -320,12 +323,30 @@ public class patients extends javax.swing.JInternalFrame {
         pForm.address.setText(""+model.getValueAt(rowindex, 6));
         pForm.contact.setText(""+model.getValueAt(rowindex, 7));
         desk_dashboard DeskDash = new desk_dashboard();
-           DeskDash.setVisible(true);
-         DeskDash.maindesktop.add(pForm).setVisible(true);
+          
+         pForm.setVisible(true);
          pForm.action = "Update";
          pForm.p_save.setText("UPDATE");
         }
     }//GEN-LAST:event_editbuttonMouseClicked
+
+    private void deletebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebuttonMouseClicked
+        int rowIndex = patienttable.getSelectedRow();
+        if(rowIndex<0){
+            JOptionPane.showMessageDialog(null,"Please select an item to Delete!");
+        }else{
+            TableModel model = patienttable.getModel();
+            Object value = model.getValueAt(rowIndex,0);
+            String id = value.toString();
+            int a = JOptionPane.showConfirmDialog(null,"Are you sure to Delete ID:"+id);
+            if(a == JOptionPane.YES_OPTION){
+                dbConnector dbc = new dbConnector();
+                int p_id = Integer.parseInt(id);
+                dbc.deletedData(p_id,"tbl_userdetails");
+                displaydata();
+            }
+        }
+    }//GEN-LAST:event_deletebuttonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

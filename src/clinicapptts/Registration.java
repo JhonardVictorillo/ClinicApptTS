@@ -1,6 +1,8 @@
 package clinicapptts;
 
 import config.dbConnector;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /*
@@ -22,6 +24,40 @@ public class Registration extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static String Email,username;
+    
+    
+    boolean DuplicateCheck(){
+    dbConnector dbc = new dbConnector();
+        try{
+     String query ="SELECT * FROM tbl_userdetails WHERE u_username = '"+uname.getText()+"' OR u_email = '"+email.getText()+"'";
+      ResultSet rs = dbc.getData(query);
+    
+      if(rs.next()){
+          Email = rs.getString("u_email");
+         if(Email.equals(email.getText())){
+            JOptionPane.showMessageDialog(null, "Email already exist!");
+            email.setText("");
+            
+         }
+          username = rs.getString("u_username");
+         if(username.equals(uname.getText())){
+            JOptionPane.showMessageDialog(null, "Username already exist!");  
+            uname.setText("");
+         }
+          return true; 
+          
+        }else{
+          return false;
+      }
+      
+                   
+    }catch(SQLException ex){
+        System.out.println(""+ex);
+        return false;
+    }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,17 +80,17 @@ public class Registration extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         account = new javax.swing.JComboBox<>();
-        Fname = new javax.swing.JTextField();
+        fname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         Re_enterpass = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        Lname = new javax.swing.JTextField();
+        lname = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         CREATEBUTTON = new javax.swing.JPanel();
         createbutton = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
+        uname = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         cancelbutton = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -133,13 +169,13 @@ public class Registration extends javax.swing.JFrame {
         });
         jPanel4.add(account, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 230, 30));
 
-        Fname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        Fname.addActionListener(new java.awt.event.ActionListener() {
+        fname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        fname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FnameActionPerformed(evt);
+                fnameActionPerformed(evt);
             }
         });
-        jPanel4.add(Fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 230, 30));
+        jPanel4.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 230, 30));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel2.setText("FIRST NAME:");
@@ -164,8 +200,8 @@ public class Registration extends javax.swing.JFrame {
         jLabel4.setText("RE-ENTER PASSWORD:");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
-        Lname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel4.add(Lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, 30));
+        lname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, 30));
 
         jLabel5.setText("LASTNAME:");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
@@ -186,9 +222,9 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel4.add(CREATEBUTTON, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 90, 30));
 
-        username.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel4.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 230, 30));
+        uname.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        uname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.add(uname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 230, 30));
 
         jLabel13.setText("USERNAME");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
@@ -250,26 +286,46 @@ public class Registration extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Re_enterpassActionPerformed
 
-    private void FnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FnameActionPerformed
+    private void fnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FnameActionPerformed
+    }//GEN-LAST:event_fnameActionPerformed
 
     private void createbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createbuttonMouseClicked
-       dbConnector dbc = new dbConnector();
+       if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() 
+               || uname.getText().isEmpty() 
+               || password.getText().isEmpty() 
+               || Re_enterpass.getText().isEmpty()){
+                  JOptionPane.showMessageDialog(null, "All fields are required!"); 
+                }
+            if(!password.getText().equals(Re_enterpass.getText())){
+              JOptionPane.showMessageDialog(null, "Password doesn't Match!"); 
+               password.setText("");
+               Re_enterpass.setText("");
+                   
+             }else if(password.getText().length()<8){
+              JOptionPane.showMessageDialog(null, "Password must atleast 8 characters!"); 
+               
+             }else if(DuplicateCheck()){
+             System.out.println("Duplicate Exist");
+           
+            }else{
+        
+        dbConnector dbc = new dbConnector();
        
-       if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+Fname.getText()+"','"+Lname.getText()+"','"+email.getText()+"','"+username.getText()+"','"+password.getText()+"','Pending')")){
+       if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','Pending')")){
        
-       JOptionPane.showMessageDialog(null, "Inserted Successfully!");
+       JOptionPane.showMessageDialog(null, "Created Successfully!");
        
        LoginForm Lform = new LoginForm();
        Lform.setVisible(true);
        this.dispose();
        
     }else{
-                JOptionPane.showMessageDialog(null, "Connection Error!");
+       JOptionPane.showMessageDialog(null, "Connection Error!");
                 
             }
-       
+           }
+    
     }//GEN-LAST:event_createbuttonMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -315,13 +371,12 @@ public class Registration extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CREATEBUTTON;
-    private javax.swing.JTextField Fname;
-    private javax.swing.JTextField Lname;
-    private javax.swing.JPasswordField Re_enterpass;
-    private javax.swing.JComboBox<String> account;
+    public javax.swing.JPasswordField Re_enterpass;
+    public javax.swing.JComboBox<String> account;
     private javax.swing.JPanel cancelbutton;
     private javax.swing.JLabel createbutton;
     private javax.swing.JTextField email;
+    public javax.swing.JTextField fname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -342,7 +397,8 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    public javax.swing.JTextField lname;
+    public javax.swing.JPasswordField password;
+    private javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables
 }

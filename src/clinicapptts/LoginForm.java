@@ -27,21 +27,45 @@ public class LoginForm extends javax.swing.JFrame {
     public LoginForm() {
         initComponents();
     } 
-      public static boolean loginAcc(String username,String password){
+      public static String loginAccRole (String username,String password){
            dbConnector connect = new dbConnector();
     try{
-      String sql ="SELECT * FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
+      String sql ="SELECT u_account FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
       ResultSet rs = connect.getData(sql);
-      return rs.next();
-      
-        
-    
+     if(rs.next()){
+         return rs.getString("u_account");
+     }else{
+         return null;
+     }
+     
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null, "DataBase Connection Error");
-        return false;
+        return null;
     }
-    
+       }
+      public static String loginAccStatus (String username,String password){
+           dbConnector connect = new dbConnector();
+    try{
+      String sql ="SELECT u_status FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
+      ResultSet rs = connect.getData(sql);
+     if(rs.next()){
+         return rs.getString("u_status");
+     }else{
+         return null;
+     }
+     
+    }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "DataBase Connection Error");
+        return null;
     }
+       }
+      
+      
+      
+      
+      
+      
+      
        Color navcolor = new Color(0,204,204);
     Color bodycolor = new Color(153,204,255);
     /**
@@ -253,15 +277,32 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SIGNINMouseClicked
 
     private void signinButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinButtonMouseClicked
-    if(loginAcc(userName.getText(),userPass.getText())){
-    JOptionPane.showMessageDialog(null,"Login Success!");
-    Admin_dashboard adminDash = new Admin_dashboard();
-    adminDash.setVisible(true);
-    this.dispose();
+    String accountrole =loginAccRole (userName.getText(),userPass.getText());
+    String accountstatus =loginAccStatus (userName.getText(),userPass.getText());
     
-    }else{
-    JOptionPane.showMessageDialog(null,"Database Connection Error");
-    
+       if(accountrole.equals("DOCTOR")){
+        if(accountstatus.equals("Active")){
+         JOptionPane.showMessageDialog(null,"Login Success!");
+             Admin_dashboard adminDash = new Admin_dashboard();
+            adminDash.setVisible(true);
+            this.dispose();
+         }else{
+         JOptionPane.showMessageDialog(null,"Account is inactive!");
+       }
+        
+       }else if(accountrole.equals("DESK")){
+       if(accountstatus.equals("Active")){
+         JOptionPane.showMessageDialog(null,"Login Success!");
+             desk_dashboard deskDash = new desk_dashboard();
+            deskDash.setVisible(true);
+            this.dispose();
+         }else{
+         JOptionPane.showMessageDialog(null,"Account is inactive!");
+              }
+     
+         }else{
+            JOptionPane.showMessageDialog(null,"Invalid Account");
+
     }     
    
     }//GEN-LAST:event_signinButtonMouseClicked
