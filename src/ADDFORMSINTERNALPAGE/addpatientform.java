@@ -128,9 +128,9 @@ Color navcolor = new Color(0,204,204);
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Contact No.:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(30, 300, 80, 30);
+        jLabel7.setBounds(30, 260, 80, 30);
         jPanel2.add(contact);
-        contact.setBounds(120, 300, 190, 30);
+        contact.setBounds(120, 260, 190, 30);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -193,12 +193,12 @@ Color navcolor = new Color(0,204,204);
         jPanel2.add(cancelbutton);
         cancelbutton.setBounds(200, 360, 90, 30);
         jPanel2.add(address);
-        address.setBounds(120, 260, 190, 30);
+        address.setBounds(120, 300, 190, 30);
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel18.setText("Address:");
         jPanel2.add(jLabel18);
-        jLabel18.setBounds(40, 260, 60, 30);
+        jLabel18.setBounds(50, 300, 60, 30);
         jPanel2.add(birthdate);
         birthdate.setBounds(120, 220, 190, 30);
 

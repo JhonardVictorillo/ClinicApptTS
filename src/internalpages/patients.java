@@ -147,7 +147,7 @@ public class patients extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "LASTNAME", "FIRSTNAME", "AGE", "GENDER", "BIRTHDATE", "ADDRESS", "CONTACTS"
+                "ID", "LASTNAME", "FIRSTNAME", "AGE", "GENDER", "BIRTHDATE", "CONTACTS", "ADDRESS"
             }
         ));
         jScrollPane1.setViewportView(patienttable);
@@ -308,20 +308,22 @@ public class patients extends javax.swing.JInternalFrame {
         pForm.p_id.setText(""+model.getValueAt(rowindex, 0));
         pForm.fname.setText(""+model.getValueAt(rowindex, 1));
         pForm.lname.setText(""+model.getValueAt(rowindex, 2));
-        
+         pForm.age.setText(""+model.getValueAt(rowindex, 3));
+         
         pForm.gender = model.getValueAt(rowindex, 4).toString(); 
         
-            String gend = model.getValueAt(rowindex, 3).toString(); 
+            String gend = model.getValueAt(rowindex, 4).toString(); 
             if(gend.equals("MALE")){
             pForm.male.setSelected(true);
             }
             if(gend.equals("FEMALE")){
             pForm.female.setSelected(true);
             }
-        pForm.age.setText(""+model.getValueAt(rowindex, 3));
+       
         pForm.birthdate.setText(""+model.getValueAt(rowindex, 5));
-        pForm.address.setText(""+model.getValueAt(rowindex, 6));
-        pForm.contact.setText(""+model.getValueAt(rowindex, 7));
+         pForm.contact.setText(""+model.getValueAt(rowindex, 6));
+        pForm.address.setText(""+model.getValueAt(rowindex, 7));
+       
         desk_dashboard DeskDash = new desk_dashboard();
           
          pForm.setVisible(true);
@@ -342,7 +344,7 @@ public class patients extends javax.swing.JInternalFrame {
             if(a == JOptionPane.YES_OPTION){
                 dbConnector dbc = new dbConnector();
                 int p_id = Integer.parseInt(id);
-                dbc.deletedData(p_id,"tbl_userdetails");
+                dbc.deletedData(p_id,"tbl_patient");
                 displaydata();
             }
         }

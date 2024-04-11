@@ -312,7 +312,7 @@ public class Registration extends javax.swing.JFrame {
         
         dbConnector dbc = new dbConnector();
        
-       if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','Pending')")){
+       if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','Inactive')")){
        
        JOptionPane.showMessageDialog(null, "Created Successfully!");
        

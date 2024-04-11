@@ -87,17 +87,17 @@ public class userlist extends javax.swing.JFrame {
         usertable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         usertable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "LASTNAME", "FIRSTNAME", "USERNAME", "PASSWORD", "ACCOUNT TYPE", "STATUS"
+                "ID", "LASTNAME", "FIRSTNAME", "USERNAME", "PASSWORD", "EMAIL", "ACCOUNT TYPE", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, false
+                true, true, true, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -231,8 +231,9 @@ public class userlist extends javax.swing.JFrame {
         }else{
             TableModel model = usertable.getModel();
             editform eForm = new editform();
+            eForm.u_id.setText(""+model.getValueAt(rowindex, 0));
             eForm.status.setSelectedItem(""+model.getValueAt(rowindex, 7));
-            
+             eForm.newpass.setText(""+model.getValueAt(rowindex, 5));
             eForm.setVisible(true);
             this.dispose();
 
