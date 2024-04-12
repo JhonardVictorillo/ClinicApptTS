@@ -1,6 +1,7 @@
 package user;
 
 
+import ADDFORMSINTERNALPAGE.userinfo;
 import clinicapptts.LoginForm;
 import internalpages.*;
 import java.awt.Color;
@@ -13,7 +14,10 @@ public class desk_dashboard extends javax.swing.JFrame {
      * Creates new form desk_dashboard
      */
     public desk_dashboard() {
-        initComponents();
+         initComponents();
+         
+          dashboard dash = new dashboard();
+        maindesktop.add(dash).setVisible(true);
     }
     Color navcolor = new Color(0,204,204);
     Color bodycolor = new Color(153,204,255);
@@ -41,6 +45,7 @@ public class desk_dashboard extends javax.swing.JFrame {
         LOGOUT = new javax.swing.JPanel();
         LAGOUTBUTTON = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         maindesktop = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +71,11 @@ public class desk_dashboard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("DASHBOARD");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         DASHBOARD.add(jLabel1);
         jLabel1.setBounds(0, 1, 190, 40);
 
@@ -202,17 +212,17 @@ public class desk_dashboard extends javax.swing.JFrame {
         jPanel1.add(NAV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 530));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setLayout(null);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/account_circle_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel2);
+        jLabel2.setBounds(610, 0, 80, 40);
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 680, 40));
 
@@ -326,6 +336,17 @@ public class desk_dashboard extends javax.swing.JFrame {
        
     }//GEN-LAST:event_patientButtonMouseEntered
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        dashboard dash = new dashboard();
+        maindesktop.add(dash).setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+      userinfo uinfo = new userinfo();
+      uinfo.setVisible(true);
+      
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -373,6 +394,7 @@ public class desk_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel apptButton;
     private javax.swing.JLabel doctorButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     public javax.swing.JDesktopPane maindesktop;

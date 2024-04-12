@@ -7,6 +7,7 @@ import config.dbConnector;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /*
@@ -283,6 +284,7 @@ public class LoginForm extends javax.swing.JFrame {
        if(accountrole.equals("DOCTOR")){
         if(accountstatus.equals("Active")){
          JOptionPane.showMessageDialog(null,"Login Success!");
+         
              Admin_dashboard adminDash = new Admin_dashboard();
             adminDash.setVisible(true);
             this.dispose();
@@ -293,18 +295,19 @@ public class LoginForm extends javax.swing.JFrame {
        }else if(accountrole.equals("DESK")){
        if(accountstatus.equals("Active")){
          JOptionPane.showMessageDialog(null,"Login Success!");
-             desk_dashboard deskDash = new desk_dashboard();
+         
+            desk_dashboard deskDash = new desk_dashboard();
             deskDash.setVisible(true);
             this.dispose();
          }else{
          JOptionPane.showMessageDialog(null,"Account is inactive!");
               }
-     
+            
          }else{
             JOptionPane.showMessageDialog(null,"Invalid Account");
 
-    }     
-   
+    } 
+      
     }//GEN-LAST:event_signinButtonMouseClicked
 
     private void signinButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinButtonMouseExited

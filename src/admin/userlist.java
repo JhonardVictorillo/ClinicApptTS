@@ -57,8 +57,6 @@ public class userlist extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        usertable = new javax.swing.JTable();
         EDITBUT = new javax.swing.JPanel();
         editbutton = new javax.swing.JLabel();
         DELETEBUT = new javax.swing.JPanel();
@@ -67,6 +65,10 @@ public class userlist extends javax.swing.JFrame {
         refresh = new javax.swing.JLabel();
         searchbar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        ADDBUT = new javax.swing.JPanel();
+        add = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        usertable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,31 +85,6 @@ public class userlist extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(null);
-
-        usertable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        usertable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "LASTNAME", "FIRSTNAME", "USERNAME", "PASSWORD", "EMAIL", "ACCOUNT TYPE", "STATUS"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(usertable);
-
-        jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 560, 100);
 
         EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -132,7 +109,7 @@ public class userlist extends javax.swing.JFrame {
         EDITBUT.add(editbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 30));
 
         jPanel5.add(EDITBUT);
-        EDITBUT.setBounds(20, 40, 70, 30);
+        EDITBUT.setBounds(100, 40, 70, 30);
 
         DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
         DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -158,7 +135,7 @@ public class userlist extends javax.swing.JFrame {
         delete.setBounds(10, 0, 50, 30);
 
         jPanel5.add(DELETEBUT);
-        DELETEBUT.setBounds(110, 40, 70, 30);
+        DELETEBUT.setBounds(180, 40, 70, 30);
 
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -184,7 +161,7 @@ public class userlist extends javax.swing.JFrame {
         refresh.setBounds(10, 0, 55, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(200, 40, 70, 30);
+        REFRESHBUT.setBounds(270, 40, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.add(searchbar);
@@ -194,6 +171,58 @@ public class userlist extends javax.swing.JFrame {
         jLabel2.setText("SEARCH:");
         jPanel5.add(jLabel2);
         jLabel2.setBounds(380, 20, 80, 17);
+
+        ADDBUT.setBackground(new java.awt.Color(0, 204, 204));
+        ADDBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
+        ADDBUT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ADDBUTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ADDBUTMouseExited(evt);
+            }
+        });
+        ADDBUT.setLayout(null);
+
+        add.setBackground(new java.awt.Color(255, 255, 255));
+        add.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add.setText("NEW");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
+        ADDBUT.add(add);
+        add.setBounds(10, 0, 50, 30);
+
+        jPanel5.add(ADDBUT);
+        ADDBUT.setBounds(20, 40, 70, 30);
+
+        usertable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        usertable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "LASTNAME", "FIRSTNAME", "USERNAME", "PASSWORD", "EMAIL", "ACCOUNT TYPE", "STATUS"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(usertable);
+
+        jPanel5.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 90, 560, 100);
 
         jPanel1.add(jPanel5);
         jPanel5.setBounds(10, 70, 580, 400);
@@ -293,6 +322,23 @@ public class userlist extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+       
+           admin_Addacc Aform = new admin_Addacc();
+            Aform.setVisible(true);
+            this.dispose();
+//        Aform.action = "ADD";
+//        Aform.p_save.setText("SAVE");
+    }//GEN-LAST:event_addMouseClicked
+
+    private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered
+        ADDBUT.setBackground(bodycolor);
+    }//GEN-LAST:event_ADDBUTMouseEntered
+
+    private void ADDBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseExited
+        ADDBUT.setBackground(navcolor);
+    }//GEN-LAST:event_ADDBUTMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -329,9 +375,11 @@ public class userlist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ADDBUT;
     private javax.swing.JPanel DELETEBUT;
     private javax.swing.JPanel EDITBUT;
     private javax.swing.JPanel REFRESHBUT;
+    private javax.swing.JLabel add;
     private javax.swing.JLabel delete;
     private javax.swing.JLabel editbutton;
     private javax.swing.JLabel jLabel1;

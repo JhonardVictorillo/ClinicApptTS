@@ -5,6 +5,7 @@
  */
 package internalpages;
 
+import ADDFORMSINTERNALPAGE.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -80,6 +81,8 @@ public class appointment extends javax.swing.JInternalFrame {
         jLabel2.setText("SEARCH:");
         jPanel2.add(jLabel2);
         jLabel2.setBounds(420, 20, 60, 20);
+
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.add(jTextField1);
         jTextField1.setBounds(420, 50, 170, 30);
 
@@ -90,6 +93,11 @@ public class appointment extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("ADD");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         ADDBUTTON.add(jLabel3);
         jLabel3.setBounds(0, 0, 100, 30);
 
@@ -138,6 +146,12 @@ public class appointment extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        addAppointment apptform = new addAppointment();
+        apptform.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
