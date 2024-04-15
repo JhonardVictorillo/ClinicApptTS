@@ -73,14 +73,15 @@ public class userlist extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("User Management");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(160, 20, 260, 40);
+        jLabel1.setBounds(220, 20, 260, 40);
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -222,10 +223,10 @@ public class userlist extends javax.swing.JFrame {
         jScrollPane1.setViewportView(usertable);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 560, 100);
+        jScrollPane1.setBounds(10, 90, 620, 100);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(10, 70, 580, 400);
+        jPanel5.setBounds(10, 70, 640, 400);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/chevron_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -241,7 +242,9 @@ public class userlist extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +265,7 @@ public class userlist extends javax.swing.JFrame {
             editform eForm = new editform();
             eForm.u_id.setText(""+model.getValueAt(rowindex, 0));
             eForm.status.setSelectedItem(""+model.getValueAt(rowindex, 7));
-             eForm.newpass.setText(""+model.getValueAt(rowindex, 5));
+             
             eForm.setVisible(true);
             this.dispose();
 

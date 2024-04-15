@@ -49,7 +49,7 @@ public class appointment extends javax.swing.JInternalFrame {
         DELETEBUTTON = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -63,19 +63,19 @@ public class appointment extends javax.swing.JInternalFrame {
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "appointment ID", "Name", "Title 3", "Title 4"
+                "A_ID", "FIRSTNAME", "LASTNAME", "TYPE OF APPOINTMENT", "DOCTORS", "DATE", "TIME", "STATUS"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 600, 94);
+        jScrollPane1.setBounds(10, 90, 620, 94);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("SEARCH:");

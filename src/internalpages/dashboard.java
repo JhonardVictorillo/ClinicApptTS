@@ -22,6 +22,11 @@ public class dashboard extends javax.swing.JInternalFrame {
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
     }
+ 
+
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +47,8 @@ public class dashboard extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel1.setLayout(null);
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
@@ -50,52 +56,52 @@ public class dashboard extends javax.swing.JInternalFrame {
         jPanel5.setLayout(null);
 
         jPanel3.setBackground(java.awt.Color.cyan);
-        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.blue, java.awt.Color.blue));
         jPanel3.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("APPOINTMENTS:");
-        jLabel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel3);
         jLabel3.setBounds(0, 0, 200, 40);
 
         jPanel5.add(jPanel3);
-        jPanel3.setBounds(230, 250, 200, 180);
+        jPanel3.setBounds(250, 50, 200, 180);
 
         jPanel2.setBackground(java.awt.Color.cyan);
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.blue, java.awt.Color.blue));
         jPanel2.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PATIENTS:");
-        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 210, 40);
 
         jPanel5.add(jPanel2);
-        jPanel2.setBounds(10, 250, 210, 180);
+        jPanel2.setBounds(20, 50, 210, 180);
 
         jPanel4.setBackground(java.awt.Color.cyan);
-        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.blue, null));
         jPanel4.setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("DOCTORS:");
-        jLabel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel4.add(jLabel4);
-        jLabel4.setBounds(0, 0, 190, 40);
+        jLabel4.setBounds(0, 0, 200, 40);
 
         jPanel5.add(jPanel4);
-        jPanel4.setBounds(440, 250, 190, 180);
+        jPanel4.setBounds(460, 50, 200, 180);
+
+        jPanel1.add(jPanel5);
+        jPanel5.setBounds(0, 190, 670, 290);
 
         jLabel1.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("<html>WELCOME TO\n CLINIC \n APPOINTMENT SYSTEM  TRACKER<html>");
-        jPanel5.add(jLabel1);
-        jLabel1.setBounds(10, 30, 620, 90);
-
-        jPanel1.add(jPanel5);
-        jPanel5.setBounds(10, 10, 640, 450);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(20, 10, 620, 90);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

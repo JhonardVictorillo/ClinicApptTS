@@ -90,7 +90,7 @@ public class patients extends javax.swing.JInternalFrame {
 
         jLabel4.setText("jLabel4");
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -259,6 +259,7 @@ public class patients extends javax.swing.JInternalFrame {
        pform.setVisible(true);
         pform.action = "ADD";
         pform.p_save.setText("SAVE");
+        this.dispose();
     }//GEN-LAST:event_addMouseClicked
 
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
@@ -313,10 +314,10 @@ public class patients extends javax.swing.JInternalFrame {
         pForm.gender = model.getValueAt(rowindex, 4).toString(); 
         
             String gend = model.getValueAt(rowindex, 4).toString(); 
-            if(gend.equals("MALE")){
+            if(gend.equals("Male")){
             pForm.male.setSelected(true);
             }
-            if(gend.equals("FEMALE")){
+            if(gend.equals("Female")){
             pForm.female.setSelected(true);
             }
        
@@ -329,7 +330,9 @@ public class patients extends javax.swing.JInternalFrame {
          pForm.setVisible(true);
          pForm.action = "Update";
          pForm.p_save.setText("UPDATE");
+        
         }
+        this.dispose();
     }//GEN-LAST:event_editbuttonMouseClicked
 
     private void deletebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebuttonMouseClicked

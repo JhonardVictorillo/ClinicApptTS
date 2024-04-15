@@ -38,10 +38,6 @@ public class editform extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        newpass = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        confirmpass = new javax.swing.JTextField();
         savepanel = new javax.swing.JPanel();
         savebutton = new javax.swing.JLabel();
         update = new javax.swing.JPanel();
@@ -54,7 +50,7 @@ public class editform extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -71,21 +67,6 @@ public class editform extends javax.swing.JFrame {
         jPanel2.add(status);
         status.setBounds(130, 70, 170, 30);
         status.getAccessibleContext().setAccessibleName("");
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("New Password:");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(20, 120, 110, 14);
-        jPanel2.add(newpass);
-        newpass.setBounds(130, 110, 170, 30);
-
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel4.setText("Confirm Password:");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(10, 150, 120, 30);
-        jPanel2.add(confirmpass);
-        confirmpass.setBounds(130, 150, 170, 30);
 
         savepanel.setBackground(new java.awt.Color(0, 204, 204));
         savepanel.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -123,7 +104,7 @@ public class editform extends javax.swing.JFrame {
         updatebut.setBounds(10, 0, 60, 30);
 
         jPanel2.add(update);
-        update.setBounds(130, 190, 80, 30);
+        update.setBounds(120, 150, 80, 30);
 
         cancel.setBackground(new java.awt.Color(0, 204, 204));
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,7 +129,7 @@ public class editform extends javax.swing.JFrame {
         jLabel6.setBounds(10, 0, 60, 30);
 
         jPanel2.add(cancel);
-        cancel.setBounds(230, 190, 80, 30);
+        cancel.setBounds(230, 150, 80, 30);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -165,8 +146,9 @@ public class editform extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setText("Update Account status and password");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 20, 390, 30);
+        jLabel1.setBounds(20, 10, 390, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,25 +185,25 @@ public class editform extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelMouseExited
 
     private void updatebutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updatebutMouseClicked
-         if(!newpass.getText().equals(confirmpass.getText())){
-              JOptionPane.showMessageDialog(null, "Password doesn't Match!"); 
-               newpass.setText("");
-               confirmpass.setText("");
-               return;
-               
-         }else if(newpass.getText().length()<8){  
-               JOptionPane.showMessageDialog(null, "Password must atleast 8 characters!"); 
-              
-         }else{
+//         if(!newpass.getText().equals(confirmpass.getText())){
+//              JOptionPane.showMessageDialog(null, "Password doesn't Match!"); 
+//               newpass.setText("");
+//               confirmpass.setText("");
+//               return;
+//               
+//         }else if(newpass.getText().length()<8){  
+//               JOptionPane.showMessageDialog(null, "Password must atleast 8 characters!"); 
+//              
+//         }else{
         dbConnector dbc = new dbConnector();
-            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_status = '"+status.getSelectedItem()+"',u_password = '"+newpass.getText()+"'Where u_id = '"+u_id.getText()+"'");
+            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_status = '"+status.getSelectedItem()+"'Where u_id = '"+u_id.getText()+"'");
             
              JOptionPane.showMessageDialog(null,"Successfully Updated!");
            
             userlist ulist = new userlist();
             ulist.setVisible(true);
             this.dispose();
-         }
+         
            
     }//GEN-LAST:event_updatebutMouseClicked
 
@@ -268,16 +250,12 @@ public class editform extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cancel;
-    public javax.swing.JTextField confirmpass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField newpass;
     private javax.swing.JLabel savebutton;
     private javax.swing.JPanel savepanel;
     public javax.swing.JComboBox<String> status;

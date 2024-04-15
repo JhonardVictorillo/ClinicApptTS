@@ -4,6 +4,7 @@ package clinicapptts;
 import user.*;
 import admin.*;
 import config.dbConnector;
+import doctors.doctor_dashboard;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,12 +29,15 @@ public class LoginForm extends javax.swing.JFrame {
     public LoginForm() {
         initComponents();
     } 
+    
+    static String name;
       public static String loginAccRole (String username,String password){
            dbConnector connect = new dbConnector();
     try{
-      String sql ="SELECT u_account FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
+      String sql ="SELECT * FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
       ResultSet rs = connect.getData(sql);
      if(rs.next()){
+         name = rs.getString("u_firstname");
          return rs.getString("u_account");
      }else{
          return null;
@@ -281,12 +285,19 @@ public class LoginForm extends javax.swing.JFrame {
     String accountrole =loginAccRole (userName.getText(),userPass.getText());
     String accountstatus =loginAccStatus (userName.getText(),userPass.getText());
     
-       if(accountrole.equals("DOCTOR")){
+        if(accountrole.equals("Admin")){
+            JOptionPane.showMessageDialog(null,"Login Success!"); 
+          Admin_dashboard adminDash = new Admin_dashboard();
+            adminDash.setVisible(true);
+            adminDash.Name.setText(""+name);
+            this.dispose();
+        }else if(accountrole.equals("DOCTOR")){
         if(accountstatus.equals("Active")){
          JOptionPane.showMessageDialog(null,"Login Success!");
          
-             Admin_dashboard adminDash = new Admin_dashboard();
-            adminDash.setVisible(true);
+             doctor_dashboard docDash = new doctor_dashboard();
+            docDash.setVisible(true);
+            docDash.Name.setText(""+name);
             this.dispose();
          }else{
          JOptionPane.showMessageDialog(null,"Account is inactive!");
@@ -298,6 +309,7 @@ public class LoginForm extends javax.swing.JFrame {
          
             desk_dashboard deskDash = new desk_dashboard();
             deskDash.setVisible(true);
+            deskDash.Name.setText(""+name);
             this.dispose();
          }else{
          JOptionPane.showMessageDialog(null,"Account is inactive!");

@@ -91,7 +91,7 @@ public class admin_Addacc extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.blue));
         jPanel1.setLayout(null);
 
@@ -103,6 +103,8 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel2.setText("First name:");
         jPanel2.add(jLabel2);
         jLabel2.setBounds(40, 54, 80, 20);
+
+        fname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(fname);
         fname.setBounds(130, 50, 190, 30);
 
@@ -110,6 +112,8 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel3.setText("Last name:");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(43, 100, 80, 16);
+
+        lname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(lname);
         lname.setBounds(130, 90, 190, 30);
 
@@ -117,6 +121,8 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel4.setText("Email:");
         jPanel2.add(jLabel4);
         jLabel4.setBounds(70, 140, 41, 16);
+
+        email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(email);
         email.setBounds(130, 130, 190, 30);
 
@@ -124,6 +130,8 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel5.setText("Username:");
         jPanel2.add(jLabel5);
         jLabel5.setBounds(42, 176, 80, 20);
+
+        uname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(uname);
         uname.setBounds(130, 170, 190, 30);
 
@@ -136,10 +144,13 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel7.setText("Account Type:");
         jPanel2.add(jLabel7);
         jLabel7.setBounds(20, 250, 110, 30);
+
+        pass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(pass);
         pass.setBounds(130, 210, 190, 30);
 
-        acctype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", " DOCTOR", "DESK", " " }));
+        acctype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", " DOCTOR", "DESK", "Admin", " " }));
+        acctype.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(acctype);
         acctype.setBounds(130, 250, 190, 30);
 

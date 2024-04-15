@@ -5,7 +5,13 @@ import ADDFORMSINTERNALPAGE.userinfo;
 import clinicapptts.LoginForm;
 import internalpages.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 
 public class desk_dashboard extends javax.swing.JFrame {
@@ -18,7 +24,41 @@ public class desk_dashboard extends javax.swing.JFrame {
          
           dashboard dash = new dashboard();
         maindesktop.add(dash).setVisible(true);
+        date();
+        time();
     }
+    
+     private void date(){
+        
+        Date d = new Date();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+         
+        String dt = sdf.format(d);
+        date.setText(dt);
+             
+    }
+    
+        Timer t;
+        SimpleDateFormat st;
+    
+    private void time(){
+
+        t = new Timer(0, (ActionEvent ae) -> {
+            Date dt = new Date();
+            st = new SimpleDateFormat("hh:mm:ss a");
+            
+            String tm = st.format(dt);
+            time.setText(tm);
+        });
+        
+        t.start();
+        
+    }
+    
+    
+    
+    
     Color navcolor = new Color(0,204,204);
     Color bodycolor = new Color(153,204,255);
     /**
@@ -46,6 +86,11 @@ public class desk_dashboard extends javax.swing.JFrame {
         LAGOUTBUTTON = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         maindesktop = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,7 +99,7 @@ public class desk_dashboard extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NAV.setBackground(new java.awt.Color(0, 204, 204));
-        NAV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        NAV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         NAV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DASHBOARD.setBackground(new java.awt.Color(0, 204, 204));
@@ -212,6 +257,7 @@ public class desk_dashboard extends javax.swing.JFrame {
         jPanel1.add(NAV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 530));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setLayout(null);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -223,6 +269,34 @@ public class desk_dashboard extends javax.swing.JFrame {
         });
         jPanel3.add(jLabel2);
         jLabel2.setBounds(610, 0, 80, 40);
+
+        Name.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        Name.setText("jLabel3");
+        Name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel3.add(Name);
+        Name.setBounds(520, 0, 100, 40);
+
+        time.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        time.setText("jLabel5");
+        time.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel3.add(time);
+        time.setBounds(240, 10, 120, 30);
+
+        date.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        date.setText("jLabel5");
+        date.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel3.add(date);
+        date.setBounds(60, 10, 110, 30);
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel3.setText("TIME:");
+        jPanel3.add(jLabel3);
+        jLabel3.setBounds(10, 10, 60, 30);
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel4.setText("DATE:");
+        jPanel3.add(jLabel4);
+        jLabel4.setBounds(180, 10, 60, 30);
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 680, 40));
 
@@ -344,6 +418,8 @@ public class desk_dashboard extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
       userinfo uinfo = new userinfo();
       uinfo.setVisible(true);
+      this.dispose();
+      
       
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -389,16 +465,21 @@ public class desk_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel LAGOUTBUTTON;
     private javax.swing.JPanel LOGOUT;
     private javax.swing.JPanel NAV;
+    public javax.swing.JLabel Name;
     private javax.swing.JPanel PATIENT;
     private javax.swing.JPanel REPORTS;
     private javax.swing.JLabel apptButton;
+    private javax.swing.JLabel date;
     private javax.swing.JLabel doctorButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     public javax.swing.JDesktopPane maindesktop;
     private javax.swing.JLabel patientButton;
     private javax.swing.JLabel reportsButton;
+    private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }
