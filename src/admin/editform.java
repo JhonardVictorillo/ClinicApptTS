@@ -142,7 +142,7 @@ public class editform extends javax.swing.JFrame {
         u_id.setBounds(130, 30, 170, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 60, 380, 240);
+        jPanel2.setBounds(20, 60, 380, 420);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setText("Update Account status and password");
@@ -158,9 +158,7 @@ public class editform extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
         );
 
         pack();

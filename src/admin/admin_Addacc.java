@@ -25,7 +25,7 @@ public class admin_Addacc extends javax.swing.JFrame {
     }
     
     public static String Email,username;
-    
+    public String action;
     
     boolean DuplicateCheck(){
     dbConnector dbc = new dbConnector();
@@ -85,8 +85,12 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
         acctype = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
+        u_save = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        u_id = new javax.swing.JTextField();
+        status = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,17 +158,17 @@ public class admin_Addacc extends javax.swing.JFrame {
         jPanel2.add(acctype);
         acctype.setBounds(130, 250, 190, 30);
 
-        jLabel8.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CREATE");
-        jLabel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        u_save.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        u_save.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        u_save.setText("label");
+        u_save.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        u_save.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                u_saveMouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(120, 310, 80, 30);
+        jPanel2.add(u_save);
+        u_save.setBounds(130, 350, 80, 30);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -176,7 +180,30 @@ public class admin_Addacc extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(240, 310, 80, 30);
+        jLabel9.setBounds(250, 350, 80, 30);
+
+        jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("User ID:");
+        jPanel2.add(jLabel10);
+        jLabel10.setBounds(50, 10, 70, 30);
+
+        u_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        u_id.setEnabled(false);
+        jPanel2.add(u_id);
+        u_id.setBounds(130, 10, 190, 30);
+
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "please select status", "Active", "Inactive" }));
+        status.setToolTipText("");
+        status.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        status.setName(""); // NOI18N
+        jPanel2.add(status);
+        status.setBounds(130, 290, 190, 30);
+
+        jLabel11.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel11.setText("Status:");
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(50, 290, 70, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 390, 410);
@@ -211,8 +238,9 @@ public class admin_Addacc extends javax.swing.JFrame {
       this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-      if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() 
+    private void u_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_u_saveMouseClicked
+        if(action.equals("NEW")){
+        if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() 
                || uname.getText().isEmpty() 
                || pass.getText().isEmpty()){
                   JOptionPane.showMessageDialog(null, "All fields are required!"); 
@@ -228,7 +256,7 @@ public class admin_Addacc extends javax.swing.JFrame {
         dbConnector dbc = new dbConnector();
        
        if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+acctype.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+pass.getText()+"','Inactive')")){
-       
+        
        JOptionPane.showMessageDialog(null, "Created Successfully!");
        
        userlist ulist = new userlist();
@@ -240,7 +268,17 @@ public class admin_Addacc extends javax.swing.JFrame {
                 
             }
            }
-    }//GEN-LAST:event_jLabel8MouseClicked
+        }else if(action.equals("Update")){
+           dbConnector dbc = new dbConnector();
+            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_password = '"+pass.getText()+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+u_id.getText()+"'");
+            
+             JOptionPane.showMessageDialog(null,"Successfully Updated!");
+             
+            userlist ulist = new userlist();
+           ulist.setVisible(true);
+           this.dispose();
+        }
+    }//GEN-LAST:event_u_saveMouseClicked
 
     /**
      * @param args the command line arguments
@@ -278,22 +316,26 @@ public class admin_Addacc extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> acctype;
-    private javax.swing.JTextField email;
-    private javax.swing.JTextField fname;
+    public javax.swing.JComboBox<String> acctype;
+    public javax.swing.JTextField email;
+    public javax.swing.JTextField fname;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField lname;
-    private javax.swing.JPasswordField pass;
-    private javax.swing.JTextField uname;
+    public javax.swing.JTextField lname;
+    public javax.swing.JPasswordField pass;
+    public javax.swing.JComboBox<String> status;
+    public javax.swing.JTextField u_id;
+    public javax.swing.JLabel u_save;
+    public javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables
 }

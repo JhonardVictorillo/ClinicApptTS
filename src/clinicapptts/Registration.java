@@ -1,6 +1,7 @@
 package clinicapptts;
 
 import config.dbConnector;
+import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -57,6 +58,30 @@ public class Registration extends javax.swing.JFrame {
         return false;
     }
     }
+    
+    
+    
+    public static String passwordhashing(String password){
+            dbConnector dbc = new dbConnector();
+        try{
+          MessageDigest md = MessageDigest.getInstance("SHA-256");
+          md.update(password.getBytes());
+          byte[] rbt = md.digest();
+          StringBuilder sb = new StringBuilder();
+          
+          for(byte b: rbt){
+              sb.append(String.format("%02x", b));
+          }
+          return sb.toString();
+        
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+       return null;
+    
+    }
+    
+           
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -309,12 +334,13 @@ public class Registration extends javax.swing.JFrame {
              System.out.println("Duplicate Exist");
            
             }else{
+               String passwordhash = passwordhashing(password.getText());         
         
         dbConnector dbc = new dbConnector();
        
-       if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','Inactive')")){
-       
-       JOptionPane.showMessageDialog(null, "Created Successfully!");
+     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','passwordhash','Inactive')")){
+        
+         JOptionPane.showMessageDialog(null, "Created Successfully!");
        
        LoginForm Lform = new LoginForm();
        Lform.setVisible(true);

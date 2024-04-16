@@ -262,14 +262,21 @@ public class userlist extends javax.swing.JFrame {
 
         }else{
             TableModel model = usertable.getModel();
-            editform eForm = new editform();
-            eForm.u_id.setText(""+model.getValueAt(rowindex, 0));
-            eForm.status.setSelectedItem(""+model.getValueAt(rowindex, 7));
+            admin_Addacc AForm = new  admin_Addacc();
+             AForm.u_id.setText(""+model.getValueAt(rowindex, 0));
+             AForm.fname.setText(""+model.getValueAt(rowindex, 1));
+             AForm.lname.setText(""+model.getValueAt(rowindex, 2));
+             AForm.email.setText(""+model.getValueAt(rowindex, 3));
+             AForm.uname.setText(""+model.getValueAt(rowindex, 4));
+             AForm.pass.setText(""+model.getValueAt(rowindex, 5));
+             AForm.acctype.setSelectedItem(""+model.getValueAt(rowindex, 6));
+             AForm.status.setSelectedItem(""+model.getValueAt(rowindex, 7));
              
-            eForm.setVisible(true);
+            AForm.setVisible(true);
+            
+             AForm.action = "Update";
+             AForm.u_save.setText("UPDATE");
             this.dispose();
-
-         
         }
     }//GEN-LAST:event_editbuttonMouseClicked
 
@@ -330,8 +337,8 @@ public class userlist extends javax.swing.JFrame {
            admin_Addacc Aform = new admin_Addacc();
             Aform.setVisible(true);
             this.dispose();
-//        Aform.action = "ADD";
-//        Aform.p_save.setText("SAVE");
+        Aform.action = "NEW";
+        Aform.u_save.setText("SAVE");
     }//GEN-LAST:event_addMouseClicked
 
     private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered

@@ -79,15 +79,16 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("USER LIST");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
-        USERLIST.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
+        USERLIST.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 40));
 
         jPanel4.add(USERLIST);
-        USERLIST.setBounds(430, 420, 150, 40);
+        USERLIST.setBounds(430, 420, 170, 40);
 
         SETTINGS.setBackground(new java.awt.Color(0, 204, 204));
         SETTINGS.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,6 +104,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("SETTINGS");
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
