@@ -23,6 +23,7 @@ public class Registration extends javax.swing.JFrame {
      */
     public Registration() {
         initComponents();
+        dbConnector dbc = new dbConnector();
     }
 
     public static String Email,username;
@@ -316,7 +317,8 @@ public class Registration extends javax.swing.JFrame {
     }//GEN-LAST:event_fnameActionPerformed
 
     private void createbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createbuttonMouseClicked
-       if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() 
+             
+        if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() 
                || uname.getText().isEmpty() 
                || password.getText().isEmpty() 
                || Re_enterpass.getText().isEmpty()){
@@ -334,11 +336,11 @@ public class Registration extends javax.swing.JFrame {
              System.out.println("Duplicate Exist");
            
             }else{
-               String passwordhash = passwordhashing(password.getText());         
-        
+               String Password = passwordhashing(password.getText());  
+                 
         dbConnector dbc = new dbConnector();
        
-     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','passwordhash','Inactive')")){
+     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','Inactive')")){
         
          JOptionPane.showMessageDialog(null, "Created Successfully!");
        

@@ -165,6 +165,11 @@ public class userlist extends javax.swing.JFrame {
         REFRESHBUT.setBounds(270, 40, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchbarKeyTyped(evt);
+            }
+        });
         jPanel5.add(searchbar);
         searchbar.setBounds(380, 40, 190, 30);
 
@@ -348,6 +353,24 @@ public class userlist extends javax.swing.JFrame {
     private void ADDBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseExited
         ADDBUT.setBackground(navcolor);
     }//GEN-LAST:event_ADDBUTMouseExited
+
+    private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
+       String query = searchbar.getText();
+        String searchQuery = "SELECT * FROM tbl_userdetails WHERE u_id LIKE '%" + query + "%' OR u_firstname LIKE '%" + query + "%' OR u_lastname LIKE '%" + query + "%' OR u_username LIKE '%" + query +"%' OR u_account LIKE '%" + query +"%' OR u_status LIKE '%" + query +"%'";
+    
+    
+        if (query.matches("\\d+")) {
+            searchQuery = "SELECT * FROM tbl_userdetails WHERE u_id = " + query;
+        }
+    
+        try {
+            dbConnector connect = new dbConnector();
+            ResultSet rs = connect.getData(searchQuery);
+            usertable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch(SQLException ex) {
+            System.out.println("Error searching users: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_searchbarKeyTyped
 
     /**
      * @param args the command line arguments

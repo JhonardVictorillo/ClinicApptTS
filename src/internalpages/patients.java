@@ -76,8 +76,6 @@ public class patients extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         ADDBUT = new javax.swing.JPanel();
         add = new javax.swing.JLabel();
-        searchbar = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         patienttable = new javax.swing.JTable();
@@ -87,6 +85,8 @@ public class patients extends javax.swing.JInternalFrame {
         deletebutton = new javax.swing.JLabel();
         REFRESHBUT = new javax.swing.JPanel();
         refresh = new javax.swing.JLabel();
+        searchbar = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
@@ -124,15 +124,6 @@ public class patients extends javax.swing.JInternalFrame {
 
         jPanel1.add(ADDBUT);
         ADDBUT.setBounds(39, 100, 70, 30);
-
-        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel1.add(searchbar);
-        searchbar.setBounds(440, 100, 200, 30);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("SEARCH:");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(440, 80, 80, 17);
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -232,6 +223,20 @@ public class patients extends javax.swing.JInternalFrame {
 
         jPanel5.add(REFRESHBUT);
         REFRESHBUT.setBounds(300, 40, 70, 30);
+
+        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchbarKeyTyped(evt);
+            }
+        });
+        jPanel5.add(searchbar);
+        searchbar.setBounds(400, 40, 200, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("SEARCH:");
+        jPanel5.add(jLabel2);
+        jLabel2.setBounds(400, 20, 80, 17);
 
         jPanel1.add(jPanel5);
         jPanel5.setBounds(10, 60, 640, 400);
@@ -352,6 +357,24 @@ public class patients extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_deletebuttonMouseClicked
+
+    private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
+       String query = searchbar.getText();
+        String searchQuery = "SELECT * FROM tbl_patients WHERE p_id LIKE '%" + query + "%' OR p_firstname LIKE '%" + query + "%' OR p_lastname LIKE '%" + query + "%'";
+    
+    
+        if (query.matches("\\d+")) {
+            searchQuery = "SELECT * FROM tbl_userdetails WHERE u_id = " + query;
+        }
+    
+        try {
+            dbConnector connect = new dbConnector();
+            ResultSet rs = connect.getData(searchQuery);
+            patienttable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch(SQLException ex) {
+            System.out.println("Error searching users: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_searchbarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
