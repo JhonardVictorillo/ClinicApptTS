@@ -2,6 +2,7 @@ package clinicapptts;
 
 import config.dbConnector;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -81,6 +82,8 @@ public class Registration extends javax.swing.JFrame {
        return null;
     
     }
+    
+   
     
            
     
@@ -336,11 +339,11 @@ public class Registration extends javax.swing.JFrame {
              System.out.println("Duplicate Exist");
            
             }else{
-               String Password = passwordhashing(password.getText());  
+               String Passwordhash = passwordhashing(password.getText());  
                  
         dbConnector dbc = new dbConnector();
        
-     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+password.getText()+"','Inactive')")){
+     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status)VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+Passwordhash+"','Inactive')")){
         
          JOptionPane.showMessageDialog(null, "Created Successfully!");
        

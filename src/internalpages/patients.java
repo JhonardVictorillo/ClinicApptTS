@@ -54,8 +54,6 @@ public class patients extends javax.swing.JInternalFrame {
     
     }
     
-    
-    
     }
     
     

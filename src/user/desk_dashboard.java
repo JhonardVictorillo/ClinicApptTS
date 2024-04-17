@@ -3,10 +3,13 @@ package user;
 
 import ADDFORMSINTERNALPAGE.userinfo;
 import clinicapptts.LoginForm;
+import config.dbConnector;
 import internalpages.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,7 +88,7 @@ public class desk_dashboard extends javax.swing.JFrame {
         LOGOUT = new javax.swing.JPanel();
         LAGOUTBUTTON = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        details = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
@@ -260,15 +263,15 @@ public class desk_dashboard extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setLayout(null);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/account_circle_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        details.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        details.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/account_circle_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
+        details.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                detailsMouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel2);
-        jLabel2.setBounds(610, 0, 80, 40);
+        jPanel3.add(details);
+        details.setBounds(620, 0, 60, 40);
 
         Name.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         Name.setText("jLabel3");
@@ -415,13 +418,37 @@ public class desk_dashboard extends javax.swing.JFrame {
         maindesktop.add(dash).setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-      userinfo uinfo = new userinfo();
-      uinfo.setVisible(true);
-      this.dispose();
+    private void detailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsMouseClicked
+
+        String userdata = Name.getText();
+          dbConnector connect = new dbConnector();
+         
+         try{
+        String sql =("SELECT * FROM tbl_userdetails WHERE u_firstname = '"+userdata+"'");
+        ResultSet rs = connect.getData(sql);
+          if(rs.next()){
+              
+            userinfo uinfo = new userinfo();
+            
+             uinfo.id.setText(rs.getString("u_id"));
+             uinfo.Fname.setText(rs.getString("u_firstname"));
+             uinfo.Lname.setText(rs.getString("u_lastname"));
+             uinfo.Email.setText(rs.getString("u_email"));
+             uinfo.pass.setText(rs.getString("u_password"));
+             uinfo.acctype.setText(rs.getString("u_account"));
+             uinfo.uname.setText(rs.getString("u_username"));
+             uinfo.setVisible(true);
+          
+          }
+        
+         }catch(SQLException e){
+         
+         }
+       
+     
       
       
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_detailsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -470,9 +497,9 @@ public class desk_dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel REPORTS;
     private javax.swing.JLabel apptButton;
     private javax.swing.JLabel date;
+    private javax.swing.JLabel details;
     private javax.swing.JLabel doctorButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

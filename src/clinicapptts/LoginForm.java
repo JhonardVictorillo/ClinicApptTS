@@ -1,8 +1,11 @@
 package clinicapptts;
 
 
+import ADDFORMSINTERNALPAGE.userinfo;
 import user.*;
 import admin.*;
+import static clinicapptts.Registration.passwordhashing;
+
 import config.dbConnector;
 import doctors.doctor_dashboard;
 import java.awt.Color;
@@ -31,13 +34,15 @@ public class LoginForm extends javax.swing.JFrame {
     } 
     
     static String name;
-      public static String loginAccRole (String username,String password){
+      public static String loginAccRole (String username,String Password){
            dbConnector connect = new dbConnector();
     try{
-      String sql ="SELECT * FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
+         String hashingpass = passwordhashing(Password);  
+      String sql ="SELECT * FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+hashingpass+"'";
       ResultSet rs = connect.getData(sql);
      if(rs.next()){
          name = rs.getString("u_firstname");
+       
          return rs.getString("u_account");
      }else{
          return null;
@@ -48,10 +53,11 @@ public class LoginForm extends javax.swing.JFrame {
         return null;
     }
        }
-      public static String loginAccStatus (String username,String password){
+      public static String loginAccStatus (String username,String Password){
            dbConnector connect = new dbConnector();
     try{
-      String sql ="SELECT u_status FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+password+"'";
+         String hashingpass = passwordhashing(Password);  
+      String sql ="SELECT u_status FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+hashingpass+"'";
       ResultSet rs = connect.getData(sql);
      if(rs.next()){
          return rs.getString("u_status");
@@ -298,6 +304,7 @@ public class LoginForm extends javax.swing.JFrame {
              doctor_dashboard docDash = new doctor_dashboard();
             docDash.setVisible(true);
             docDash.Name.setText(""+name);
+            
             this.dispose();
          }else{
          JOptionPane.showMessageDialog(null,"Account is inactive!");
@@ -310,6 +317,7 @@ public class LoginForm extends javax.swing.JFrame {
             desk_dashboard deskDash = new desk_dashboard();
             deskDash.setVisible(true);
             deskDash.Name.setText(""+name);
+            
             this.dispose();
          }else{
          JOptionPane.showMessageDialog(null,"Account is inactive!");
