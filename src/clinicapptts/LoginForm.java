@@ -5,6 +5,7 @@ import ADDFORMSINTERNALPAGE.userinfo;
 import user.*;
 import admin.*;
 import static clinicapptts.Registration.passwordhashing;
+import config.Session;
 
 import config.dbConnector;
 import doctors.doctor_dashboard;
@@ -41,7 +42,17 @@ public class LoginForm extends javax.swing.JFrame {
       String sql ="SELECT * FROM tbl_userdetails WHERE u_username = '"+username+"' AND u_password = '"+hashingpass+"'";
       ResultSet rs = connect.getData(sql);
      if(rs.next()){
-         name = rs.getString("u_firstname");
+         Session sess = Session.getInstance();
+         sess.setId(rs.getInt("u_id"));
+         sess.setFname(rs.getString("u_firstname"));
+         sess.setLname(rs.getString("u_lastname"));
+         sess.setEmail(rs.getString("u_email"));
+         sess.setUname(rs.getString("u_username"));
+         sess.setType(rs.getString("u_account"));
+          sess.setStatus(rs.getString("u_status"));
+         
+         
+         
        
          return rs.getString("u_account");
      }else{
@@ -289,13 +300,15 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void signinButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinButtonMouseClicked
     String accountrole =loginAccRole (userName.getText(),userPass.getText());
+    
+    if(accountrole != null ){
     String accountstatus =loginAccStatus (userName.getText(),userPass.getText());
     
         if(accountrole.equals("Admin")){
             JOptionPane.showMessageDialog(null,"Login Success!"); 
           Admin_dashboard adminDash = new Admin_dashboard();
             adminDash.setVisible(true);
-            adminDash.Name.setText(""+name);
+//            adminDash.Name.setText(""+name);
             this.dispose();
         }else if(accountrole.equals("DOCTOR")){
         if(accountstatus.equals("Active")){
@@ -303,7 +316,7 @@ public class LoginForm extends javax.swing.JFrame {
          
              doctor_dashboard docDash = new doctor_dashboard();
             docDash.setVisible(true);
-            docDash.Name.setText(""+name);
+//            docDash.Name.setText(""+name);
             
             this.dispose();
          }else{
@@ -316,7 +329,7 @@ public class LoginForm extends javax.swing.JFrame {
          
             desk_dashboard deskDash = new desk_dashboard();
             deskDash.setVisible(true);
-            deskDash.Name.setText(""+name);
+//            deskDash.Name.setText(""+name);
             
             this.dispose();
          }else{
@@ -325,9 +338,10 @@ public class LoginForm extends javax.swing.JFrame {
             
          }else{
             JOptionPane.showMessageDialog(null,"Invalid Account");
-
-    } 
-      
+         } 
+    }else{
+        JOptionPane.showMessageDialog(null,"Invalid Username or Password");
+    }
     }//GEN-LAST:event_signinButtonMouseClicked
 
     private void signinButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinButtonMouseExited

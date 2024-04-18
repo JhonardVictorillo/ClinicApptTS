@@ -5,13 +5,11 @@
         <group>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/user/desk_dashboard.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/admin/userlist.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/reports.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/userinfo.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/addpatientform.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/config/dbConnector.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/clinicapptts/LoginForm.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/patients.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/doctor_dashboard.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/dashboard.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/clinicapptts/Registration.java</file>
         </group>
     </open-files>

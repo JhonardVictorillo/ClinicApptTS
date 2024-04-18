@@ -5,6 +5,7 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.Session;
 import config.dbConnector;
 import javax.swing.JOptionPane;
 import user.desk_dashboard;
@@ -51,6 +52,11 @@ public class userinfo extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.lightGray, java.awt.Color.black, java.awt.Color.gray));
@@ -183,6 +189,10 @@ public class userinfo extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null,"Data Updated Please Login Again to Refresh the Information!");
              this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+     
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

@@ -3,6 +3,7 @@ package user;
 
 import ADDFORMSINTERNALPAGE.userinfo;
 import clinicapptts.LoginForm;
+import config.Session;
 import config.dbConnector;
 import internalpages.*;
 import java.awt.Color;
@@ -98,6 +99,11 @@ public class desk_dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -420,10 +426,10 @@ public class desk_dashboard extends javax.swing.JFrame {
 
     private void detailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsMouseClicked
 
-        String userdata = Name.getText();
-          dbConnector connect = new dbConnector();
-         
-         try{
+       String userdata = Name.getText();
+         dbConnector connect = new dbConnector();
+        
+       try{
         String sql =("SELECT * FROM tbl_userdetails WHERE u_firstname = '"+userdata+"'");
         ResultSet rs = connect.getData(sql);
           if(rs.next()){
@@ -445,10 +451,23 @@ public class desk_dashboard extends javax.swing.JFrame {
          
          }
        
-     
+       
       
       
     }//GEN-LAST:event_detailsMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Session sess = Session.getInstance();
+      
+        if(sess.getId() ==0){
+        JOptionPane.showMessageDialog(null,"No Account login first");
+        LoginForm lForm = new LoginForm();
+        lForm.setVisible(true);
+        this.dispose();
+        }else{
+          Name.setText(""+sess.getFname());
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

@@ -7,6 +7,7 @@ package doctors;
 
 import admin.*;
 import clinicapptts.LoginForm;
+import config.Session;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -61,6 +62,11 @@ public class doctor_dashboard extends javax.swing.JFrame {
         LOGOUT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel1.setLayout(null);
@@ -333,6 +339,19 @@ public class doctor_dashboard extends javax.swing.JFrame {
         set.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+      Session sess = Session.getInstance();
+      
+        if(sess.getId() ==0){
+        JOptionPane.showMessageDialog(null,"No Account login first");
+        LoginForm lForm = new LoginForm();
+        lForm.setVisible(true);
+        this.dispose();
+        }else{
+          Name.setText(""+sess.getFname());
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
