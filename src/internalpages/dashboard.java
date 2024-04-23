@@ -66,7 +66,7 @@ public class dashboard extends javax.swing.JInternalFrame {
         jLabel3.setBounds(0, 0, 200, 40);
 
         jPanel5.add(jPanel3);
-        jPanel3.setBounds(250, 50, 200, 180);
+        jPanel3.setBounds(290, 50, 200, 180);
 
         jPanel2.setBackground(java.awt.Color.cyan);
         jPanel2.setLayout(null);
@@ -79,7 +79,7 @@ public class dashboard extends javax.swing.JInternalFrame {
         jLabel2.setBounds(0, 0, 210, 40);
 
         jPanel5.add(jPanel2);
-        jPanel2.setBounds(20, 50, 210, 180);
+        jPanel2.setBounds(40, 50, 210, 180);
 
         jPanel4.setBackground(java.awt.Color.cyan);
         jPanel4.setLayout(null);
@@ -92,10 +92,10 @@ public class dashboard extends javax.swing.JInternalFrame {
         jLabel4.setBounds(0, 0, 200, 40);
 
         jPanel5.add(jPanel4);
-        jPanel4.setBounds(460, 50, 200, 180);
+        jPanel4.setBounds(530, 50, 200, 180);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(0, 190, 670, 290);
+        jPanel5.setBounds(0, 190, 780, 270);
 
         jLabel1.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -107,11 +107,11 @@ public class dashboard extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         pack();

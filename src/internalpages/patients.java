@@ -142,7 +142,7 @@ public class patients extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(patienttable);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 620, 100);
+        jScrollPane1.setBounds(10, 90, 700, 100);
 
         EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -168,7 +168,7 @@ public class patients extends javax.swing.JInternalFrame {
         editbutton.setBounds(0, 0, 70, 30);
 
         jPanel5.add(EDITBUT);
-        EDITBUT.setBounds(120, 40, 70, 30);
+        EDITBUT.setBounds(110, 50, 70, 30);
 
         DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
         DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -194,7 +194,7 @@ public class patients extends javax.swing.JInternalFrame {
         deletebutton.setBounds(0, 0, 70, 30);
 
         jPanel5.add(DELETEBUT);
-        DELETEBUT.setBounds(210, 40, 70, 30);
+        DELETEBUT.setBounds(210, 50, 70, 30);
 
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -220,7 +220,7 @@ public class patients extends javax.swing.JInternalFrame {
         refresh.setBounds(0, 0, 70, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(300, 40, 70, 30);
+        REFRESHBUT.setBounds(300, 50, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -229,25 +229,25 @@ public class patients extends javax.swing.JInternalFrame {
             }
         });
         jPanel5.add(searchbar);
-        searchbar.setBounds(400, 40, 200, 30);
+        searchbar.setBounds(500, 50, 200, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("SEARCH:");
         jPanel5.add(jLabel2);
-        jLabel2.setBounds(400, 20, 80, 17);
+        jLabel2.setBounds(500, 30, 80, 17);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(10, 60, 640, 400);
+        jPanel5.setBounds(20, 50, 740, 400);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         pack();

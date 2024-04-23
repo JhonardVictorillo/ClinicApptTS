@@ -277,13 +277,13 @@ public class desk_dashboard extends javax.swing.JFrame {
             }
         });
         jPanel3.add(details);
-        details.setBounds(620, 0, 60, 40);
+        details.setBounds(730, 0, 50, 40);
 
         Name.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         Name.setText("jLabel3");
         Name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
         jPanel3.add(Name);
-        Name.setBounds(520, 0, 100, 40);
+        Name.setBounds(630, 0, 100, 40);
 
         time.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         time.setText("jLabel5");
@@ -307,7 +307,7 @@ public class desk_dashboard extends javax.swing.JFrame {
         jPanel3.add(jLabel4);
         jLabel4.setBounds(180, 10, 60, 30);
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 680, 40));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 780, 40));
 
         maindesktop.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -315,14 +315,14 @@ public class desk_dashboard extends javax.swing.JFrame {
         maindesktop.setLayout(maindesktopLayout);
         maindesktopLayout.setHorizontalGroup(
             maindesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 780, Short.MAX_VALUE)
         );
         maindesktopLayout.setVerticalGroup(
             maindesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 490, Short.MAX_VALUE)
         );
 
-        jPanel1.add(maindesktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 680, 490));
+        jPanel1.add(maindesktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 780, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -425,33 +425,41 @@ public class desk_dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void detailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsMouseClicked
-
-       String userdata = Name.getText();
-         dbConnector connect = new dbConnector();
         
-       try{
-        String sql =("SELECT * FROM tbl_userdetails WHERE u_firstname = '"+userdata+"'");
-        ResultSet rs = connect.getData(sql);
-          if(rs.next()){
-              
-            userinfo uinfo = new userinfo();
-            
-             uinfo.id.setText(rs.getString("u_id"));
-             uinfo.Fname.setText(rs.getString("u_firstname"));
-             uinfo.Lname.setText(rs.getString("u_lastname"));
-             uinfo.Email.setText(rs.getString("u_email"));
-             uinfo.pass.setText(rs.getString("u_password"));
-             uinfo.acctype.setText(rs.getString("u_account"));
-             uinfo.uname.setText(rs.getString("u_username"));
-             uinfo.setVisible(true);
-          
-          }
+        userinfo uinfo = new userinfo();
+        uinfo.setVisible(true);
         
-         }catch(SQLException e){
+        
+        
+    
          
-         }
-       
-       
+        
+//       String userdata = Name.getText();
+//         dbConnector connect = new dbConnector();
+//        
+//       try{
+//        String sql =("SELECT * FROM tbl_userdetails WHERE u_firstname = '"+userdata+"'");
+//        ResultSet rs = connect.getData(sql);
+//          if(rs.next()){
+//              
+//            userinfo uinfo = new userinfo();
+//            
+//             uinfo.id.setText(rs.getString("u_id"));
+//             uinfo.Fname.setText(rs.getString("u_firstname"));
+//             uinfo.Lname.setText(rs.getString("u_lastname"));
+//             uinfo.Email.setText(rs.getString("u_email"));
+//             uinfo.pass.setText(rs.getString("u_password"));
+//             uinfo.acctype.setText(rs.getString("u_account"));
+//             uinfo.uname.setText(rs.getString("u_username"));
+//             uinfo.setVisible(true);
+//          
+//          }
+//        
+//         }catch(SQLException e){
+//         
+//         }
+//       
+//       
       
       
     }//GEN-LAST:event_detailsMouseClicked

@@ -50,10 +50,9 @@ public class LoginForm extends javax.swing.JFrame {
          sess.setUname(rs.getString("u_username"));
          sess.setType(rs.getString("u_account"));
           sess.setStatus(rs.getString("u_status"));
+         sess.setPass(rs.getString("u_password"));
          
-         
-         
-       
+        
          return rs.getString("u_account");
      }else{
          return null;

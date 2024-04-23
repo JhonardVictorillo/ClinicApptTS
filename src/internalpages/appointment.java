@@ -6,7 +6,11 @@
 package internalpages;
 
 import ADDFORMSINTERNALPAGE.*;
+import config.dbConnector;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -20,10 +24,27 @@ public class appointment extends javax.swing.JInternalFrame {
     public appointment() {
         initComponents();
         
-        
+        displaydata();
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
+    }
+    
+    
+     public void displaydata(){
+    try{
+      dbConnector DBconnector = new dbConnector();
+      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_userdetails.u_firstname,tbl_userdetails.u_lastname,tbl_appointment.apptStatus FROM `tbl_appointment` "
+              + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
+              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id;");
+      apptTable.setModel(DbUtils.resultSetToTableModel(rs));
+    
+    
+    }catch(SQLException ex){
+        System.out.println("Errors:"+ex.getMessage());
+    
+    }
+    
     }
 
     /**
@@ -39,7 +60,7 @@ public class appointment extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        apptTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         ADDBUTTON = new javax.swing.JPanel();
@@ -58,10 +79,11 @@ public class appointment extends javax.swing.JInternalFrame {
         jLabel1.setBounds(30, 10, 200, 40);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(null);
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        apptTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        apptTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -72,19 +94,19 @@ public class appointment extends javax.swing.JInternalFrame {
                 "A_ID", "FIRSTNAME", "LASTNAME", "TYPE OF APPOINTMENT", "DOCTORS", "DATE", "TIME", "STATUS"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(apptTable);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 620, 94);
+        jScrollPane1.setBounds(10, 90, 730, 94);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("SEARCH:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(420, 20, 60, 20);
+        jLabel2.setBounds(550, 30, 60, 20);
 
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.add(jTextField1);
-        jTextField1.setBounds(420, 50, 170, 30);
+        jTextField1.setBounds(550, 50, 170, 30);
 
         ADDBUTTON.setBackground(new java.awt.Color(0, 204, 204));
         ADDBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
@@ -131,17 +153,17 @@ public class appointment extends javax.swing.JInternalFrame {
         DELETEBUTTON.setBounds(270, 50, 90, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 60, 640, 380);
+        jPanel2.setBounds(10, 60, 760, 380);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         pack();
@@ -158,6 +180,7 @@ public class appointment extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ADDBUTTON;
     private javax.swing.JPanel DELETEBUTTON;
     private javax.swing.JPanel UPDATEBUTTON;
+    private javax.swing.JTable apptTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -166,7 +189,6 @@ public class appointment extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

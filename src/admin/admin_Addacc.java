@@ -6,6 +6,8 @@
 package admin;
 
 import clinicapptts.LoginForm;
+import static clinicapptts.Registration.passwordhashing;
+import config.Session;
 import config.dbConnector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,8 +60,35 @@ public class admin_Addacc extends javax.swing.JFrame {
     }
     }
     
-    
-    
+     public static boolean checkemail(String email , int id){
+     dbConnector dbc = new dbConnector();
+     
+     try{
+         String sql = "SELECT * FROM tbl_userdetails Where u_email != '"+email+"' AND u_id = '"+id+"'";
+          ResultSet rst = dbc.getData(sql);
+          return rst.next();
+     
+     
+     }catch(SQLException ex){
+         System.out.println(ex.getMessage());
+            return false;
+     }
+     }
+     
+     public static boolean checkuser(String username , int id){
+     dbConnector dbc = new dbConnector();
+     
+     try{
+         String sql = "SELECT * FROM tbl_userdetails Where u_username != '"+username+"' AND u_id = '"+id+"'";
+          ResultSet rst = dbc.getData(sql);
+          return rst.next();
+     
+     
+     }catch(SQLException ex){
+         System.out.println(ex.getMessage());
+            return false;
+     }
+     }
     
 
     /**
@@ -88,7 +117,7 @@ public class admin_Addacc extends javax.swing.JFrame {
         u_save = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        u_id = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
         status = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -188,10 +217,10 @@ public class admin_Addacc extends javax.swing.JFrame {
         jPanel2.add(jLabel10);
         jLabel10.setBounds(50, 10, 70, 30);
 
-        u_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        u_id.setEnabled(false);
-        jPanel2.add(u_id);
-        u_id.setBounds(130, 10, 190, 30);
+        id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        id.setEnabled(false);
+        jPanel2.add(id);
+        id.setBounds(130, 10, 190, 30);
 
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "please select status", "Active", "Inactive" }));
         status.setToolTipText("");
@@ -239,6 +268,25 @@ public class admin_Addacc extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void u_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_u_saveMouseClicked
+//        Session sess = Session.getInstance();
+//                  int Id = Integer.parseInt(id.getText());
+//                  String currentpass = sess.getPass();
+//                  String hashpass = passwordhashing(oldpass.getText());
+//                  String newPass = newpass.getText();
+//                  String retypepass = confirmpass.getText();
+//                  String hashnewPassword = passwordhashing(newPass);
+                  
+        if (checkemail(email.getText(),Integer.valueOf(id.getText()))){
+            JOptionPane.showMessageDialog(null,"Email Already exist");
+            return;
+       
+        } 
+            if(checkuser(uname.getText(),Integer.valueOf(id.getText()))){
+            
+            JOptionPane.showMessageDialog(null,"Username Already exist");
+            return;
+            
+        }
         if(action.equals("NEW")){
         if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() 
                || uname.getText().isEmpty() 
@@ -268,9 +316,10 @@ public class admin_Addacc extends javax.swing.JFrame {
                 
             }
            }
+        
         }else if(action.equals("Update")){
            dbConnector dbc = new dbConnector();
-            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_password = '"+pass.getText()+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+u_id.getText()+"'");
+            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_password = '"+pass.getText()+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+id.getText()+"'");
             
              JOptionPane.showMessageDialog(null,"Successfully Updated!");
              
@@ -319,6 +368,7 @@ public class admin_Addacc extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> acctype;
     public javax.swing.JTextField email;
     public javax.swing.JTextField fname;
+    public javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -334,7 +384,6 @@ public class admin_Addacc extends javax.swing.JFrame {
     public javax.swing.JTextField lname;
     public javax.swing.JPasswordField pass;
     public javax.swing.JComboBox<String> status;
-    public javax.swing.JTextField u_id;
     public javax.swing.JLabel u_save;
     public javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables

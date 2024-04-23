@@ -5,7 +5,9 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.dbConnector;
 import internalpages.appointment;
+import javax.swing.JOptionPane;
 import user.desk_dashboard;
 
 /**
@@ -33,18 +35,18 @@ public class addAppointment extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        patientID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        date = new javax.swing.JFormattedTextField();
+        time = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        appttype = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        docID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,14 +63,14 @@ public class addAppointment extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(120, 20, 90, 30);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        patientID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        patientID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                patientIDActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(80, 60, 190, 30);
+        jPanel2.add(patientID);
+        patientID.setBounds(80, 60, 190, 30);
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -77,13 +79,13 @@ public class addAppointment extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(70, 100, 190, 30);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jPanel2.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(70, 140, 90, 30);
+        date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jPanel2.add(date);
+        date.setBounds(70, 140, 90, 30);
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jPanel2.add(jFormattedTextField2);
-        jFormattedTextField2.setBounds(240, 140, 80, 30);
+        time.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jPanel2.add(time);
+        time.setBounds(240, 140, 80, 30);
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,9 +107,9 @@ public class addAppointment extends javax.swing.JFrame {
         jPanel2.add(jLabel14);
         jLabel14.setBounds(10, 190, 305, 20);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please Select", "Medical Examination", "Doctor check", "Check-Up" }));
-        jPanel2.add(jComboBox2);
-        jComboBox2.setBounds(60, 220, 210, 30);
+        appttype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please Select", "Medical Examination", "Doctor check", "Check-Up" }));
+        jPanel2.add(appttype);
+        appttype.setBounds(60, 220, 210, 30);
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -116,14 +118,15 @@ public class addAppointment extends javax.swing.JFrame {
         jPanel2.add(jLabel7);
         jLabel7.setBounds(130, 270, 80, 18);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(60, 300, 210, 30);
-
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("SAVE");
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel5);
         jLabel5.setBounds(60, 360, 80, 30);
 
@@ -138,6 +141,8 @@ public class addAppointment extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel8);
         jLabel8.setBounds(180, 360, 90, 27);
+        jPanel2.add(docID);
+        docID.setBounds(60, 300, 210, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(40, 60, 330, 420);
@@ -164,16 +169,33 @@ public class addAppointment extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void patientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_patientIDActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
        desk_dashboard dDash = new desk_dashboard();
        dDash.setVisible(true);
        appointment appt = new appointment();
        dDash.maindesktop.add(appt).setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+     dbConnector dbc = new dbConnector();
+    String query = "INSERT INTO tbl_appointment (p_id, apptType, date, time, u_id, apptStatus) VALUES ('"+patientID.getText()+"','"+appttype.getSelectedItem()+"', '"+date.getText()+"', '"+time.getText()+"', "+docID.getText()+", 'Scheduled')";
+    boolean result = dbc.insertData(query);
+        if (result) {
+        JOptionPane.showMessageDialog(null, "Successfully Saved!");
+        desk_dashboard dDash = new desk_dashboard();
+        appointment appt = new appointment();
+        dDash.maindesktop.add(appt).setVisible(true);
+        this.dispose();
+        } else {
+        System.out.println("Saving Data Failed!");
+        }
+
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -211,10 +233,9 @@ public class addAppointment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JComboBox<String> appttype;
+    private javax.swing.JFormattedTextField date;
+    private javax.swing.JTextField docID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -226,6 +247,7 @@ public class addAppointment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField patientID;
+    private javax.swing.JFormattedTextField time;
     // End of variables declaration//GEN-END:variables
 }

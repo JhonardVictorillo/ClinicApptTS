@@ -36,7 +36,7 @@ public class schedule extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -53,7 +53,7 @@ public class schedule extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(30, 80, 550, 420);
+        jPanel2.setBounds(30, 70, 550, 420);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setText("Schedule page");

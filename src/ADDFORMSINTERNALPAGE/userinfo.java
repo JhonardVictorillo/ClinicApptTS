@@ -22,6 +22,20 @@ public class userinfo extends javax.swing.JFrame {
     public userinfo() {
         initComponents();
     }
+    
+    public void userdetails(){
+        Session sess = Session.getInstance();
+        
+        id.setText(""+sess.getId());
+        acctype.setText(""+sess.getType());
+        Fname.setText(""+sess.getFname());
+        Lname.setText(""+sess.getLname());
+        email.setText(""+sess.getEmail());
+        uname.setText(""+sess.getUname());
+    
+    
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,24 +46,27 @@ public class userinfo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel17 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Fname = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        Lname = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        Email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        uname = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        pass = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        acctype = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        acctype = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        Fname = new javax.swing.JLabel();
+        Lname = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
+        uname = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+
+        jLabel17.setText("jLabel17");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -58,7 +75,7 @@ public class userinfo extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.lightGray, java.awt.Color.black, java.awt.Color.gray));
         jPanel1.setLayout(null);
 
@@ -68,20 +85,11 @@ public class userinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(40, 220, 50, 30);
 
-        id.setEditable(false);
-        id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(id);
-        id.setBounds(100, 220, 190, 30);
-
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("First name:");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 260, 100, 30);
-
-        Fname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(Fname);
-        Fname.setBounds(100, 260, 190, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -89,39 +97,17 @@ public class userinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel4);
         jLabel4.setBounds(10, 300, 90, 30);
 
-        Lname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(Lname);
-        Lname.setBounds(100, 300, 190, 30);
-
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Email:");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(40, 340, 60, 30);
 
-        Email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(Email);
-        Email.setBounds(100, 340, 190, 30);
-
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("username:");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(0, 380, 100, 30);
-
-        uname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(uname);
-        uname.setBounds(100, 380, 190, 30);
-
-        jLabel7.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Password:");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, 420, 90, 30);
-
-        pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(pass);
-        pass.setBounds(100, 420, 190, 30);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(null);
@@ -135,11 +121,6 @@ public class userinfo extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 50, 350, 110);
 
-        acctype.setEditable(false);
-        acctype.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(acctype);
-        acctype.setBounds(130, 180, 120, 30);
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/arrow_circle_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -151,7 +132,7 @@ public class userinfo extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("UPDATE");
+        jLabel9.setText("UPDATE INFO");
         jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -159,7 +140,60 @@ public class userinfo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(150, 480, 80, 30);
+        jLabel9.setBounds(120, 430, 130, 30);
+
+        acctype.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        acctype.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acctype.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(acctype);
+        acctype.setBounds(120, 170, 130, 30);
+
+        id.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(id);
+        id.setBounds(100, 220, 190, 30);
+
+        Fname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        Fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(Fname);
+        Fname.setBounds(100, 260, 190, 30);
+
+        Lname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        Lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Lname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(Lname);
+        Lname.setBounds(100, 300, 190, 30);
+
+        email.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        email.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(email);
+        email.setBounds(100, 340, 190, 30);
+
+        uname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        uname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        uname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(uname);
+        uname.setBounds(100, 380, 190, 30);
+
+        jLabel16.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("CHANGE PASSWORD");
+        jLabel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel16);
+        jLabel16.setBounds(90, 490, 180, 30);
+
+        jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel18.setText("or");
+        jPanel1.add(jLabel18);
+        jLabel18.setBounds(170, 470, 20, 14);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,16 +217,25 @@ public class userinfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-            
-        dbConnector dbc = new dbConnector();
-            dbc.UpdateData("UPDATE tbl_userdetails SET u_firstname = '"+Fname.getText()+"',u_lastname = '"+Lname.getText()+"',u_email = '"+Email.getText()+"',u_username =  '"+uname.getText()+"',u_password = '"+pass.getText()+"',u_account = '"+acctype.getText()+"'Where u_id = '"+id.getText()+"'");
-             JOptionPane.showMessageDialog(null,"Data Updated Please Login Again to Refresh the Information!");
-             this.dispose();
+             Udetails update = new Udetails();  
+            update.setVisible(true);
+            this.dispose();
+//        dbConnector dbc = new dbConnector();
+//            dbc.UpdateData("UPDATE tbl_userdetails SET u_firstname = '"+Fname.getText()+"',u_lastname = '"+Lname.getText()+"',u_email = '"+Email.getText()+"',u_username =  '"+uname.getText()+"',u_password = '"+pass.getText()+"',u_account = '"+acctype.getText()+"'Where u_id = '"+id.getText()+"'");
+//             JOptionPane.showMessageDialog(null,"Data Updated Please Login Again to Refresh the Information!");
+//             this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-     
+     userdetails();
     }//GEN-LAST:event_formWindowActivated
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+      changepass change = new changepass();
+      change.setVisible(true);
+      dispose();
+      
+    }//GEN-LAST:event_jLabel16MouseClicked
 
     /**
      * @param args the command line arguments
@@ -230,23 +273,24 @@ public class userinfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField Email;
-    public javax.swing.JTextField Fname;
-    public javax.swing.JTextField Lname;
-    public javax.swing.JTextField acctype;
-    public javax.swing.JTextField id;
+    private javax.swing.JLabel Fname;
+    private javax.swing.JLabel Lname;
+    private javax.swing.JLabel acctype;
+    private javax.swing.JLabel email;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField pass;
-    public javax.swing.JTextField uname;
+    private javax.swing.JLabel uname;
     // End of variables declaration//GEN-END:variables
 }

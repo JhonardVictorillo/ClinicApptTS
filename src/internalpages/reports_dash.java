@@ -54,7 +54,7 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jLabel1.setText("GENERATES REPORTS");
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(80, 60, 490, 60);
+        jLabel1.setBounds(140, 60, 490, 60);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -66,7 +66,7 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jLabel2.setBounds(0, 0, 150, 120);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(120, 190, 150, 120);
+        jPanel2.setBounds(170, 180, 150, 120);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -78,7 +78,7 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jLabel3.setBounds(0, 0, 150, 120);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(400, 190, 150, 120);
+        jPanel3.setBounds(460, 180, 150, 120);
 
         patientRep.setBackground(new java.awt.Color(0, 204, 204));
         patientRep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -99,7 +99,7 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jLabel4.setBounds(0, 0, 180, 40);
 
         jPanel1.add(patientRep);
-        patientRep.setBounds(110, 320, 180, 40);
+        patientRep.setBounds(150, 320, 180, 40);
 
         ApptRep.setBackground(new java.awt.Color(0, 204, 204));
         ApptRep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -120,17 +120,17 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jLabel5.setBounds(0, 0, 190, 40);
 
         jPanel1.add(ApptRep);
-        ApptRep.setBounds(379, 319, 190, 40);
+        ApptRep.setBounds(440, 310, 190, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         pack();

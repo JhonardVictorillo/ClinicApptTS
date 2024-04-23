@@ -17,6 +17,7 @@ public class Session {
     private String email;
     private String uname;
     private String type;
+    private String pass;
     private String status;
     
     private Session(){
@@ -87,9 +88,19 @@ public class Session {
         this.type = type;
     }
 
+   
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+    
     public String getStatus() {
         return status;
-    }
+    } 
 
     public void setStatus(String status) {
         this.status = status;

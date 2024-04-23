@@ -5,8 +5,12 @@
  */
 package internalpages;
 
+import config.dbConnector;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -20,10 +24,31 @@ public class doctors extends javax.swing.JInternalFrame {
     public doctors() {
         initComponents();
         
+        displaydata();
+        
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
     }
+    
+     public void displaydata(){
+    try{
+      dbConnector DBconnector = new dbConnector();
+      ResultSet rs = DBconnector.getData("SELECT u_id,u_firstname , u_lastname,u_email, u_account ,u_status FROM tbl_userdetails WHERE u_account = 'DOCTOR' AND u_status ='Active'");
+      Doctortbl.setModel(DbUtils.resultSetToTableModel(rs));
+    
+    
+    }catch(SQLException ex){
+        System.out.println("Errors:"+ex.getMessage());
+    
+    }
+    
+    }
+    
+    
+    
+    
+    
 Color navcolor = new Color(0,204,204);
     Color bodycolor = new Color(153,204,255);
     /**
@@ -39,17 +64,17 @@ Color navcolor = new Color(0,204,204);
         jLabel1 = new javax.swing.JLabel();
         ADDBUT = new javax.swing.JPanel();
         add = new javax.swing.JLabel();
-        searchbar = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        patienttable = new javax.swing.JTable();
+        Doctortbl = new javax.swing.JTable();
         EDITBUT = new javax.swing.JPanel();
         editbutton = new javax.swing.JLabel();
         DELETEBUT = new javax.swing.JPanel();
         deletebutton = new javax.swing.JLabel();
         REFRESHBUT = new javax.swing.JPanel();
         refresh = new javax.swing.JLabel();
+        searchbar = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
@@ -86,21 +111,12 @@ Color navcolor = new Color(0,204,204);
         jPanel1.add(ADDBUT);
         ADDBUT.setBounds(39, 100, 70, 30);
 
-        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel1.add(searchbar);
-        searchbar.setBounds(440, 100, 200, 30);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("SEARCH:");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(440, 80, 80, 17);
-
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(null);
 
-        patienttable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        patienttable.setModel(new javax.swing.table.DefaultTableModel(
+        Doctortbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        Doctortbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -111,10 +127,10 @@ Color navcolor = new Color(0,204,204);
                 "ID", "LASTNAME", "FIRSTNAME", "CONTACTS", "ADDRESS", "STATUS"
             }
         ));
-        jScrollPane1.setViewportView(patienttable);
+        jScrollPane1.setViewportView(Doctortbl);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 620, 100);
+        jScrollPane1.setBounds(10, 90, 720, 100);
 
         EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -194,18 +210,27 @@ Color navcolor = new Color(0,204,204);
         jPanel5.add(REFRESHBUT);
         REFRESHBUT.setBounds(300, 40, 70, 30);
 
+        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel5.add(searchbar);
+        searchbar.setBounds(520, 50, 200, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("SEARCH:");
+        jPanel5.add(jLabel2);
+        jLabel2.setBounds(520, 30, 80, 17);
+
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(10, 60, 640, 400);
+        jPanel5.setBounds(10, 60, 750, 390);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         pack();
@@ -318,6 +343,7 @@ Color navcolor = new Color(0,204,204);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ADDBUT;
     private javax.swing.JPanel DELETEBUT;
+    private javax.swing.JTable Doctortbl;
     private javax.swing.JPanel EDITBUT;
     private javax.swing.JPanel REFRESHBUT;
     private javax.swing.JLabel add;
@@ -328,7 +354,6 @@ Color navcolor = new Color(0,204,204);
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable patienttable;
     private javax.swing.JLabel refresh;
     private javax.swing.JTextField searchbar;
     // End of variables declaration//GEN-END:variables

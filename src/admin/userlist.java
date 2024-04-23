@@ -44,7 +44,11 @@ public class userlist extends javax.swing.JFrame {
            } 
   
           }
-
+     
+    
+     
+     
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -268,7 +272,7 @@ public class userlist extends javax.swing.JFrame {
         }else{
             TableModel model = usertable.getModel();
             admin_Addacc AForm = new  admin_Addacc();
-             AForm.u_id.setText(""+model.getValueAt(rowindex, 0));
+             AForm.id.setText(""+model.getValueAt(rowindex, 0));
              AForm.fname.setText(""+model.getValueAt(rowindex, 1));
              AForm.lname.setText(""+model.getValueAt(rowindex, 2));
              AForm.email.setText(""+model.getValueAt(rowindex, 3));
@@ -278,7 +282,7 @@ public class userlist extends javax.swing.JFrame {
              AForm.status.setSelectedItem(""+model.getValueAt(rowindex, 7));
              
             AForm.setVisible(true);
-            
+           
              AForm.action = "Update";
              AForm.u_save.setText("UPDATE");
             this.dispose();

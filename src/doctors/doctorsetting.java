@@ -6,6 +6,7 @@
 package doctors;
 
 import admin.*;
+import config.Session;
 
 /**
  *
@@ -19,7 +20,18 @@ public class doctorsetting extends javax.swing.JFrame {
     public doctorsetting() {
         initComponents();
     }
-
+ public void userdetails(){
+        Session sess = Session.getInstance();
+        
+        id.setText(""+sess.getId());
+        acctype.setText(""+sess.getType());
+        Fname.setText(""+sess.getFname());
+        Lname.setText(""+sess.getLname());
+        email.setText(""+sess.getEmail());
+        uname.setText(""+sess.getUname());
+    
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,23 +43,153 @@ public class doctorsetting extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        acctype = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        uname = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        Fname = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        Lname = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.blue, java.awt.Color.black, java.awt.Color.black));
         jPanel2.setLayout(null);
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 70, 560, 410);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setText("Setting  page");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("ID:");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(30, 27, 60, 20);
+
+        id.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        id.setText("jLabel4");
+        id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(id);
+        id.setBounds(110, 24, 130, 20);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Accountype:");
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(20, 60, 90, 20);
+
+        acctype.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        acctype.setText("jLabel4");
+        acctype.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(acctype);
+        acctype.setBounds(110, 60, 130, 14);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Username:");
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(30, 90, 80, 20);
+
+        uname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        uname.setText("jLabel4");
+        uname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(uname);
+        uname.setBounds(110, 90, 130, 14);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("Firstname:");
+        jPanel2.add(jLabel9);
+        jLabel9.setBounds(300, 20, 70, 30);
+
+        Fname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        Fname.setText("jLabel4");
+        Fname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(Fname);
+        Fname.setBounds(390, 30, 130, 14);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("Lastname:");
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(300, 50, 80, 30);
+
+        Lname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        Lname.setText("jLabel4");
+        Lname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(Lname);
+        Lname.setBounds(390, 60, 130, 14);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setText("Email:");
+        jPanel2.add(jLabel13);
+        jLabel13.setBounds(330, 90, 40, 20);
+
+        email.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        email.setText("jLabel4");
+        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(email);
+        email.setBounds(390, 90, 130, 14);
+
+        jPanel3.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel3.setLayout(null);
+
+        jLabel15.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel15.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("UpdateInfo");
+        jLabel15.setBorder(new javax.swing.border.MatteBorder(null));
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel15);
+        jLabel15.setBounds(0, 0, 110, 40);
+
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(270, 180, 110, 40);
+
+        jPanel4.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.setLayout(null);
+
+        jLabel16.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel16.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Change Password");
+        jLabel16.setBorder(new javax.swing.border.MatteBorder(null));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel16);
+        jLabel16.setBounds(0, 0, 160, 40);
+
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(400, 180, 160, 40);
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(20, 90, 590, 230);
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        jLabel1.setText("ACCOUNT SETTING");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(220, 20, 140, 40);
+        jLabel1.setBounds(120, 30, 390, 40);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/chevron_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -63,11 +205,11 @@ public class doctorsetting extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -79,6 +221,23 @@ public class doctorsetting extends javax.swing.JFrame {
          docdash.setVisible(true);
           this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        userdetails();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+       Updateforms upform = new Updateforms();
+       upform.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        updatepass uppass = new updatepass();
+        uppass.setVisible(true);
+        this.dispose();
+              
+    }//GEN-LAST:event_jLabel16MouseClicked
 
     /**
      * @param args the command line arguments
@@ -117,9 +276,25 @@ public class doctorsetting extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Fname;
+    private javax.swing.JLabel Lname;
+    private javax.swing.JLabel acctype;
+    private javax.swing.JLabel email;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel uname;
     // End of variables declaration//GEN-END:variables
 }
