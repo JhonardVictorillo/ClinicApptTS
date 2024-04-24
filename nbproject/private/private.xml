@@ -3,16 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/user/desk_dashboard.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/userinfo.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/Updateforms.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/addAppointment.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/changepass.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/admin/updateform.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/updatepass.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/doctorsetting.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/patients.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/Udetails.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/clinicapptts/Registration.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/doctor_dashboard.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/appointment.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/ApptList.java</file>
         </group>
     </open-files>
 </project-private>

@@ -6,7 +6,9 @@
 package doctors;
 
 import admin.Admin_dashboard;
+import config.dbConnector;
 import java.awt.Color;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,6 +23,22 @@ public class ApptList extends javax.swing.JFrame {
         initComponents();
     }
 
+//    public void displaydata(){
+//    
+//        try{
+//    dbConnector dbc = new dbConnector();
+//    ResultSet rs = dbc.getData("SELECT ")
+//    
+//      }catch(SQLException ex){
+//        System.out.println("Errors:"+ex.getMessage());
+//    
+//    }
+//    
+//    }
+    
+    
+    
+    
       Color navcolor = new Color(0,204,204);
        Color bodycolor = new Color(153,204,255);
     /**

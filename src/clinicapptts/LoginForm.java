@@ -112,7 +112,7 @@ public class LoginForm extends javax.swing.JFrame {
         signinButton = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         creatAccount = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        showpass = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -212,13 +212,13 @@ public class LoginForm extends javax.swing.JFrame {
 
         jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 120, 20));
 
-        jCheckBox1.setText("Remember me!");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        showpass.setText("Show Password");
+        showpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                showpassActionPerformed(evt);
             }
         });
-        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        jPanel2.add(showpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         jPanel6.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 310, 320));
 
@@ -289,9 +289,13 @@ public class LoginForm extends javax.swing.JFrame {
          SIGNIN.setBackground(navcolor);
     }//GEN-LAST:event_SIGNINMouseExited
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-       
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void showpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpassActionPerformed
+            if(showpass.isSelected()){
+                userPass.setEchoChar((char)0);
+            }else{
+                userPass.setEchoChar('*');
+            }
+    }//GEN-LAST:event_showpassActionPerformed
 
     private void SIGNINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SIGNINMouseClicked
      
@@ -395,7 +399,6 @@ public class LoginForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SIGNIN;
     private javax.swing.JLabel creatAccount;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -411,6 +414,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JCheckBox showpass;
     private javax.swing.JLabel signinButton;
     private javax.swing.JTextField userName;
     private javax.swing.JPasswordField userPass;

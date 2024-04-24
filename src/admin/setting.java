@@ -5,6 +5,8 @@
  */
 package admin;
 
+import config.Session;
+
 /**
  *
  * @author once
@@ -16,6 +18,19 @@ public class setting extends javax.swing.JFrame {
      */
     public setting() {
         initComponents();
+    }
+    
+    public void userdetails(){
+        Session sess = Session.getInstance();
+        
+        id.setText(""+sess.getId());
+        acctype.setText(""+sess.getType());
+        Fname.setText(""+sess.getFname());
+        Lname.setText(""+sess.getLname());
+        email.setText(""+sess.getEmail());
+        uname.setText(""+sess.getUname());
+    
+    
     }
 
     /**
@@ -30,23 +45,27 @@ public class setting extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        Fname = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        Lname = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        uname = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        acctype = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
@@ -59,50 +78,55 @@ public class setting extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(70, 120, 21, 16);
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(100, 120, 190, 20);
+        id.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(id);
+        id.setBounds(100, 120, 190, 20);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel5.setText("Firstname:");
         jPanel2.add(jLabel5);
         jLabel5.setBounds(20, 150, 71, 16);
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(100, 140, 190, 30);
+        Fname.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        Fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(Fname);
+        Fname.setBounds(100, 140, 190, 30);
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel7.setText("Lastname: ");
         jPanel2.add(jLabel7);
         jLabel7.setBounds(20, 190, 73, 16);
 
-        jLabel8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(100, 180, 190, 20);
+        Lname.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        Lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Lname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(Lname);
+        Lname.setBounds(100, 180, 190, 20);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel9.setText("Email:");
         jPanel2.add(jLabel9);
         jLabel9.setBounds(40, 220, 41, 16);
 
-        jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel10.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel10);
-        jLabel10.setBounds(100, 210, 190, 20);
+        email.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        email.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(email);
+        email.setBounds(100, 210, 190, 20);
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel11.setText("Username:");
         jPanel2.add(jLabel11);
         jLabel11.setBounds(20, 240, 80, 20);
 
-        jLabel12.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel12);
-        jLabel12.setBounds(100, 240, 190, 20);
+        uname.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        uname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        uname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(uname);
+        uname.setBounds(100, 240, 190, 20);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -123,22 +147,11 @@ public class setting extends javax.swing.JFrame {
         jPanel2.add(jLabel13);
         jLabel13.setBounds(30, 270, 70, 20);
 
-        jLabel14.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel14.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel14);
-        jLabel14.setBounds(100, 270, 190, 20);
-
-        jLabel15.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Update Info");
-        jLabel15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.blue, java.awt.Color.black, java.awt.Color.black));
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel15);
-        jLabel15.setBounds(130, 310, 120, 24);
+        acctype.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        acctype.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acctype.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(acctype);
+        acctype.setBounds(100, 270, 190, 20);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(30, 70, 370, 350);
@@ -181,11 +194,9 @@ public class setting extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-       updateform upform = new updateform();
-       upform.setVisible(true);
-       dispose();
-    }//GEN-LAST:event_jLabel15MouseClicked
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        userdetails();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -223,23 +234,22 @@ public class setting extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Fname;
+    private javax.swing.JLabel Lname;
+    private javax.swing.JLabel acctype;
+    private javax.swing.JLabel email;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel uname;
     // End of variables declaration//GEN-END:variables
 }

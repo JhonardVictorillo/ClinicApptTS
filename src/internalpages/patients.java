@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -44,9 +46,27 @@ public class patients extends javax.swing.JInternalFrame {
     
     public void displaydata(){
     try{
+         
       dbConnector DBconnector = new dbConnector();
       ResultSet rs = DBconnector.getData("SELECT * FROM tbl_patients");
-      patienttable.setModel(DbUtils.resultSetToTableModel(rs));
+      
+       patienttable.setModel(DbUtils.resultSetToTableModel(rs));
+       
+       
+
+       
+        TableColumnModel columnModel = patienttable.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("Patient ID");
+            columnModel.getColumn(1).setHeaderValue("First Name");
+            columnModel.getColumn(2).setHeaderValue("Last Name");
+            columnModel.getColumn(3).setHeaderValue("Age");
+            columnModel.getColumn(4).setHeaderValue("Gender");
+            columnModel.getColumn(5).setHeaderValue("Birthdate");
+            columnModel.getColumn(6).setHeaderValue("Contact");
+            columnModel.getColumn(7).setHeaderValue("Address");
+
+            // Refresh the table UI
+           patienttable.getTableHeader().repaint();  
     
     
     }catch(SQLException ex){
@@ -55,6 +75,8 @@ public class patients extends javax.swing.JInternalFrame {
     }
     
     }
+    
+    
     
     
     
@@ -335,6 +357,7 @@ public class patients extends javax.swing.JInternalFrame {
          pForm.p_save.setText("UPDATE");
         
         }
+      
         this.dispose();
     }//GEN-LAST:event_editbuttonMouseClicked
 

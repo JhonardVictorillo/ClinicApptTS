@@ -209,8 +209,8 @@ public class updatepass extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        doctor_dashboard Adash = new doctor_dashboard();
-        Adash.setVisible(true);
+        doctorsetting docset = new  doctorsetting();
+        docset.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 

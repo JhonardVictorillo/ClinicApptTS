@@ -10,6 +10,7 @@ import config.dbConnector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -39,7 +40,22 @@ public class appointment extends javax.swing.JInternalFrame {
               + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id;");
       apptTable.setModel(DbUtils.resultSetToTableModel(rs));
     
-    
+     TableColumnModel columnModel = apptTable.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("Appointment ID");
+            columnModel.getColumn(1).setHeaderValue("First Name");
+            columnModel.getColumn(2).setHeaderValue("Last Name");
+            columnModel.getColumn(3).setHeaderValue("Type");
+            columnModel.getColumn(4).setHeaderValue("Date");
+            columnModel.getColumn(5).setHeaderValue("Time");
+            columnModel.getColumn(6).setHeaderValue("Doctor ID");
+            columnModel.getColumn(7).setHeaderValue("Doctor Firstname");
+            columnModel.getColumn(8).setHeaderValue("Doctor Lastname");
+            columnModel.getColumn(9).setHeaderValue("Status");
+            
+
+            // Refresh the table UI
+           apptTable.getTableHeader().repaint();
+           
     }catch(SQLException ex){
         System.out.println("Errors:"+ex.getMessage());
     

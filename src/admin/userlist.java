@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -37,7 +38,21 @@ public class userlist extends javax.swing.JFrame {
               dbConnector DBconnector = new dbConnector();
               ResultSet rs = DBconnector.getData("SELECT * FROM tbl_userdetails");
               usertable.setModel(DbUtils.resultSetToTableModel(rs));
+                
+              TableColumnModel columnModel = usertable.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("User ID");
+            columnModel.getColumn(1).setHeaderValue("First Name");
+            columnModel.getColumn(2).setHeaderValue("Last Name");
+            columnModel.getColumn(3).setHeaderValue("Email");
+            columnModel.getColumn(4).setHeaderValue("Username");
+            columnModel.getColumn(5).setHeaderValue("Password");
+            columnModel.getColumn(6).setHeaderValue("Account Type");
+            columnModel.getColumn(7).setHeaderValue("Status");
+            
+            
 
+            // Refresh the table UI
+           usertable.getTableHeader().repaint();
                 }catch(SQLException ex){
                 System.out.println("Errors:"+ex.getMessage());
 

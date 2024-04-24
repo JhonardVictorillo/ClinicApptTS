@@ -319,7 +319,8 @@ public class admin_Addacc extends javax.swing.JFrame {
         
         }else if(action.equals("Update")){
            dbConnector dbc = new dbConnector();
-            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_password = '"+pass.getText()+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+id.getText()+"'");
+           String hashpass = passwordhashing(pass.getText());
+            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_password = '"+hashpass+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+id.getText()+"'");
             
              JOptionPane.showMessageDialog(null,"Successfully Updated!");
              

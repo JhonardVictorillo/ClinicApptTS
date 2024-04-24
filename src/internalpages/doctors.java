@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -36,7 +37,17 @@ public class doctors extends javax.swing.JInternalFrame {
       dbConnector DBconnector = new dbConnector();
       ResultSet rs = DBconnector.getData("SELECT u_id,u_firstname , u_lastname,u_email, u_account ,u_status FROM tbl_userdetails WHERE u_account = 'DOCTOR' AND u_status ='Active'");
       Doctortbl.setModel(DbUtils.resultSetToTableModel(rs));
-    
+     TableColumnModel columnModel = Doctortbl.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("Doctor ID");
+            columnModel.getColumn(1).setHeaderValue("First Name");
+            columnModel.getColumn(2).setHeaderValue("Last Name");
+            columnModel.getColumn(3).setHeaderValue("Email");
+            columnModel.getColumn(4).setHeaderValue("Account");
+            columnModel.getColumn(5).setHeaderValue("Status");
+           
+
+            // Refresh the table UI
+           Doctortbl.getTableHeader().repaint();  
     
     }catch(SQLException ex){
         System.out.println("Errors:"+ex.getMessage());

@@ -310,7 +310,10 @@ public class Updateforms extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
-       this.dispose();
+       doctorsetting docsetting = new doctorsetting();
+       docsetting.setVisible(true);
+        this.dispose();
+      
        
     }//GEN-LAST:event_jLabel16MouseClicked
 
