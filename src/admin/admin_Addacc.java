@@ -123,6 +123,11 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.blue));
@@ -182,7 +187,7 @@ public class admin_Addacc extends javax.swing.JFrame {
         jPanel2.add(pass);
         pass.setBounds(130, 210, 190, 30);
 
-        acctype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", " DOCTOR", "DESK", "Admin", " " }));
+        acctype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "DOCTOR", "DESK", "Admin", " " }));
         acctype.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(acctype);
         acctype.setBounds(130, 250, 190, 30);
@@ -268,25 +273,9 @@ public class admin_Addacc extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void u_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_u_saveMouseClicked
-//        Session sess = Session.getInstance();
-//                  int Id = Integer.parseInt(id.getText());
-//                  String currentpass = sess.getPass();
-//                  String hashpass = passwordhashing(oldpass.getText());
-//                  String newPass = newpass.getText();
-//                  String retypepass = confirmpass.getText();
-//                  String hashnewPassword = passwordhashing(newPass);
+
                   
-        if (checkemail(email.getText(),Integer.valueOf(id.getText()))){
-            JOptionPane.showMessageDialog(null,"Email Already exist");
-            return;
        
-        } 
-            if(checkuser(uname.getText(),Integer.valueOf(id.getText()))){
-            
-            JOptionPane.showMessageDialog(null,"Username Already exist");
-            return;
-            
-        }
         if(action.equals("NEW")){
         if(fname.getText().isEmpty() || lname.getText().isEmpty() || email.getText().isEmpty() 
                || uname.getText().isEmpty() 
@@ -295,15 +284,15 @@ public class admin_Addacc extends javax.swing.JFrame {
                   
                 }else if(pass.getText().length()<8){
               JOptionPane.showMessageDialog(null, "Password must atleast 8 characters!"); 
-               
+                    
              }else if(DuplicateCheck()){
              System.out.println("Duplicate Exist");
-           
+                    
             }else{
         
         dbConnector dbc = new dbConnector();
-       
-       if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status) VALUES ('"+acctype.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+pass.getText()+"','Inactive')")){
+       String hashpass = passwordhashing(pass.getText());
+       if(dbc.insertData("INSERT INTO tbl_userdetails(u_firstname,u_lastname,u_email,u_username,u_password,u_account,u_status) VALUES ('"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+hashpass+"','"+acctype.getSelectedItem()+"','"+status.getSelectedItem()+"')")){
         
        JOptionPane.showMessageDialog(null, "Created Successfully!");
        
@@ -316,19 +305,42 @@ public class admin_Addacc extends javax.swing.JFrame {
                 
             }
            }
-        
         }else if(action.equals("Update")){
+            
+           
+             if (checkemail(email.getText(),Integer.valueOf(id.getText()))){
+            JOptionPane.showMessageDialog(null,"Email Already exist");
+            return;
+       
+        } 
+            if(checkuser(uname.getText(),Integer.valueOf(id.getText()))){
+            
+            JOptionPane.showMessageDialog(null,"Username Already exist");
+            return;
+            
+        }
+        
+             
+             
            dbConnector dbc = new dbConnector();
-           String hashpass = passwordhashing(pass.getText());
-            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_password = '"+hashpass+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+id.getText()+"'");
+           
+//            String hash = passwordhashing(pass.getText());
+            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+id.getText()+"'");
             
              JOptionPane.showMessageDialog(null,"Successfully Updated!");
              
             userlist ulist = new userlist();
            ulist.setVisible(true);
            this.dispose();
+        
         }
     }//GEN-LAST:event_u_saveMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+       if(action.equals("Update")){
+       pass.setEditable(false);
+       }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

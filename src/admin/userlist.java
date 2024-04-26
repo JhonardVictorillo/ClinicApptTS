@@ -78,8 +78,6 @@ public class userlist extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         EDITBUT = new javax.swing.JPanel();
         editbutton = new javax.swing.JLabel();
-        DELETEBUT = new javax.swing.JPanel();
-        delete = new javax.swing.JLabel();
         REFRESHBUT = new javax.swing.JPanel();
         refresh = new javax.swing.JLabel();
         searchbar = new javax.swing.JTextField();
@@ -131,32 +129,6 @@ public class userlist extends javax.swing.JFrame {
         jPanel5.add(EDITBUT);
         EDITBUT.setBounds(100, 40, 70, 30);
 
-        DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
-        DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        DELETEBUT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                DELETEBUTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                DELETEBUTMouseExited(evt);
-            }
-        });
-        DELETEBUT.setLayout(null);
-
-        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        delete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        delete.setText("DELETE");
-        delete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteMouseClicked(evt);
-            }
-        });
-        DELETEBUT.add(delete);
-        delete.setBounds(10, 0, 50, 30);
-
-        jPanel5.add(DELETEBUT);
-        DELETEBUT.setBounds(180, 40, 70, 30);
-
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -181,7 +153,7 @@ public class userlist extends javax.swing.JFrame {
         refresh.setBounds(10, 0, 55, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(270, 40, 70, 30);
+        REFRESHBUT.setBounds(190, 40, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -190,12 +162,12 @@ public class userlist extends javax.swing.JFrame {
             }
         });
         jPanel5.add(searchbar);
-        searchbar.setBounds(380, 40, 190, 30);
+        searchbar.setBounds(530, 50, 190, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("SEARCH:");
         jPanel5.add(jLabel2);
-        jLabel2.setBounds(380, 20, 80, 17);
+        jLabel2.setBounds(530, 30, 80, 17);
 
         ADDBUT.setBackground(new java.awt.Color(0, 204, 204));
         ADDBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -247,10 +219,10 @@ public class userlist extends javax.swing.JFrame {
         jScrollPane1.setViewportView(usertable);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 620, 100);
+        jScrollPane1.setBounds(10, 90, 720, 100);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(10, 70, 640, 400);
+        jPanel5.setBounds(10, 70, 750, 400);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/chevron_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -266,9 +238,7 @@ public class userlist extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,32 +281,6 @@ public class userlist extends javax.swing.JFrame {
     private void EDITBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseExited
         EDITBUT.setBackground(navcolor);
     }//GEN-LAST:event_EDITBUTMouseExited
-
-    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
-        int rowIndex = usertable.getSelectedRow();
-        if(rowIndex<0){
-            JOptionPane.showMessageDialog(null,"Please select an item to Delete!");
-        }else{
-            TableModel model = usertable.getModel();
-            Object value = model.getValueAt(rowIndex,0);
-            String id = value.toString();
-            int a = JOptionPane.showConfirmDialog(null,"Are you sure to Delete ID:"+id);
-            if(a == JOptionPane.YES_OPTION){
-                dbConnector dbc = new dbConnector();
-                int u_id = Integer.parseInt(id);
-                dbc.DeleteduserData(u_id,"tbl_userdetails");
-                displaydata();
-            }
-        }
-    }//GEN-LAST:event_deleteMouseClicked
-
-    private void DELETEBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseEntered
-        DELETEBUT.setBackground(bodycolor);
-    }//GEN-LAST:event_DELETEBUTMouseEntered
-
-    private void DELETEBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseExited
-        DELETEBUT.setBackground(navcolor);
-    }//GEN-LAST:event_DELETEBUTMouseExited
 
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
         displaydata();
@@ -428,11 +372,9 @@ public class userlist extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ADDBUT;
-    private javax.swing.JPanel DELETEBUT;
     private javax.swing.JPanel EDITBUT;
     private javax.swing.JPanel REFRESHBUT;
     private javax.swing.JLabel add;
-    private javax.swing.JLabel delete;
     private javax.swing.JLabel editbutton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -58,6 +58,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
+        docID = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         LOGOUT = new javax.swing.JLabel();
 
@@ -234,7 +235,13 @@ public class doctor_dashboard extends javax.swing.JFrame {
         Name.setText("jLabel4");
         Name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel10.add(Name);
-        Name.setBounds(600, 240, 180, 30);
+        Name.setBounds(600, 230, 180, 30);
+
+        docID.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        docID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        docID.setText("jLabel4");
+        jPanel10.add(docID);
+        docID.setBounds(630, 264, 120, 20);
 
         jPanel4.add(jPanel10);
         jPanel10.setBounds(0, 0, 800, 290);
@@ -350,6 +357,8 @@ public class doctor_dashboard extends javax.swing.JFrame {
         this.dispose();
         }else{
           Name.setText(""+sess.getFname());
+          docID.setText("USER ID"+sess.getId());
+                  
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -395,6 +404,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
     public javax.swing.JLabel Name;
     private javax.swing.JPanel SCHEDULE;
     private javax.swing.JPanel SETTINGS;
+    public javax.swing.JLabel docID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

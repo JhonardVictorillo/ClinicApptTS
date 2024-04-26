@@ -73,8 +73,6 @@ Color navcolor = new Color(0,204,204);
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ADDBUT = new javax.swing.JPanel();
-        add = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Doctortbl = new javax.swing.JTable();
@@ -94,33 +92,6 @@ Color navcolor = new Color(0,204,204);
         jLabel1.setText("DOCTORS LIST");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(20, 10, 260, 40);
-
-        ADDBUT.setBackground(new java.awt.Color(0, 204, 204));
-        ADDBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        ADDBUT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ADDBUTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ADDBUTMouseExited(evt);
-            }
-        });
-        ADDBUT.setLayout(null);
-
-        add.setBackground(new java.awt.Color(255, 255, 255));
-        add.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add.setText("ADD");
-        add.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addMouseClicked(evt);
-            }
-        });
-        ADDBUT.add(add);
-        add.setBounds(0, 0, 70, 30);
-
-        jPanel1.add(ADDBUT);
-        ADDBUT.setBounds(39, 100, 70, 30);
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -167,7 +138,7 @@ Color navcolor = new Color(0,204,204);
         editbutton.setBounds(0, 0, 70, 30);
 
         jPanel5.add(EDITBUT);
-        EDITBUT.setBounds(120, 40, 70, 30);
+        EDITBUT.setBounds(20, 50, 70, 30);
 
         DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
         DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -193,7 +164,7 @@ Color navcolor = new Color(0,204,204);
         deletebutton.setBounds(0, 0, 70, 30);
 
         jPanel5.add(DELETEBUT);
-        DELETEBUT.setBounds(210, 40, 70, 30);
+        DELETEBUT.setBounds(110, 50, 70, 30);
 
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -219,7 +190,7 @@ Color navcolor = new Color(0,204,204);
         refresh.setBounds(0, 0, 70, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(300, 40, 70, 30);
+        REFRESHBUT.setBounds(200, 50, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.add(searchbar);
@@ -246,26 +217,6 @@ Color navcolor = new Color(0,204,204);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-        //        desk_dashboard DeskDash = new desk_dashboard();
-        //           DeskDash.setVisible(true);
-        //       patientform pform = new patientform();
-        //        DeskDash.maindesktop.add(pform).setVisible(true);
-//        addpatientform pform = new addpatientform();
-//        pform.setVisible(true);
-//        pform.action = "ADD";
-//        pform.p_save.setText("SAVE");
-//        this.dispose();
-    }//GEN-LAST:event_addMouseClicked
-
-    private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered
-        ADDBUT.setBackground(bodycolor);
-    }//GEN-LAST:event_ADDBUTMouseEntered
-
-    private void ADDBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseExited
-        ADDBUT.setBackground(navcolor);
-    }//GEN-LAST:event_ADDBUTMouseExited
 
     private void editbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbuttonMouseClicked
 //        int rowindex = patienttable.getSelectedRow();
@@ -352,12 +303,10 @@ Color navcolor = new Color(0,204,204);
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ADDBUT;
     private javax.swing.JPanel DELETEBUT;
     private javax.swing.JTable Doctortbl;
     private javax.swing.JPanel EDITBUT;
     private javax.swing.JPanel REFRESHBUT;
-    private javax.swing.JLabel add;
     private javax.swing.JLabel deletebutton;
     private javax.swing.JLabel editbutton;
     private javax.swing.JLabel jLabel1;

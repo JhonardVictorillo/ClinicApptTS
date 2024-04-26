@@ -189,7 +189,7 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 180, 30));
 
-        account.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DOCTOR", "DESK" }));
+        account.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Account type", "DOCTOR", "DESK" }));
         account.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         account.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

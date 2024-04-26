@@ -7,6 +7,9 @@ package ADDFORMSINTERNALPAGE;
 
 import config.dbConnector;
 import internalpages.appointment;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import user.desk_dashboard;
 
@@ -21,7 +24,59 @@ public class addAppointment extends javax.swing.JFrame {
      */
     public addAppointment() {
         initComponents();
+        populateDoctorComboBox();
+        patientcombox();
     }
+    
+    private void populateDoctorComboBox() {
+    try {
+        dbConnector dbc = new dbConnector();
+      
+            ResultSet resultSet = dbc.getData("SELECT u_id, u_lastname FROM tbl_userdetails WHERE u_account = 'DOCTOR' AND u_status = 'Active' ");
+        
+        // Populate the combo box with doctor IDs and names
+        while (resultSet.next()) {
+            String doctorID = resultSet.getString("u_id");
+            String doctorName = resultSet.getString("u_lastname");
+            String doctorInfo = doctorID + " - " + doctorName;
+            doctor.addItem(doctorInfo);
+        }
+        
+        // Close connections
+        resultSet.close();
+       
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error: Failed to retrieve doctor information.");
+    }
+}
+    
+   private void patientcombox() {
+    try {
+        dbConnector dbc = new dbConnector();
+      
+            ResultSet resultSet = dbc.getData("SELECT p_id, p_lastname,p_firstname FROM tbl_patients");
+        
+        // Populate the combo box with doctor IDs and names
+        while (resultSet.next()) {
+            String patientID = resultSet.getString("p_id");
+            String patientFName = resultSet.getString("p_lastname");
+            String patientLname = resultSet.getString("p_lastname");
+            String doctorInfo = patientID + " - " + patientFName+","+patientLname;
+            patient.addItem(doctorInfo);
+        }
+        
+        // Close connections
+        resultSet.close();
+       
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error: Failed to retrieve doctor information.");
+    }
+} 
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +90,6 @@ public class addAppointment extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        patientID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         date = new javax.swing.JFormattedTextField();
         time = new javax.swing.JFormattedTextField();
@@ -46,7 +100,8 @@ public class addAppointment extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        docID = new javax.swing.JTextField();
+        doctor = new javax.swing.JComboBox<>();
+        patient = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,36 +118,27 @@ public class addAppointment extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(120, 20, 90, 30);
 
-        patientID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        patientID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIDActionPerformed(evt);
-            }
-        });
-        jPanel2.add(patientID);
-        patientID.setBounds(80, 60, 190, 30);
-
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("APPOINTMENT SCHEDULE:");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(70, 100, 190, 30);
+        jLabel3.setBounds(90, 100, 190, 30);
 
         date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jPanel2.add(date);
-        date.setBounds(70, 140, 90, 30);
+        date.setBounds(70, 140, 110, 30);
 
         time.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
         jPanel2.add(time);
-        time.setBounds(240, 140, 80, 30);
+        time.setBounds(260, 140, 90, 30);
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("TIME:");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(180, 140, 54, 30);
+        jLabel4.setBounds(184, 140, 70, 30);
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,7 +151,7 @@ public class addAppointment extends javax.swing.JFrame {
         jLabel14.setText("  Procedure do you want to make an appointment for?");
         jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(jLabel14);
-        jLabel14.setBounds(10, 190, 305, 20);
+        jLabel14.setBounds(10, 190, 340, 30);
 
         appttype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please Select", "Medical Examination", "Doctor check", "Check-Up" }));
         jPanel2.add(appttype);
@@ -116,7 +162,7 @@ public class addAppointment extends javax.swing.JFrame {
         jLabel7.setText("DOCTORS:");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(130, 270, 80, 18);
+        jLabel7.setBounds(120, 270, 110, 20);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -128,7 +174,7 @@ public class addAppointment extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(60, 360, 80, 30);
+        jLabel5.setBounds(80, 360, 80, 30);
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -140,12 +186,25 @@ public class addAppointment extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(180, 360, 90, 27);
-        jPanel2.add(docID);
-        docID.setBounds(60, 300, 210, 30);
+        jLabel8.setBounds(210, 370, 90, 27);
+
+        doctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Doctor " }));
+        doctor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorActionPerformed(evt);
+            }
+        });
+        jPanel2.add(doctor);
+        doctor.setBounds(90, 300, 170, 30);
+
+        patient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select patient ID" }));
+        patient.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(patient);
+        patient.setBounds(80, 60, 170, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(40, 60, 330, 420);
+        jPanel2.setBounds(20, 60, 360, 420);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -169,10 +228,6 @@ public class addAppointment extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void patientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patientIDActionPerformed
-
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
        desk_dashboard dDash = new desk_dashboard();
        dDash.setVisible(true);
@@ -183,7 +238,15 @@ public class addAppointment extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
      dbConnector dbc = new dbConnector();
-    String query = "INSERT INTO tbl_appointment (p_id, apptType, date, time, u_id, apptStatus) VALUES ('"+patientID.getText()+"','"+appttype.getSelectedItem()+"', '"+date.getText()+"', '"+time.getText()+"', "+docID.getText()+", 'Scheduled')";
+         String selectedDoctorInfo = (String) doctor.getSelectedItem();
+         String[] parts = selectedDoctorInfo.split(" - ");
+        String selectedDoctorID = parts[0]; // Extracting the doctor's ID
+        
+        String selectedpatientInfo = (String) patient.getSelectedItem();
+         String[] patientParts = selectedpatientInfo.split(" - ");
+        String selectedpatientID = patientParts[0];
+        
+    String query = "INSERT INTO tbl_appointment (p_id, apptType, date, time, u_id, apptStatus) VALUES ('"+selectedpatientID+"','"+appttype.getSelectedItem()+"', '"+date.getText()+"', '"+time.getText()+"', "+selectedDoctorID+",'Scheduled')";
     boolean result = dbc.insertData(query);
         if (result) {
         JOptionPane.showMessageDialog(null, "Successfully Saved!");
@@ -196,6 +259,10 @@ public class addAppointment extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorActionPerformed
+       
+    }//GEN-LAST:event_doctorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,7 +302,7 @@ public class addAppointment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> appttype;
     private javax.swing.JFormattedTextField date;
-    private javax.swing.JTextField docID;
+    private javax.swing.JComboBox<String> doctor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -247,7 +314,7 @@ public class addAppointment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField patientID;
+    private javax.swing.JComboBox<String> patient;
     private javax.swing.JFormattedTextField time;
     // End of variables declaration//GEN-END:variables
 }

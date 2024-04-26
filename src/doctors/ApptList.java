@@ -6,8 +6,10 @@
 package doctors;
 
 import admin.Admin_dashboard;
+import config.Session;
 import config.dbConnector;
 import java.awt.Color;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -21,20 +23,25 @@ public class ApptList extends javax.swing.JFrame {
      */
     public ApptList() {
         initComponents();
+        
+       displaydata(); 
     }
 
-//    public void displaydata(){
-//    
-//        try{
-//    dbConnector dbc = new dbConnector();
-//    ResultSet rs = dbc.getData("SELECT ")
-//    
-//      }catch(SQLException ex){
-//        System.out.println("Errors:"+ex.getMessage());
-//    
-//    }
-//    
-//    }
+    public void displaydata(){
+          
+        try{
+            Session sess = Session.getInstance();
+        int docid = sess.getId();
+    dbConnector dbc = new dbConnector();
+    ResultSet rs = dbc.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_appointment.apptStatus FROM `tbl_appointment` "
+              + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
+              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE tbl_userdetails.u_id = "+docid);
+      }catch(SQLException ex){
+        System.out.println("Errors:"+ex.getMessage());
+    
+    }
+    
+    }
     
     
     
@@ -57,17 +64,19 @@ public class ApptList extends javax.swing.JFrame {
         usertable = new javax.swing.JTable();
         EDITBUT = new javax.swing.JPanel();
         editbutton = new javax.swing.JLabel();
-        DELETEBUT = new javax.swing.JPanel();
-        delete = new javax.swing.JLabel();
         REFRESHBUT = new javax.swing.JPanel();
         refresh = new javax.swing.JLabel();
-        ADDBUT = new javax.swing.JPanel();
-        add = new javax.swing.JLabel();
         searchbar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        docID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);
@@ -122,33 +131,7 @@ public class ApptList extends javax.swing.JFrame {
         EDITBUT.add(editbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 30));
 
         jPanel5.add(EDITBUT);
-        EDITBUT.setBounds(120, 40, 70, 30);
-
-        DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
-        DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        DELETEBUT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                DELETEBUTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                DELETEBUTMouseExited(evt);
-            }
-        });
-        DELETEBUT.setLayout(null);
-
-        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        delete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        delete.setText("DELETE");
-        delete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteMouseClicked(evt);
-            }
-        });
-        DELETEBUT.add(delete);
-        delete.setBounds(10, 0, 50, 30);
-
-        jPanel5.add(DELETEBUT);
-        DELETEBUT.setBounds(210, 40, 70, 30);
+        EDITBUT.setBounds(30, 50, 70, 30);
 
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -174,38 +157,11 @@ public class ApptList extends javax.swing.JFrame {
         refresh.setBounds(10, 0, 55, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(300, 40, 70, 30);
-
-        ADDBUT.setBackground(new java.awt.Color(0, 204, 204));
-        ADDBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        ADDBUT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ADDBUTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ADDBUTMouseExited(evt);
-            }
-        });
-        ADDBUT.setLayout(null);
-
-        add.setBackground(new java.awt.Color(255, 255, 255));
-        add.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add.setText("ADD");
-        add.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addMouseClicked(evt);
-            }
-        });
-        ADDBUT.add(add);
-        add.setBounds(10, 0, 50, 30);
-
-        jPanel5.add(ADDBUT);
-        ADDBUT.setBounds(30, 40, 70, 30);
+        REFRESHBUT.setBounds(110, 50, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.add(searchbar);
-        searchbar.setBounds(380, 40, 190, 30);
+        searchbar.setBounds(380, 50, 190, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("SEARCH:");
@@ -213,7 +169,7 @@ public class ApptList extends javax.swing.JFrame {
         jLabel2.setBounds(380, 20, 80, 17);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(10, 70, 580, 400);
+        jPanel5.setBounds(10, 60, 580, 400);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/chevron_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -224,6 +180,12 @@ public class ApptList extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel3);
         jLabel3.setBounds(20, 10, 50, 30);
+
+        docID.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        docID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        docID.setText("jLabel4");
+        jPanel1.add(docID);
+        docID.setBounds(10, 470, 100, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -282,34 +244,8 @@ public class ApptList extends javax.swing.JFrame {
         EDITBUT.setBackground(navcolor);
     }//GEN-LAST:event_EDITBUTMouseExited
 
-    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
-//        int rowIndex = patienttable.getSelectedRow();
-//        if(rowIndex<0){
-//            JOptionPane.showMessageDialog(null,"Please select an item to Delete!");
-//        }else{
-//            TableModel model = patienttable.getModel();
-//            Object value = model.getValueAt(rowIndex,0);
-//            String id = value.toString();
-//            int a = JOptionPane.showConfirmDialog(null,"Are you sure to Delete ID:"+id);
-//            if(a == JOptionPane.YES_OPTION){
-//                dbConnector dbc = new dbConnector();
-//                int p_id = Integer.parseInt(id);
-//                dbc.DeleteData(p_id,"tbl_patients");
-//                displaydata();
-//            }
-//        }
-    }//GEN-LAST:event_deleteMouseClicked
-
-    private void DELETEBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseEntered
-        DELETEBUT.setBackground(bodycolor);
-    }//GEN-LAST:event_DELETEBUTMouseEntered
-
-    private void DELETEBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseExited
-        DELETEBUT.setBackground(navcolor);
-    }//GEN-LAST:event_DELETEBUTMouseExited
-
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-      //  displaydata();
+         displaydata();
     }//GEN-LAST:event_refreshMouseClicked
 
     private void REFRESHBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseEntered
@@ -320,30 +256,17 @@ public class ApptList extends javax.swing.JFrame {
         REFRESHBUT.setBackground(navcolor);
     }//GEN-LAST:event_REFRESHBUTMouseExited
 
-    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-        //        desk_dashboard DeskDash = new desk_dashboard();
-        //           DeskDash.setVisible(true);
-        //       patientform pform = new patientform();
-        //        DeskDash.maindesktop.add(pform).setVisible(true);
-//        addpatientform pform = new addpatientform();
-//        pform.setVisible(true);
-//        pform.action = "ADD";
-//        pform.p_save.setText("SAVE");
-    }//GEN-LAST:event_addMouseClicked
-
-    private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered
-        ADDBUT.setBackground(bodycolor);
-    }//GEN-LAST:event_ADDBUTMouseEntered
-
-    private void ADDBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseExited
-        ADDBUT.setBackground(navcolor);
-    }//GEN-LAST:event_ADDBUTMouseExited
-
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         doctor_dashboard docdash = new doctor_dashboard();
         docdash.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Session sess = Session.getInstance();
+        docID.setText("USER ID:"+sess.getId());
+      
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -381,12 +304,9 @@ public class ApptList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ADDBUT;
-    private javax.swing.JPanel DELETEBUT;
     private javax.swing.JPanel EDITBUT;
     private javax.swing.JPanel REFRESHBUT;
-    private javax.swing.JLabel add;
-    private javax.swing.JLabel delete;
+    public javax.swing.JLabel docID;
     private javax.swing.JLabel editbutton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
