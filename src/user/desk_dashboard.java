@@ -74,6 +74,7 @@ public class desk_dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         NAV = new javax.swing.JPanel();
         DASHBOARD = new javax.swing.JPanel();
@@ -88,6 +89,8 @@ public class desk_dashboard extends javax.swing.JFrame {
         reportsButton = new javax.swing.JLabel();
         LOGOUT = new javax.swing.JPanel();
         LAGOUTBUTTON = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         details = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
@@ -96,6 +99,17 @@ public class desk_dashboard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         maindesktop = new javax.swing.JDesktopPane();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -262,6 +276,18 @@ public class desk_dashboard extends javax.swing.JFrame {
         LAGOUTBUTTON.setBounds(10, 0, 110, 30);
 
         NAV.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 120, 30));
+
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.setLayout(null);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/clinic logo 290px.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        jPanel4.add(jLabel5);
+        jLabel5.setBounds(0, 0, 230, 120);
+
+        NAV.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 120));
 
         jPanel1.add(NAV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 530));
 
@@ -529,8 +555,11 @@ public class desk_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     public javax.swing.JDesktopPane maindesktop;
     private javax.swing.JLabel patientButton;
     private javax.swing.JLabel reportsButton;

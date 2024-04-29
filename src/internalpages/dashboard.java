@@ -5,6 +5,9 @@
  */
 package internalpages;
 
+import config.dbConnector;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -12,6 +15,10 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  * @author once
  */
 public class dashboard extends javax.swing.JInternalFrame {
+    
+     private dbConnector dbc;
+    
+    
 
     /**
      * Creates new form dashboard
@@ -21,9 +28,28 @@ public class dashboard extends javax.swing.JInternalFrame {
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
+        
+         dbc = new dbConnector();
+        updateCounts();
     }
  
+   private void updateCounts() {
+    try {
+        // Count appointments
+        int appointmentCount = dbc.countAppointments();
+        appTcount.setText(String.valueOf(appointmentCount));
 
+        // Count patients
+        int patientCount = dbc.countPatients();
+        patientcount.setText(String.valueOf(patientCount));
+
+        // Count doctors
+        int doctorCount = dbc.countDoctors();
+        doctorcount.setText(String.valueOf(doctorCount));
+     } catch (Exception e) {
+       System.err.println("Error counting : " + e.getMessage());
+      }
+}
     
     
     
@@ -41,10 +67,13 @@ public class dashboard extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        appTcount = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        patientcount = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        doctorcount = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
@@ -56,6 +85,7 @@ public class dashboard extends javax.swing.JInternalFrame {
         jPanel5.setLayout(null);
 
         jPanel3.setBackground(java.awt.Color.cyan);
+        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel3.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -65,10 +95,17 @@ public class dashboard extends javax.swing.JInternalFrame {
         jPanel3.add(jLabel3);
         jLabel3.setBounds(0, 0, 200, 40);
 
+        appTcount.setFont(new java.awt.Font("Verdana", 1, 50)); // NOI18N
+        appTcount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        appTcount.setText("jLabel5");
+        jPanel3.add(appTcount);
+        appTcount.setBounds(20, 60, 150, 100);
+
         jPanel5.add(jPanel3);
         jPanel3.setBounds(290, 50, 200, 180);
 
         jPanel2.setBackground(java.awt.Color.cyan);
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel2.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -78,10 +115,17 @@ public class dashboard extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 210, 40);
 
+        patientcount.setFont(new java.awt.Font("Verdana", 1, 50)); // NOI18N
+        patientcount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        patientcount.setText("jLabel5");
+        jPanel2.add(patientcount);
+        patientcount.setBounds(30, 60, 150, 100);
+
         jPanel5.add(jPanel2);
         jPanel2.setBounds(40, 50, 210, 180);
 
         jPanel4.setBackground(java.awt.Color.cyan);
+        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel4.setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -91,11 +135,17 @@ public class dashboard extends javax.swing.JInternalFrame {
         jPanel4.add(jLabel4);
         jLabel4.setBounds(0, 0, 200, 40);
 
+        doctorcount.setFont(new java.awt.Font("Verdana", 1, 50)); // NOI18N
+        doctorcount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        doctorcount.setText("jLabel7");
+        jPanel4.add(doctorcount);
+        doctorcount.setBounds(20, 60, 160, 90);
+
         jPanel5.add(jPanel4);
         jPanel4.setBounds(530, 50, 200, 180);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(0, 190, 780, 270);
+        jPanel5.setBounds(0, 190, 780, 280);
 
         jLabel1.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -119,6 +169,8 @@ public class dashboard extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel appTcount;
+    private javax.swing.JLabel doctorcount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -128,5 +180,6 @@ public class dashboard extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel patientcount;
     // End of variables declaration//GEN-END:variables
 }

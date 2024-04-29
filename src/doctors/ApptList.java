@@ -11,6 +11,7 @@ import config.dbConnector;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,21 +28,71 @@ public class ApptList extends javax.swing.JFrame {
        displaydata(); 
     }
 
-    public void displaydata(){
-          
-        try{
-            Session sess = Session.getInstance();
+//    public void displaydata(){
+//          
+//        try{
+//            Session sess = Session.getInstance();
+//        int docid = sess.getId();
+//    dbConnector dbc = new dbConnector();
+//    ResultSet rs = dbc.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_appointment.apptStatus FROM `tbl_appointment` "
+//              + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
+//              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE tbl_userdetails.u_id = "+docid);
+//      }catch(SQLException ex){
+//        System.out.println("Errors:"+ex.getMessage());
+//    
+//    }
+//    
+//    }
+    
+    
+    public void displaydata() {
+    try {
+        Session sess = Session.getInstance();
         int docid = sess.getId();
-    dbConnector dbc = new dbConnector();
-    ResultSet rs = dbc.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_appointment.apptStatus FROM `tbl_appointment` "
+        dbConnector dbc = new dbConnector();
+        ResultSet rs = dbc.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_lastname,tbl_userdetails.u_id,tbl_appointment.apptStatus FROM `tbl_appointment` "
               + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
-              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE tbl_userdetails.u_id = "+docid);
-      }catch(SQLException ex){
-        System.out.println("Errors:"+ex.getMessage());
+              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE tbl_userdetails.u_id = " + docid);
+
+        // Create a DefaultTableModel to hold the data
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("APPOINTMENT ID");
+        model.addColumn("LASTNAME");
+        model.addColumn("FIRSTNAME");
+        model.addColumn("DATE");
+        model.addColumn("TIME");
+        model.addColumn("DOCTOR");
+        model.addColumn("STATUS");
+
+        // Populate the table model with data from the ResultSet
+        while (rs.next()) {
+            // Filter appointments by doctor ID
+            if (rs.getInt("u_id") == docid) {
+                Object[] rowData = {
+                    rs.getInt("appt_id"),
+                    rs.getString("p_lastname"),
+                    rs.getString("p_firstname"),
+                    rs.getString("date"),
+                    rs.getString("time"),
+                    rs.getString("u_lastname"),
+                    rs.getString("apptStatus")
+                };
+                model.addRow(rowData);
+            }
+        }
+
+       
+        apptListtable.setModel(model);
+
     
-    }
     
+
+    } catch (SQLException ex) {
+        System.out.println("Errors:" + ex.getMessage());
     }
+
+}
+
     
     
     
@@ -61,9 +112,9 @@ public class ApptList extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        usertable = new javax.swing.JTable();
+        apptListtable = new javax.swing.JTable();
         EDITBUT = new javax.swing.JPanel();
-        editbutton = new javax.swing.JLabel();
+        Updatebut = new javax.swing.JLabel();
         REFRESHBUT = new javax.swing.JPanel();
         refresh = new javax.swing.JLabel();
         searchbar = new javax.swing.JTextField();
@@ -78,7 +129,7 @@ public class ApptList extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -91,8 +142,8 @@ public class ApptList extends javax.swing.JFrame {
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(null);
 
-        usertable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        usertable.setModel(new javax.swing.table.DefaultTableModel(
+        apptListtable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        apptListtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -103,7 +154,7 @@ public class ApptList extends javax.swing.JFrame {
                 "ID", "LASTNAME", "FIRSTNAME", "DATE", "TIME", "DOCTOR", "STATUS"
             }
         ));
-        jScrollPane1.setViewportView(usertable);
+        jScrollPane1.setViewportView(apptListtable);
 
         jPanel5.add(jScrollPane1);
         jScrollPane1.setBounds(10, 90, 560, 100);
@@ -120,15 +171,15 @@ public class ApptList extends javax.swing.JFrame {
         });
         EDITBUT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editbutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        editbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editbutton.setText("EDIT");
-        editbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+        Updatebut.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Updatebut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Updatebut.setText("UPDATE");
+        Updatebut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editbuttonMouseClicked(evt);
+                UpdatebutMouseClicked(evt);
             }
         });
-        EDITBUT.add(editbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 30));
+        EDITBUT.add(Updatebut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 30));
 
         jPanel5.add(EDITBUT);
         EDITBUT.setBounds(30, 50, 70, 30);
@@ -202,7 +253,7 @@ public class ApptList extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbuttonMouseClicked
+    private void UpdatebutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdatebutMouseClicked
 //        int rowindex = patienttable.getSelectedRow();
 //        if(rowindex<0){
 //            JOptionPane.showMessageDialog(null,"Please select an item!");
@@ -234,7 +285,11 @@ public class ApptList extends javax.swing.JFrame {
 //            pForm.action = "Update";
 //            pForm.p_save.setText("UPDATE");
 //        }
-    }//GEN-LAST:event_editbuttonMouseClicked
+
+        updateform uform = new updateform();
+        uform.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_UpdatebutMouseClicked
 
     private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
         EDITBUT.setBackground(bodycolor);
@@ -265,7 +320,7 @@ public class ApptList extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Session sess = Session.getInstance();
         docID.setText("USER ID:"+sess.getId());
-      
+       
     }//GEN-LAST:event_formWindowActivated
 
     /**
@@ -306,8 +361,9 @@ public class ApptList extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EDITBUT;
     private javax.swing.JPanel REFRESHBUT;
+    private javax.swing.JLabel Updatebut;
+    private javax.swing.JTable apptListtable;
     public javax.swing.JLabel docID;
-    private javax.swing.JLabel editbutton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -316,6 +372,5 @@ public class ApptList extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel refresh;
     private javax.swing.JTextField searchbar;
-    private javax.swing.JTable usertable;
     // End of variables declaration//GEN-END:variables
 }

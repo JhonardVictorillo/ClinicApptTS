@@ -103,5 +103,58 @@ public class dbConnector {
 
                  }
                   }
+     
+    public int countAppointments() {
+        int count = 0;
+        try {
+            PreparedStatement stmt = connect.prepareStatement("SELECT COUNT(*) FROM tbl_appointment");
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }  
+     
+     
+  public int countPatients() {
+        int count = 0;
+        try {
+            PreparedStatement stmt = connect.prepareStatement("SELECT COUNT(*) FROM tbl_patients");
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+
+ public int countDoctors() {
+        int count = 0;
+        try {
+            PreparedStatement stmt = connect.prepareStatement("SELECT COUNT(*) FROM tbl_userdetails WHERE u_account = 'DOCTOR'AND u_status ='Active'");
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+  
+    
+    
     
 }

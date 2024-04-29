@@ -107,7 +107,6 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         userName = new javax.swing.JTextField();
         userPass = new javax.swing.JPasswordField();
-        jLabel9 = new javax.swing.JLabel();
         SIGNIN = new javax.swing.JPanel();
         signinButton = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
@@ -161,9 +160,6 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
         jPanel2.add(userPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 210, 40));
-
-        jLabel9.setText("Forgot password?");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, 20));
 
         SIGNIN.setBackground(new java.awt.Color(0, 204, 204));
         SIGNIN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -407,7 +403,6 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
