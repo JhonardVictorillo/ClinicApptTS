@@ -5,6 +5,8 @@
  */
 package internalpages;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author Noname
@@ -16,6 +18,9 @@ public class apptreports extends javax.swing.JInternalFrame {
      */
     public apptreports() {
         initComponents();
+          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
     }
 
     /**
@@ -54,7 +59,7 @@ public class apptreports extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 80, 710, 90);
+        jScrollPane1.setBounds(10, 70, 710, 90);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 50, 730, 390);

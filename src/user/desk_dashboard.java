@@ -30,6 +30,8 @@ public class desk_dashboard extends javax.swing.JFrame {
         maindesktop.add(dash).setVisible(true);
         date();
         time();
+        
+        
     }
     
      private void date(){

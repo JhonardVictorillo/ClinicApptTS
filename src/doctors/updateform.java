@@ -5,7 +5,10 @@
  */
 package doctors;
 
+import config.dbConnector;
 import java.awt.Color;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,15 +39,15 @@ public class updateform extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        apptstatus = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        newdiagnosis = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jTextField2 = new javax.swing.JTextField();
+        pastdiagnosis = new javax.swing.JTextArea();
+        apptID = new javax.swing.JTextField();
         UPDATE = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         CANCEL = new javax.swing.JPanel();
@@ -66,10 +69,10 @@ public class updateform extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(20, 90, 80, 30);
 
-        jComboBox1.setBackground(new java.awt.Color(204, 204, 204));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(20, 120, 150, 30);
+        apptstatus.setBackground(new java.awt.Color(204, 204, 204));
+        apptstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "please select status ", "Scheduled", "Completed", "Ongoing", "Cancel", " " }));
+        jPanel2.add(apptstatus);
+        apptstatus.setBounds(20, 120, 150, 30);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setText("NEW DIAGNOSIS:");
@@ -87,24 +90,27 @@ public class updateform extends javax.swing.JFrame {
         jPanel2.add(jLabel4);
         jLabel4.setBounds(220, 20, 230, 18);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        newdiagnosis.setColumns(20);
+        newdiagnosis.setRows(5);
+        newdiagnosis.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setViewportView(newdiagnosis);
 
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(220, 230, 360, 150);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        pastdiagnosis.setColumns(20);
+        pastdiagnosis.setRows(5);
+        pastdiagnosis.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane2.setViewportView(pastdiagnosis);
 
         jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(220, 40, 350, 150);
+        jScrollPane2.setBounds(220, 40, 360, 150);
 
-        jTextField2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(20, 50, 150, 30);
+        apptID.setEditable(false);
+        apptID.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        apptID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(apptID);
+        apptID.setBounds(20, 50, 150, 30);
 
         UPDATE.setBackground(new java.awt.Color(0, 204, 204));
         UPDATE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -124,11 +130,16 @@ public class updateform extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("UPDATE");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         UPDATE.add(jLabel5);
-        jLabel5.setBounds(10, 0, 80, 30);
+        jLabel5.setBounds(20, 0, 80, 30);
 
         jPanel2.add(UPDATE);
-        UPDATE.setBounds(40, 190, 0, 30);
+        UPDATE.setBounds(30, 180, 120, 30);
 
         CANCEL.setBackground(new java.awt.Color(0, 204, 204));
         CANCEL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -146,10 +157,10 @@ public class updateform extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("CANCEL");
         CANCEL.add(jLabel6);
-        jLabel6.setBounds(10, 0, 80, 30);
+        jLabel6.setBounds(20, 0, 80, 30);
 
         jPanel2.add(CANCEL);
-        CANCEL.setBounds(40, 230, 0, 30);
+        CANCEL.setBounds(30, 230, 120, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 50, 600, 390);
@@ -168,7 +179,7 @@ public class updateform extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -196,6 +207,44 @@ public class updateform extends javax.swing.JFrame {
     private void CANCELMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CANCELMouseExited
        CANCEL.setBackground(navcolor);
     }//GEN-LAST:event_CANCELMouseExited
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+//          dbConnector dbc = new dbConnector();
+//         
+//          dbc.UpdateData("UPDATE tbl_appointment SET apptStatus = '"+apptstatus.getSelectedItem()+"' WHERE appt_id ='"+apptID+"'");
+//                
+//           dbc.insertData("INSERT TO diagnosis(pastdiagnosis,newdiagnosis) VALUES('"+pastdiagnosis.getText()+"','"+newdiagnosis.getText()+"')");
+//          JOptionPane.showMessageDialog(null,"Updated succesfully! & Save successfully");
+//                    this.dispose();
+          
+         try {
+        dbConnector dbc = new dbConnector();
+        String status = (String) apptstatus.getSelectedItem();
+
+        // Get the appointment ID from the text field (assuming it's read-only)
+        int appointmentID = Integer.parseInt(apptID.getText());
+
+        // Update appointment status
+        String updateQuery = "UPDATE tbl_appointment SET apptStatus = '" + status + "' WHERE appt_id = " + appointmentID;
+        dbc.UpdateData(updateQuery);
+
+        // Insert new diagnosis
+        String newDiagnosisText = newdiagnosis.getText();
+        String pastDiagnosisText = pastdiagnosis.getText();
+        String insertQuery = "INSERT INTO diagnosis(pastdiagnosis, newdiagnosis) VALUES('" + pastDiagnosisText + "', '" + newDiagnosisText + "')";
+        dbc.insertData(insertQuery);
+
+        JOptionPane.showMessageDialog(null, "Appointment updated successfully!");
+        this.dispose();
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Invalid appointment ID");
+    }catch (Exception ex) {
+        JOptionPane.showMessageDialog(null,"Error updating appointment: " + ex.getMessage());
+        ex.printStackTrace();
+         
+    }
+          
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -235,7 +284,8 @@ public class updateform extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CANCEL;
     private javax.swing.JPanel UPDATE;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JTextField apptID;
+    public javax.swing.JComboBox<String> apptstatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -247,8 +297,7 @@ public class updateform extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextArea newdiagnosis;
+    private javax.swing.JTextArea pastdiagnosis;
     // End of variables declaration//GEN-END:variables
 }

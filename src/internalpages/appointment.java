@@ -29,6 +29,7 @@ public class appointment extends javax.swing.JInternalFrame {
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
+         apptTable.setDefaultEditor(Object.class, null);
     }
     
     
@@ -169,7 +170,7 @@ public class appointment extends javax.swing.JInternalFrame {
         DELETEBUTTON.setBounds(270, 50, 90, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 60, 760, 380);
+        jPanel2.setBounds(10, 70, 760, 380);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

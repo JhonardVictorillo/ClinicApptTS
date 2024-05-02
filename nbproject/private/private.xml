@@ -5,9 +5,15 @@
         <group>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/user/desk_dashboard.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/addAppointment.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/reports.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/updateform.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/addpatientform.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/reports_dash.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/apptreports.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/patients.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/ApptList.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/appointment.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/Udetails.java</file>
         </group>
     </open-files>
 </project-private>

@@ -11,7 +11,10 @@ import config.dbConnector;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -26,6 +29,7 @@ public class ApptList extends javax.swing.JFrame {
         initComponents();
         
        displaydata(); 
+        apptListtable.setDefaultEditor(Object.class, null);
     }
 
 //    public void displaydata(){
@@ -157,7 +161,7 @@ public class ApptList extends javax.swing.JFrame {
         jScrollPane1.setViewportView(apptListtable);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 560, 100);
+        jScrollPane1.setBounds(10, 100, 560, 100);
 
         EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -211,6 +215,11 @@ public class ApptList extends javax.swing.JFrame {
         REFRESHBUT.setBounds(110, 50, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchbarKeyTyped(evt);
+            }
+        });
         jPanel5.add(searchbar);
         searchbar.setBounds(380, 50, 190, 30);
 
@@ -254,41 +263,25 @@ public class ApptList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void UpdatebutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdatebutMouseClicked
-//        int rowindex = patienttable.getSelectedRow();
-//        if(rowindex<0){
-//            JOptionPane.showMessageDialog(null,"Please select an item!");
-//
-//        }else{
-//            TableModel model = patienttable.getModel();
-//            addpatientform pForm = new addpatientform();
-//            pForm.p_id.setText(""+model.getValueAt(rowindex, 0));
-//            pForm.fname.setText(""+model.getValueAt(rowindex, 1));
-//            pForm.lname.setText(""+model.getValueAt(rowindex, 2));
-//
-//            pForm.gender = model.getValueAt(rowindex, 4).toString();
-//
-//            String gend = model.getValueAt(rowindex, 3).toString();
-//            if(gend.equals("MALE")){
-//                pForm.male.setSelected(true);
-//            }
-//            if(gend.equals("FEMALE")){
-//                pForm.female.setSelected(true);
-//            }
-//            pForm.age.setText(""+model.getValueAt(rowindex, 3));
-//            pForm.birthdate.setText(""+model.getValueAt(rowindex, 5));
-//            pForm.address.setText(""+model.getValueAt(rowindex, 6));
-//            pForm.contact.setText(""+model.getValueAt(rowindex, 7));
-//            desk_dashboard DeskDash = new desk_dashboard();
-//
-//            pForm.setVisible(true);
-//
-//            pForm.action = "Update";
-//            pForm.p_save.setText("UPDATE");
-//        }
+        int rowindex = apptListtable.getSelectedRow();
+        if(rowindex<0){
+            JOptionPane.showMessageDialog(null,"Please select an item!");
 
-        updateform uform = new updateform();
-        uform.setVisible(true);
-        this.dispose();
+        }else{
+            TableModel model = apptListtable.getModel();
+            updateform uForm = new updateform();
+            
+            uForm.apptID.setText(""+model.getValueAt(rowindex, 0));
+            uForm.apptstatus.setSelectedItem(""+model.getValueAt(rowindex,6));
+           
+       
+
+            uForm.setVisible(true);
+            this.dispose();
+          
+        }
+       
+        
     }//GEN-LAST:event_UpdatebutMouseClicked
 
     private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
@@ -322,6 +315,56 @@ public class ApptList extends javax.swing.JFrame {
         docID.setText("USER ID:"+sess.getId());
        
     }//GEN-LAST:event_formWindowActivated
+
+    private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
+        String query = searchbar.getText().trim();
+    int docid = Integer.parseInt(docID.getText().split(":")[1]);
+    String searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, "
+            + "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, "
+            + "tbl_userdetails.u_lastname, tbl_userdetails.u_id, tbl_appointment.apptStatus "
+            + "FROM tbl_appointment "
+            + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
+            + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id "
+            + "WHERE tbl_userdetails.u_id = " + docid + " "
+            + "AND (tbl_appointment.appt_id LIKE '%" + query + "%' "
+            + "OR tbl_patients.p_firstname LIKE '%" + query + "%' "
+            + "OR tbl_patients.p_lastname LIKE '%" + query + "%')";
+    
+    if (query.matches("\\d+")) {
+        searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, "
+                + "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, "
+                + "tbl_userdetails.u_lastname, tbl_userdetails.u_id, tbl_appointment.apptStatus "
+                + "FROM tbl_appointment "
+                + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
+                + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id "
+                + "WHERE tbl_userdetails.u_id = " + docid + " "
+                + "AND tbl_appointment.appt_id = " + query;
+    }
+    
+    try {
+        dbConnector connect = new dbConnector();
+        ResultSet rs = connect.getData(searchQuery);
+        
+      
+        DefaultTableModel model = (DefaultTableModel) apptListtable.getModel();
+        model.setRowCount(0); 
+        
+        while (rs.next()) {
+            Object[] rowData = {
+                rs.getInt("appt_id"),
+                rs.getString("p_lastname"),
+                rs.getString("p_firstname"),
+                rs.getString("date"),
+                rs.getString("time"),
+                rs.getString("u_lastname"),
+                rs.getString("apptStatus")
+            };
+            model.addRow(rowData);
+        }
+    } catch(SQLException ex) {
+        System.out.println("Error searching users: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_searchbarKeyTyped
 
     /**
      * @param args the command line arguments

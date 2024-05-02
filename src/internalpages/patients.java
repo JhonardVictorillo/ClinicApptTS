@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -36,6 +37,7 @@ public class patients extends javax.swing.JInternalFrame {
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
+         patienttable.setDefaultEditor(Object.class, null);
     }
     
      Color navcolor = new Color(0,204,204);
@@ -385,13 +387,28 @@ public class patients extends javax.swing.JInternalFrame {
     
     
         if (query.matches("\\d+")) {
-            searchQuery = "SELECT * FROM tbl_userdetails WHERE u_id = " + query;
+            searchQuery = "SELECT * FROM tbl_patients WHERE p_id = " + query;
         }
     
         try {
             dbConnector connect = new dbConnector();
             ResultSet rs = connect.getData(searchQuery);
-            patienttable.setModel(DbUtils.resultSetToTableModel(rs));
+          DefaultTableModel model = (DefaultTableModel) patienttable.getModel();
+        model.setRowCount(0); 
+        
+        while (rs.next()) {
+            Object[] rowData = {
+                rs.getInt("p_id"),
+                rs.getString("p_lastname"),
+                rs.getString("p_firstname"),
+                rs.getString("p_age"),
+                rs.getString("p_gender"),
+                rs.getString("p_dateofbirth"),
+                rs.getString("p_contact"),
+                rs.getString("p_address")
+            };
+            model.addRow(rowData);
+        }
         } catch(SQLException ex) {
             System.out.println("Error searching users: " + ex.getMessage());
         }

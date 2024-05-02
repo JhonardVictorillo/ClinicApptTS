@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -27,6 +28,7 @@ public class userlist extends javax.swing.JFrame {
         initComponents();
         
         displaydata();
+         usertable.setDefaultEditor(Object.class, null);
         
     }
         Color navcolor = new Color(0,204,204);
@@ -329,7 +331,24 @@ public class userlist extends javax.swing.JFrame {
         try {
             dbConnector connect = new dbConnector();
             ResultSet rs = connect.getData(searchQuery);
-            usertable.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        DefaultTableModel model = (DefaultTableModel) usertable.getModel();
+        model.setRowCount(0); 
+        
+        while (rs.next()) {
+            Object[] rowData = {
+                rs.getInt("u_id"),
+                rs.getString("u_lastname"),
+                rs.getString("u_firstname"),
+                rs.getString("u_username"),
+                rs.getString("u_password"),
+                rs.getString("u_email"),
+                rs.getString("u_account"),
+                rs.getString("u_status")
+               
+            };
+            model.addRow(rowData);
+        }
         } catch(SQLException ex) {
             System.out.println("Error searching users: " + ex.getMessage());
         }

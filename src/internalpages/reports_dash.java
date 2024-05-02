@@ -5,8 +5,11 @@
  */
 package internalpages;
 
+import ADDFORMSINTERNALPAGE.*;
+
 import java.awt.Color;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import user.desk_dashboard;
 
 /**
  *
@@ -95,11 +98,16 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Patient reports");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         patientRep.add(jLabel4);
         jLabel4.setBounds(0, 0, 180, 40);
 
         jPanel1.add(patientRep);
-        patientRep.setBounds(150, 320, 180, 40);
+        patientRep.setBounds(150, 310, 180, 40);
 
         ApptRep.setBackground(new java.awt.Color(0, 204, 204));
         ApptRep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -116,6 +124,11 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Appointment report");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         ApptRep.add(jLabel5);
         jLabel5.setBounds(0, 0, 190, 40);
 
@@ -153,6 +166,19 @@ public class reports_dash extends javax.swing.JInternalFrame {
     private void ApptRepMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApptRepMouseExited
         ApptRep.setBackground(navcolor);
     }//GEN-LAST:event_ApptRepMouseExited
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+       patientReports patientRep = new patientReports();
+       patientRep.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+       apptReports1 Areports = new apptReports1();
+       Areports.setVisible(true);
+       
+       this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

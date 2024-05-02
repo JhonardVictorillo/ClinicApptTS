@@ -43,6 +43,7 @@ public class reports extends javax.swing.JInternalFrame {
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -59,7 +60,7 @@ public class reports extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 80, 690, 90);
+        jScrollPane1.setBounds(30, 70, 690, 150);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 740, 380);
@@ -67,8 +68,9 @@ public class reports extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Patients Reports");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 10, 240, 30);
+        jLabel1.setBounds(20, 10, 240, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
