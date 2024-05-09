@@ -56,7 +56,7 @@ public class ApptList extends javax.swing.JFrame {
         dbConnector dbc = new dbConnector();
         ResultSet rs = dbc.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_lastname,tbl_userdetails.u_id,tbl_appointment.apptStatus FROM `tbl_appointment` "
               + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
-              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE tbl_userdetails.u_id = " + docid);
+              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE tbl_appointment.apptStatus ='Scheduled' AND tbl_userdetails.u_id = " + docid);
 
         // Create a DefaultTableModel to hold the data
         DefaultTableModel model = new DefaultTableModel();
@@ -177,16 +177,16 @@ public class ApptList extends javax.swing.JFrame {
 
         Updatebut.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Updatebut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Updatebut.setText("UPDATE");
+        Updatebut.setText("CONSULTATION");
         Updatebut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UpdatebutMouseClicked(evt);
             }
         });
-        EDITBUT.add(Updatebut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 30));
+        EDITBUT.add(Updatebut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, 30));
 
         jPanel5.add(EDITBUT);
-        EDITBUT.setBounds(30, 50, 70, 30);
+        EDITBUT.setBounds(30, 50, 120, 30);
 
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
@@ -212,7 +212,7 @@ public class ApptList extends javax.swing.JFrame {
         refresh.setBounds(10, 0, 55, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(110, 50, 70, 30);
+        REFRESHBUT.setBounds(170, 50, 70, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         searchbar.addKeyListener(new java.awt.event.KeyAdapter() {

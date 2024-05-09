@@ -104,6 +104,28 @@ public class dbConnector {
                  }
                   }
      
+     
+      public void DeletedappTData(int id,String Table){
+        try{
+          PreparedStatement pst = connect.prepareStatement("DELETE FROM tbl_appointment WHERE appt_id=?");
+          
+            pst.setInt(1, id);
+            int rowDeleted = pst.executeUpdate();
+             if(rowDeleted>0){
+              JOptionPane.showMessageDialog(null, "Data Deleted successfully!");   
+
+             }else{
+                 System.out.println("Deletion Failed!");
+             }
+             pst.close();
+
+                }catch(SQLException ex){
+                    System.out.println("Connection Error:"+ex);
+
+                 }
+                  }
+     
+     
     public int countAppointments() {
         int count = 0;
         try {

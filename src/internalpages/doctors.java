@@ -76,10 +76,6 @@ Color navcolor = new Color(0,204,204);
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Doctortbl = new javax.swing.JTable();
-        EDITBUT = new javax.swing.JPanel();
-        editbutton = new javax.swing.JLabel();
-        DELETEBUT = new javax.swing.JPanel();
-        deletebutton = new javax.swing.JLabel();
         REFRESHBUT = new javax.swing.JPanel();
         refresh = new javax.swing.JLabel();
         searchbar = new javax.swing.JTextField();
@@ -114,58 +110,6 @@ Color navcolor = new Color(0,204,204);
         jPanel5.add(jScrollPane1);
         jScrollPane1.setBounds(10, 90, 720, 100);
 
-        EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
-        EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        EDITBUT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                EDITBUTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                EDITBUTMouseExited(evt);
-            }
-        });
-        EDITBUT.setLayout(null);
-
-        editbutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        editbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editbutton.setText("EDIT");
-        editbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editbuttonMouseClicked(evt);
-            }
-        });
-        EDITBUT.add(editbutton);
-        editbutton.setBounds(0, 0, 70, 30);
-
-        jPanel5.add(EDITBUT);
-        EDITBUT.setBounds(20, 50, 70, 30);
-
-        DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
-        DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
-        DELETEBUT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                DELETEBUTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                DELETEBUTMouseExited(evt);
-            }
-        });
-        DELETEBUT.setLayout(null);
-
-        deletebutton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deletebutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deletebutton.setText("DELETE");
-        deletebutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deletebuttonMouseClicked(evt);
-            }
-        });
-        DELETEBUT.add(deletebutton);
-        deletebutton.setBounds(0, 0, 70, 30);
-
-        jPanel5.add(DELETEBUT);
-        DELETEBUT.setBounds(110, 50, 70, 30);
-
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,10 +131,10 @@ Color navcolor = new Color(0,204,204);
             }
         });
         REFRESHBUT.add(refresh);
-        refresh.setBounds(0, 0, 70, 30);
+        refresh.setBounds(10, 0, 70, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(200, 50, 70, 30);
+        REFRESHBUT.setBounds(10, 50, 90, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.add(searchbar);
@@ -218,77 +162,6 @@ Color navcolor = new Color(0,204,204);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbuttonMouseClicked
-//        int rowindex = patienttable.getSelectedRow();
-//        if(rowindex<0){
-//            JOptionPane.showMessageDialog(null,"Please select an item!");
-//
-//        }else{
-//            TableModel model = patienttable.getModel();
-//            addpatientform pForm = new addpatientform();
-//            pForm.p_id.setText(""+model.getValueAt(rowindex, 0));
-//            pForm.fname.setText(""+model.getValueAt(rowindex, 1));
-//            pForm.lname.setText(""+model.getValueAt(rowindex, 2));
-//            pForm.age.setText(""+model.getValueAt(rowindex, 3));
-//
-//            pForm.gender = model.getValueAt(rowindex, 4).toString();
-//
-//            String gend = model.getValueAt(rowindex, 4).toString();
-//            if(gend.equals("Male")){
-//                pForm.male.setSelected(true);
-//            }
-//            if(gend.equals("Female")){
-//                pForm.female.setSelected(true);
-//            }
-//
-//            pForm.birthdate.setText(""+model.getValueAt(rowindex, 5));
-//            pForm.contact.setText(""+model.getValueAt(rowindex, 6));
-//            pForm.address.setText(""+model.getValueAt(rowindex, 7));
-//
-//            desk_dashboard DeskDash = new desk_dashboard();
-//
-//            pForm.setVisible(true);
-//            pForm.action = "Update";
-//            pForm.p_save.setText("UPDATE");
-//
-//        }
-//        this.dispose();
-    }//GEN-LAST:event_editbuttonMouseClicked
-
-    private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
-        EDITBUT.setBackground(bodycolor);
-    }//GEN-LAST:event_EDITBUTMouseEntered
-
-    private void EDITBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseExited
-        EDITBUT.setBackground(navcolor);
-    }//GEN-LAST:event_EDITBUTMouseExited
-
-    private void deletebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebuttonMouseClicked
-//        int rowIndex = patienttable.getSelectedRow();
-//        if(rowIndex<0){
-//            JOptionPane.showMessageDialog(null,"Please select an item to Delete!");
-//        }else{
-//            TableModel model = patienttable.getModel();
-//            Object value = model.getValueAt(rowIndex,0);
-//            String id = value.toString();
-//            int a = JOptionPane.showConfirmDialog(null,"Are you sure to Delete ID:"+id);
-//            if(a == JOptionPane.YES_OPTION){
-//                dbConnector dbc = new dbConnector();
-//                int p_id = Integer.parseInt(id);
-//                dbc.deletedData(p_id,"tbl_patient");
-//                displaydata();
-//            }
-//        }
-    }//GEN-LAST:event_deletebuttonMouseClicked
-
-    private void DELETEBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseEntered
-        DELETEBUT.setBackground(bodycolor);
-    }//GEN-LAST:event_DELETEBUTMouseEntered
-
-    private void DELETEBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELETEBUTMouseExited
-        DELETEBUT.setBackground(navcolor);
-    }//GEN-LAST:event_DELETEBUTMouseExited
-
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
 //        displaydata();
     }//GEN-LAST:event_refreshMouseClicked
@@ -303,12 +176,8 @@ Color navcolor = new Color(0,204,204);
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel DELETEBUT;
     private javax.swing.JTable Doctortbl;
-    private javax.swing.JPanel EDITBUT;
     private javax.swing.JPanel REFRESHBUT;
-    private javax.swing.JLabel deletebutton;
-    private javax.swing.JLabel editbutton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

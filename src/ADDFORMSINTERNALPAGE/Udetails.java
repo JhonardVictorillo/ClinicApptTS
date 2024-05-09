@@ -5,6 +5,8 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import static admin.admin_Addacc.checkemail;
+import static admin.admin_Addacc.checkuser;
 import static clinicapptts.Registration.passwordhashing;
 import config.Session;
 import config.dbConnector;
@@ -66,8 +68,38 @@ public class Udetails extends javax.swing.JFrame {
      
      
      }
+       public static String Email,username;
     
     
+      public static boolean checkemail(String email , int id){
+     dbConnector dbc = new dbConnector();
+     
+     try{
+         String sql = "SELECT * FROM tbl_userdetails Where u_email != '"+email+"' AND u_id = '"+id+"'";
+          ResultSet rst = dbc.getData(sql);
+          return rst.next();
+     
+     
+     }catch(SQLException ex){
+         System.out.println(ex.getMessage());
+            return false;
+     }
+     }
+     
+     public static boolean checkuser(String username , int id){
+     dbConnector dbc = new dbConnector();
+     
+     try{
+         String sql = "SELECT * FROM tbl_userdetails Where u_username != '"+username+"' AND u_id = '"+id+"'";
+          ResultSet rst = dbc.getData(sql);
+          return rst.next();
+     
+     
+     }catch(SQLException ex){
+         System.out.println(ex.getMessage());
+            return false;
+     }
+     }
    
         
         
@@ -117,18 +149,20 @@ public class Udetails extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(10, 10, 60, 40);
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.blue, java.awt.Color.black, java.awt.Color.black));
         jPanel2.setLayout(null);
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel8.setText("Account Type:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(20, 20, 120, 30);
+        jLabel8.setBounds(50, 0, 120, 30);
 
         acctype.setEditable(false);
+        acctype.setBackground(new java.awt.Color(204, 204, 204));
         acctype.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(acctype);
-        acctype.setBounds(140, 20, 190, 30);
+        acctype.setBounds(50, 30, 190, 30);
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,40 +170,58 @@ public class Udetails extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(40, 70, 100, 30);
 
+        Fname.setBackground(new java.awt.Color(204, 204, 204));
         Fname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(Fname);
-        Fname.setBounds(140, 70, 190, 30);
+        Fname.setBounds(50, 90, 190, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Last name:");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(50, 110, 90, 30);
+        jLabel4.setBounds(40, 120, 90, 30);
 
+        Lname.setBackground(new java.awt.Color(204, 204, 204));
         Lname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(Lname);
-        Lname.setBounds(140, 110, 190, 30);
+        Lname.setBounds(50, 140, 190, 30);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ID:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(380, 20, 50, 30);
+        jLabel2.setBounds(340, 0, 50, 30);
 
         id.setEditable(false);
+        id.setBackground(new java.awt.Color(204, 204, 204));
+        id.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
         jPanel2.add(id);
-        id.setBounds(440, 20, 190, 30);
+        id.setBounds(350, 30, 190, 30);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Email:");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(380, 60, 60, 30);
+        jLabel5.setBounds(340, 60, 60, 30);
 
+        email.setBackground(new java.awt.Color(204, 204, 204));
+        email.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
         jPanel2.add(email);
-        email.setBounds(440, 60, 190, 30);
+        email.setBounds(350, 80, 190, 30);
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -177,9 +229,17 @@ public class Udetails extends javax.swing.JFrame {
         jPanel2.add(jLabel6);
         jLabel6.setBounds(340, 110, 100, 30);
 
+        uname.setBackground(new java.awt.Color(204, 204, 204));
+        uname.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        uname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         uname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        uname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unameActionPerformed(evt);
+            }
+        });
         jPanel2.add(uname);
-        uname.setBounds(440, 110, 190, 30);
+        uname.setBounds(350, 140, 190, 30);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,7 +251,7 @@ public class Udetails extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(530, 180, 80, 30);
+        jLabel9.setBounds(570, 180, 80, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 660, 220);
@@ -215,6 +275,7 @@ public class Udetails extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -222,10 +283,22 @@ public class Udetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-       
-     
+             
+        
           dbConnector dbc = new dbConnector(); 
           try{
+              
+              if (checkemail(email.getText(),Integer.valueOf(id.getText()))){
+            JOptionPane.showMessageDialog(null,"Email Already exist");
+            return;
+       
+        } 
+            if(checkuser(uname.getText(),Integer.valueOf(id.getText()))){
+            
+            JOptionPane.showMessageDialog(null,"Username Already exist");
+            return;
+            
+        }
               
                 if(dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+Fname.getText()+"',"
                          + "u_lastname = '"+Lname.getText()+"',"
@@ -236,8 +309,10 @@ public class Udetails extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"Data Updated Please Login again to refresh details!");
                     this.dispose();
                     getdata(Integer.valueOf(id.getText()));
+                    
                    
          }
+                
      
           }catch(Exception ex){
               System.out.println(""+ex);
@@ -251,6 +326,18 @@ public class Udetails extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_formWindowActivated
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
+
+    private void unameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unameActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments

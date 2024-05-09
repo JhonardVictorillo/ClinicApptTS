@@ -5,8 +5,13 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.dbConnector;
 import internalpages.apptreports;
 import internalpages.reports_dash;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.TableColumnModel;
+import net.proteanit.sql.DbUtils;
 import user.desk_dashboard;
 
 /**
@@ -20,6 +25,40 @@ public class patientReports extends javax.swing.JFrame {
      */
     public patientReports() {
         initComponents();
+        displaydata();
+    }
+    
+    
+    public void displaydata(){
+    try{
+         
+      dbConnector DBconnector = new dbConnector();
+      ResultSet rs = DBconnector.getData("SELECT * FROM tbl_patients");
+      
+       patientTableReports.setModel(DbUtils.resultSetToTableModel(rs));
+       
+       
+
+       
+        TableColumnModel columnModel = patientTableReports.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("Patient ID");
+            columnModel.getColumn(1).setHeaderValue("First Name");
+            columnModel.getColumn(2).setHeaderValue("Last Name");
+            columnModel.getColumn(3).setHeaderValue("Age");
+            columnModel.getColumn(4).setHeaderValue("Gender");
+            columnModel.getColumn(5).setHeaderValue("Birthdate");
+            columnModel.getColumn(6).setHeaderValue("Contact");
+            columnModel.getColumn(7).setHeaderValue("Address");
+
+            // Refresh the table UI
+           patientTableReports.getTableHeader().repaint();  
+    
+    
+    }catch(SQLException ex){
+        System.out.println("Errors:"+ex.getMessage());
+    
+    }
+    
     }
 
     /**
@@ -34,9 +73,7 @@ public class patientReports extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        patientTableReports = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -44,6 +81,7 @@ public class patientReports extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +92,7 @@ public class patientReports extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        patientTableReports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,23 +103,10 @@ public class patientReports extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(patientTableReports);
 
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(20, 90, 790, 130);
-
-        jPanel3.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(null);
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("VIEW INFO");
-        jPanel3.add(jLabel2);
-        jLabel2.setBounds(10, 0, 100, 40);
-
-        jPanel2.add(jPanel3);
-        jPanel3.setBounds(20, 40, 120, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -94,7 +119,7 @@ public class patientReports extends javax.swing.JFrame {
         jLabel3.setBounds(0, 0, 120, 40);
 
         jPanel2.add(jPanel4);
-        jPanel4.setBounds(160, 40, 120, 40);
+        jPanel4.setBounds(30, 40, 120, 40);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +146,7 @@ public class patientReports extends javax.swing.JFrame {
         jLabel4.setBounds(14, 0, 90, 40);
 
         jPanel2.add(jPanel5);
-        jPanel5.setBounds(300, 40, 120, 40);
+        jPanel5.setBounds(170, 40, 120, 40);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 830, 480);
@@ -134,6 +159,12 @@ public class patientReports extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel5);
         jLabel5.setBounds(6, 4, 60, 40);
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("PATIENT REPORTS");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(60, 20, 300, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,17 +231,16 @@ public class patientReports extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable patientTableReports;
     // End of variables declaration//GEN-END:variables
 }

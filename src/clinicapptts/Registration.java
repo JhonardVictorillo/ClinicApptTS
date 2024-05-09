@@ -103,6 +103,8 @@ public class Registration extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -154,12 +156,21 @@ public class Registration extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-register-100.png"))); // NOI18N
         jPanel5.add(jLabel10);
-        jLabel10.setBounds(40, 160, 200, 130);
+        jLabel10.setBounds(40, 180, 200, 130);
 
         jLabel12.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel12.setText("Registration");
         jPanel5.add(jLabel12);
         jLabel12.setBounds(70, 130, 140, 23);
+
+        jPanel7.setLayout(null);
+
+        jLabel15.setText("jLabel15");
+        jPanel7.add(jLabel15);
+        jLabel15.setBounds(11, 1, 110, 40);
+
+        jPanel5.add(jPanel7);
+        jPanel7.setBounds(70, 320, 140, 40);
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 280, 440));
 
@@ -414,6 +425,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -428,6 +440,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     public javax.swing.JTextField lname;
     public javax.swing.JPasswordField password;
     private javax.swing.JTextField uname;

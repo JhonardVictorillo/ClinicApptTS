@@ -9,8 +9,13 @@ import ADDFORMSINTERNALPAGE.*;
 import config.dbConnector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -83,7 +88,7 @@ public class appointment extends javax.swing.JInternalFrame {
         ADDBUTTON = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         UPDATEBUTTON = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        Update = new javax.swing.JLabel();
         DELETEBUTTON = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -147,11 +152,16 @@ public class appointment extends javax.swing.JInternalFrame {
         UPDATEBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
         UPDATEBUTTON.setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("UPDATE");
-        UPDATEBUTTON.add(jLabel4);
-        jLabel4.setBounds(0, 0, 100, 30);
+        Update.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        Update.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Update.setText("EDIT");
+        Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateMouseClicked(evt);
+            }
+        });
+        UPDATEBUTTON.add(Update);
+        Update.setBounds(0, 0, 100, 30);
 
         jPanel2.add(UPDATEBUTTON);
         UPDATEBUTTON.setBounds(150, 50, 100, 30);
@@ -163,6 +173,11 @@ public class appointment extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("DELETE");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         DELETEBUTTON.add(jLabel5);
         jLabel5.setBounds(0, 0, 90, 30);
 
@@ -192,16 +207,59 @@ public class appointment extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+ int rowIndex = apptTable.getSelectedRow();
+        if(rowIndex<0){
+            JOptionPane.showMessageDialog(null,"Please select an item to Delete!");
+        }else{
+            TableModel model = apptTable.getModel();
+            Object value = model.getValueAt(rowIndex,0);
+            String id = value.toString();
+            int a = JOptionPane.showConfirmDialog(null,"Are you sure to Delete ID:"+id);
+            if(a == JOptionPane.YES_OPTION){
+                dbConnector dbc = new dbConnector();
+                int appt_id = Integer.parseInt(id);
+                dbc.DeletedappTData(appt_id,"tbl_appointment");
+                displaydata();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void UpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateMouseClicked
+        int rowindex = apptTable.getSelectedRow();
+    if(rowindex >= 0) {
+        TableModel model = apptTable.getModel();
+        apptUpdateStatus aForm = new apptUpdateStatus();
+        aForm.apptID.setText(""+model.getValueAt(rowindex, 0));
+        
+         String dateString = (String) model.getValueAt(rowindex, 4);
+        try {
+            Date date = new SimpleDateFormat("MM/dd/yyyy").parse(dateString);
+            aForm.calendar.setDate(date);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "Error parsing date: " + e.getMessage());
+        }
+        aForm.time.setText(""+model.getValueAt(rowindex, 5));
+        aForm.status.setSelectedItem(""+model.getValueAt(rowindex, 9));
+        
+        aForm.setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(null, "Please select an item!");
+    }
+
+    }//GEN-LAST:event_UpdateMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ADDBUTTON;
     private javax.swing.JPanel DELETEBUTTON;
     private javax.swing.JPanel UPDATEBUTTON;
+    private javax.swing.JLabel Update;
     private javax.swing.JTable apptTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -5,6 +5,8 @@
  */
 package doctors;
 
+import static ADDFORMSINTERNALPAGE.Udetails.checkemail;
+import static ADDFORMSINTERNALPAGE.Udetails.checkuser;
 import config.Session;
 import config.dbConnector;
 import java.sql.ResultSet;
@@ -60,6 +62,43 @@ public class Updateforms extends javax.swing.JFrame {
       }
       
      }
+     
+     
+      public static boolean checkemail(String email , int id){
+     dbConnector dbc = new dbConnector();
+     
+     try{
+         String sql = "SELECT * FROM tbl_userdetails Where u_email != '"+email+"' AND u_id = '"+id+"'";
+          ResultSet rst = dbc.getData(sql);
+          return rst.next();
+     
+     
+     }catch(SQLException ex){
+         System.out.println(ex.getMessage());
+            return false;
+     }
+     }
+     
+     public static boolean checkuser(String username , int id){
+     dbConnector dbc = new dbConnector();
+     
+     try{
+         String sql = "SELECT * FROM tbl_userdetails Where u_username != '"+username+"' AND u_id = '"+id+"'";
+          ResultSet rst = dbc.getData(sql);
+          return rst.next();
+     
+     
+     }catch(SQLException ex){
+         System.out.println(ex.getMessage());
+            return false;
+     }
+     }
+   
+     
+     
+     
+     
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -288,7 +327,17 @@ public class Updateforms extends javax.swing.JFrame {
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         dbConnector dbc = new dbConnector(); 
           try{
-              
+                if (checkemail(email.getText(),Integer.valueOf(id.getText()))){
+            JOptionPane.showMessageDialog(null,"Email Already exist");
+            return;
+       
+        } 
+            if(checkuser(uname.getText(),Integer.valueOf(id.getText()))){
+            
+            JOptionPane.showMessageDialog(null,"Username Already exist");
+            return;
+            
+        }
                 if(dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+Fname.getText()+"',"
                          + "u_lastname = '"+Lname.getText()+"',"
                          + "u_email = '"+email.getText()+"',"

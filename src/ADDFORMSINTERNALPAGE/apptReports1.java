@@ -5,7 +5,14 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.dbConnector;
 import internalpages.reports_dash;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
 import user.desk_dashboard;
 
 /**
@@ -19,7 +26,41 @@ public class apptReports1 extends javax.swing.JFrame {
      */
     public apptReports1() {
         initComponents();
+        displaydata();
     }
+    
+     public void displaydata(){
+    try{
+      dbConnector DBconnector = new dbConnector();
+      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_userdetails.u_firstname,tbl_userdetails.u_lastname,tbl_appointment.apptStatus FROM `tbl_appointment` "
+              + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
+              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id;");
+      apptTableReports.setModel(DbUtils.resultSetToTableModel(rs));
+    
+     TableColumnModel columnModel = apptTableReports.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("Appointment ID");
+            columnModel.getColumn(1).setHeaderValue("First Name");
+            columnModel.getColumn(2).setHeaderValue("Last Name");
+            columnModel.getColumn(3).setHeaderValue("Type");
+            columnModel.getColumn(4).setHeaderValue("Date");
+            columnModel.getColumn(5).setHeaderValue("Time");
+            columnModel.getColumn(6).setHeaderValue("Doctor ID");
+            columnModel.getColumn(7).setHeaderValue("Doctor Firstname");
+            columnModel.getColumn(8).setHeaderValue("Doctor Lastname");
+            columnModel.getColumn(9).setHeaderValue("Status");
+            
+
+            // Refresh the table UI
+           apptTableReports.getTableHeader().repaint();
+           
+    }catch(SQLException ex){
+        System.out.println("Errors:"+ex.getMessage());
+    
+    }
+    
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +74,7 @@ public class apptReports1 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        apptTableReports = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -54,7 +95,7 @@ public class apptReports1 extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        apptTableReports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,7 +106,7 @@ public class apptReports1 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(apptTableReports);
 
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(20, 90, 790, 130);
@@ -77,6 +118,11 @@ public class apptReports1 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("VIEW INFO");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         jPanel3.add(jLabel2);
         jLabel2.setBounds(10, 0, 100, 40);
 
@@ -94,7 +140,7 @@ public class apptReports1 extends javax.swing.JFrame {
         jLabel3.setBounds(0, 0, 120, 40);
 
         jPanel2.add(jPanel4);
-        jPanel4.setBounds(160, 40, 120, 40);
+        jPanel4.setBounds(20, 420, 120, 40);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,17 +167,17 @@ public class apptReports1 extends javax.swing.JFrame {
         jLabel4.setBounds(14, 0, 90, 40);
 
         jPanel2.add(jPanel5);
-        jPanel5.setBounds(300, 40, 120, 40);
+        jPanel5.setBounds(170, 40, 120, 40);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 830, 480);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("PATIENT REPORTS");
+        jLabel5.setText("APPOINTMENT REPORTS");
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(300, 20, 260, 30);
+        jLabel5.setBounds(270, 20, 360, 30);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/arrow_circle_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -162,13 +208,91 @@ public class apptReports1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-//       desk_dashboard dashB = new desk_dashboard();
-//       dashB.setVisible(true);
-//        reports_dash dashreports = new reports_dash();
-//       dashB.maindesktop.add(dashreports).setVisible(true);
+       desk_dashboard dashB = new desk_dashboard();
+       dashB.setVisible(true);
+        reports_dash dashreports = new reports_dash();
+       dashB.maindesktop.add(dashreports).setVisible(true);
         
        this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+       int rowindex = apptTableReports.getSelectedRow();
+    if (rowindex < 0) {
+        JOptionPane.showMessageDialog(null, "Please select an item!");
+    } else {
+        try {
+            TableModel model = apptTableReports.getModel();
+            
+            int appointmentID = Integer.parseInt(model.getValueAt(rowindex, 0).toString());
+
+            
+            dbConnector dbc = new dbConnector();
+            ResultSet rs = dbc.getData("SELECT tbl_patients.*, "
+                    + "tbl_userdetails.u_firstname , tbl_userdetails.u_lastname ,tbl_userdetails.u_email,tbl_appointment.date "
+                    + "FROM `tbl_appointment` "
+                    + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
+                    + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id "
+                    + "WHERE tbl_appointment.appt_id = " + appointmentID);
+
+            // Check if the ResultSet contains data
+            if (rs.next()) {
+                // Extract patient details
+                String firstName = rs.getString("p_firstname");
+                String lastName = rs.getString("p_lastname");
+                String age =rs.getString("p_age");  
+                String contact = rs.getString("p_contact");
+                String birthdate = rs.getString("p_dateofbirth");
+                String gender = rs.getString("p_gender");
+                String address = rs.getString("p_address");
+               
+                String docFirstName = rs.getString("u_firstname");
+                String docLastName = rs.getString("u_lastname");
+                 String docEmail = rs.getString("u_email");
+                 String date = rs.getString("date");
+                 
+                 String patientID = rs.getString("p_id");
+                 
+                  ResultSet diagnosisRS = dbc.getData("SELECT * FROM diagnosis WHERE p_id = '" + patientID + "'");
+                
+                  
+                  StringBuilder diagnosisText = new StringBuilder();
+                 while (diagnosisRS.next()) {
+                    String newDiagnosis = diagnosisRS.getString("newdiagnosis");
+                    if (newDiagnosis != null && !newDiagnosis.isEmpty()) {
+                        diagnosisText.append("New Diagnosis: ").append(newDiagnosis).append("\n");
+                    }
+                }
+                  
+              
+                // Populate JLabels with patient, doctor details, and diagnosis
+                patientViewinfo viewinfo = new patientViewinfo();
+                viewinfo.pfname.setText(""+firstName);
+                viewinfo.plname.setText(""+lastName);
+                viewinfo.pAge.setText(""+age);
+                viewinfo.pGender.setText(""+gender);
+                viewinfo.pBirthdate.setText(""+birthdate);
+                viewinfo.pContact.setText(""+contact);
+                viewinfo.pAddress.setText(""+address);
+                viewinfo.dfname.setText(""+docFirstName);
+                viewinfo.dlname.setText(""+docLastName);
+                viewinfo.demail.setText(""+docEmail);
+                viewinfo.pfname.setText(""+firstName);
+                viewinfo.pfname.setText(""+firstName);
+                viewinfo.date.setText(""+date);
+                viewinfo.Diagnosis.setText(diagnosisText.toString());
+                
+                viewinfo.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No data found for selected appointment ID");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
+       
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -207,6 +331,7 @@ public class apptReports1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable apptTableReports;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -219,7 +344,6 @@ public class apptReports1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

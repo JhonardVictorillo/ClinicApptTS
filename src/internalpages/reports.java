@@ -43,7 +43,7 @@ public class reports extends javax.swing.JInternalFrame {
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -60,7 +60,7 @@ public class reports extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 70, 690, 150);
+        jScrollPane1.setBounds(20, 60, 690, 150);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 740, 380);
