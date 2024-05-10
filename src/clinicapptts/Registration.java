@@ -103,8 +103,6 @@ public class Registration extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -127,6 +125,12 @@ public class Registration extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,32 +149,23 @@ public class Registration extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Welcome to");
         jPanel5.add(jLabel9);
-        jLabel9.setBounds(20, 30, 220, 40);
+        jLabel9.setBounds(20, 200, 220, 40);
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Clinic Care App ");
         jPanel5.add(jLabel11);
-        jLabel11.setBounds(20, 70, 240, 60);
+        jLabel11.setBounds(20, 240, 240, 60);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-register-100.png"))); // NOI18N
         jPanel5.add(jLabel10);
-        jLabel10.setBounds(40, 180, 200, 130);
+        jLabel10.setBounds(80, 90, 120, 100);
 
         jLabel12.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel12.setText("Registration");
         jPanel5.add(jLabel12);
-        jLabel12.setBounds(70, 130, 140, 23);
-
-        jPanel7.setLayout(null);
-
-        jLabel15.setText("jLabel15");
-        jPanel7.add(jLabel15);
-        jLabel15.setBounds(11, 1, 110, 40);
-
-        jPanel5.add(jPanel7);
-        jPanel7.setBounds(70, 320, 140, 40);
+        jLabel12.setBounds(70, 300, 140, 23);
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 280, 440));
 
@@ -181,7 +176,7 @@ public class Registration extends javax.swing.JFrame {
         jLabel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 70));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 570));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 600));
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -196,9 +191,9 @@ public class Registration extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CREATE ACCOUNT");
         jPanel6.add(jLabel1);
-        jLabel1.setBounds(0, 0, 180, 30);
+        jLabel1.setBounds(10, 0, 320, 30);
 
-        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 180, 30));
+        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 340, 30));
 
         account.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Account type", "DOCTOR", "DESK" }));
         account.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -292,16 +287,47 @@ public class Registration extends javax.swing.JFrame {
         jLabel14.setText("Email Address:");
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 20));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 440));
+        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel8.setLayout(null);
+        jPanel8.add(image);
+        image.setBounds(0, 1, 190, 180);
+
+        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 190, 180));
+
+        jPanel7.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.setLayout(null);
+
+        jLabel15.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("SELECT");
+        jPanel7.add(jLabel15);
+        jLabel15.setBounds(10, 4, 70, 20);
+
+        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 90, 30));
+
+        jPanel9.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel9.setLayout(null);
+
+        jLabel16.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("REMOVE");
+        jPanel9.add(jLabel16);
+        jLabel16.setBounds(10, 4, 60, 20);
+
+        jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 80, 30));
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 520, 440));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 60)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CARE");
+        jLabel8.setText("CARE SYSTEM");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-62, 20, 340, 70));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-62, 20, 600, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 320, 570));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 560, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -311,7 +337,7 @@ public class Registration extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -419,6 +445,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel createbutton;
     private javax.swing.JTextField email;
     public javax.swing.JTextField fname;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -426,6 +453,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -441,6 +469,8 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     public javax.swing.JTextField lname;
     public javax.swing.JPasswordField password;
     private javax.swing.JTextField uname;

@@ -9,8 +9,20 @@ import clinicapptts.LoginForm;
 import static clinicapptts.Registration.passwordhashing;
 import config.Session;
 import config.dbConnector;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,8 +38,91 @@ public class admin_Addacc extends javax.swing.JFrame {
         initComponents();
     }
     
+    public String destination = "";
+    File selectedFile;
+    public String oldpath;
+    public String path;
+    
     public static String Email,username;
     public String action;
+    
+    public int FileExistenceChecker(String path){
+        File file = new File(path);
+        String fileName = file.getName();
+        
+        Path filePath = Paths.get("src/images", fileName);
+        boolean fileExists = Files.exists(filePath);
+        
+        if (fileExists) {
+            return 1;
+        } else {
+            return 0;
+        }
+    
+    }
+    
+    
+    public static int getHeightFromWidth(String imagePath, int desiredWidth) {
+        try {
+            // Read the image file
+            File imageFile = new File(imagePath);
+            BufferedImage image = ImageIO.read(imageFile);
+            
+            // Get the original width and height of the image
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
+            
+            // Calculate the new height based on the desired width and the aspect ratio
+            int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
+            
+            return newHeight;
+        } catch (IOException ex) {
+            System.out.println("No image found!");
+        }
+        
+        return -1;
+    }
+    
+    public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+    
+    public void imageUpdater(String existingFilePath, String newFilePath){
+        File existingFile = new File(existingFilePath);
+        if (existingFile.exists()) {
+            String parentDirectory = existingFile.getParent();
+            File newFile = new File(newFilePath);
+            String newFileName = newFile.getName();
+            File updatedFile = new File(parentDirectory, newFileName);
+            existingFile.delete();
+            try {
+                Files.copy(newFile.toPath(), updatedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Image updated successfully.");
+            } catch (IOException e) {
+                System.out.println("Error occurred while updating the image: "+e);
+            }
+        } else {
+            try{
+                Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }catch(IOException e){
+                System.out.println("Error on update!");
+            }
+        }
+   } 
+    
+    
     
     boolean DuplicateCheck(){
     dbConnector dbc = new dbConnector();
@@ -114,12 +209,20 @@ public class admin_Addacc extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
         acctype = new javax.swing.JComboBox<>();
-        u_save = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
         status = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        selectbut = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        removebut = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        u_save = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -192,30 +295,6 @@ public class admin_Addacc extends javax.swing.JFrame {
         jPanel2.add(acctype);
         acctype.setBounds(130, 250, 190, 30);
 
-        u_save.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        u_save.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        u_save.setText("label");
-        u_save.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        u_save.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                u_saveMouseClicked(evt);
-            }
-        });
-        jPanel2.add(u_save);
-        u_save.setBounds(130, 350, 80, 30);
-
-        jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("CANCEL");
-        jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel9);
-        jLabel9.setBounds(250, 350, 80, 30);
-
         jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("User ID:");
@@ -239,21 +318,104 @@ public class admin_Addacc extends javax.swing.JFrame {
         jPanel2.add(jLabel11);
         jLabel11.setBounds(50, 290, 70, 30);
 
+        jPanel3.setLayout(null);
+        jPanel3.add(image);
+        image.setBounds(-2, 2, 190, 200);
+
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(390, 70, 190, 200);
+
+        jPanel4.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setLayout(null);
+
+        selectbut.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        selectbut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectbut.setText("SELECT");
+        selectbut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        selectbut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectbutMouseClicked(evt);
+            }
+        });
+        jPanel4.add(selectbut);
+        selectbut.setBounds(0, 0, 100, 30);
+
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(380, 290, 100, 30);
+
+        jPanel5.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel5.setLayout(null);
+
+        removebut.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        removebut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        removebut.setText("REMOVE");
+        removebut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        removebut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removebutMouseClicked(evt);
+            }
+        });
+        jPanel5.add(removebut);
+        removebut.setBounds(0, 0, 90, 30);
+
+        jPanel2.add(jPanel5);
+        jPanel5.setBounds(500, 290, 90, 30);
+
+        jPanel6.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setLayout(null);
+
+        u_save.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        u_save.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        u_save.setText("LABEL");
+        u_save.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        u_save.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                u_saveMouseClicked(evt);
+            }
+        });
+        jPanel6.add(u_save);
+        u_save.setBounds(0, 0, 100, 30);
+
+        jPanel2.add(jPanel6);
+        jPanel6.setBounds(120, 350, 100, 30);
+
+        jPanel7.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.setLayout(null);
+
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("CANCEL");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        jPanel7.add(jLabel9);
+        jLabel9.setBounds(0, 0, 100, 30);
+
+        jPanel2.add(jPanel7);
+        jPanel7.setBounds(240, 350, 100, 30);
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 60, 390, 410);
+        jPanel2.setBounds(20, 70, 620, 410);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create Account");
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(100, 20, 230, 30);
+        jLabel1.setBounds(220, 30, 230, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,12 +427,6 @@ public class admin_Addacc extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-      userlist ulist = new userlist();
-      ulist.setVisible(true);
-      this.dispose();
-    }//GEN-LAST:event_jLabel9MouseClicked
 
     private void u_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_u_saveMouseClicked
 
@@ -292,14 +448,19 @@ public class admin_Addacc extends javax.swing.JFrame {
         
         dbConnector dbc = new dbConnector();
        String hashpass = passwordhashing(pass.getText());
-       if(dbc.insertData("INSERT INTO tbl_userdetails(u_firstname,u_lastname,u_email,u_username,u_password,u_account,u_status) VALUES ('"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+hashpass+"','"+acctype.getSelectedItem()+"','"+status.getSelectedItem()+"')")){
+       if(dbc.insertData("INSERT INTO tbl_userdetails(u_firstname,u_lastname,u_email,u_username,u_password,u_account,u_status,u_images) VALUES ('"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+hashpass+"','"+acctype.getSelectedItem()+"','"+status.getSelectedItem()+"','"+destination+"')")){
         
+           try{
+           Files.copy(selectedFile.toPath(),new File(destination).toPath(),StandardCopyOption.REPLACE_EXISTING);
        JOptionPane.showMessageDialog(null, "Created Successfully!");
        
        userlist ulist = new userlist();
        ulist.setVisible(true);
        this.dispose();
        
+           }catch(IOException ex){
+               System.out.println("Insert image Error!:"+ex);
+           }
     }else{
        JOptionPane.showMessageDialog(null, "Connection Error!");
                 
@@ -320,13 +481,23 @@ public class admin_Addacc extends javax.swing.JFrame {
             
         }
         
-             
+        
              
            dbConnector dbc = new dbConnector();
            
 //            String hash = passwordhashing(pass.getText());
-            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"'Where u_id = '"+id.getText()+"'");
+            boolean result = dbc.insertData("UPDATE tbl_userdetails SET u_firstname = '"+fname.getText()+"',u_lastname = '"+lname.getText()+"',u_email = '"+email.getText()+"',u_username = '"+uname.getText()+"',u_account = '"+acctype.getSelectedItem()+"',u_status = '"+status.getSelectedItem()+"',u_images = '"+destination+"' Where u_id = '"+id.getText()+"'");
             
+            if(destination.isEmpty()){
+            File existingfile =  new File(oldpath);
+                if(existingfile.exists()){
+                existingfile.delete();
+                }
+            }else{
+                    if(!(oldpath.equals(path))){
+                        imageUpdater(oldpath,path);
+                    }
+            }
              JOptionPane.showMessageDialog(null,"Successfully Updated!");
              
             userlist ulist = new userlist();
@@ -340,7 +511,48 @@ public class admin_Addacc extends javax.swing.JFrame {
        if(action.equals("Update")){
        pass.setEditable(false);
        }
+       
     }//GEN-LAST:event_formWindowActivated
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        userlist ulist = new userlist();
+        ulist.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void selectbutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectbutMouseClicked
+      JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        selectedFile = fileChooser.getSelectedFile();
+                        destination = "src/images/" + selectedFile.getName();
+                        path  = selectedFile.getAbsolutePath();
+                        
+                        
+                        if(FileExistenceChecker(path) == 1){
+                          JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                            destination = "";
+                            path="";
+                        }else{
+                            image.setIcon(ResizeImage(path, null, image));
+                            selectbut.setEnabled(false);
+                           removebut.setEnabled(true);
+                           
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("File Error!");
+                    }
+                }
+    }//GEN-LAST:event_selectbutMouseClicked
+
+    private void removebutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removebutMouseClicked
+        removebut.setEnabled(false);
+        selectbut.setEnabled(true);
+        image.setIcon(null);
+        destination ="";
+        path = "";
+    }//GEN-LAST:event_removebutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -382,6 +594,7 @@ public class admin_Addacc extends javax.swing.JFrame {
     public javax.swing.JTextField email;
     public javax.swing.JTextField fname;
     public javax.swing.JTextField id;
+    public javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -394,8 +607,15 @@ public class admin_Addacc extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     public javax.swing.JTextField lname;
     public javax.swing.JPasswordField pass;
+    public javax.swing.JLabel removebut;
+    public javax.swing.JLabel selectbut;
     public javax.swing.JComboBox<String> status;
     public javax.swing.JLabel u_save;
     public javax.swing.JTextField uname;

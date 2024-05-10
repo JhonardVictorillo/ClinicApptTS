@@ -257,23 +257,46 @@ public class userlist extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Please select an item!");
 
         }else{
-            TableModel model = usertable.getModel();
+            try{
+                dbConnector dbc = new dbConnector();
+            
+            TableModel tbl = usertable.getModel();
+            ResultSet rs = dbc.getData("SELECT * FROM tbl_userdetails WHERE u_id = '"+tbl.getValueAt(rowindex,0)+"'");
+            
+            if(rs.next()){
             admin_Addacc AForm = new  admin_Addacc();
-             AForm.id.setText(""+model.getValueAt(rowindex, 0));
-             AForm.fname.setText(""+model.getValueAt(rowindex, 1));
-             AForm.lname.setText(""+model.getValueAt(rowindex, 2));
-             AForm.email.setText(""+model.getValueAt(rowindex, 3));
-             AForm.uname.setText(""+model.getValueAt(rowindex, 4));
-             AForm.pass.setText(""+model.getValueAt(rowindex, 5));
-             AForm.acctype.setSelectedItem(""+model.getValueAt(rowindex, 6));
-             AForm.status.setSelectedItem(""+model.getValueAt(rowindex, 7));
-             
+             AForm.id.setText(""+rs.getString("u_id"));
+             AForm.fname.setText(""+rs.getString("u_firstname"));
+             AForm.lname.setText(""+rs.getString("u_lastname"));
+             AForm.email.setText(""+rs.getString("u_email"));
+             AForm.uname.setText(""+rs.getString("u_username"));
+             AForm.pass.setText(""+rs.getString("u_password"));
+             AForm.acctype.setSelectedItem(""+rs.getString("u_account"));
+             AForm.status.setSelectedItem(""+rs.getString("u_status"));
+             AForm.image.setIcon(AForm.ResizeImage(rs.getString("u_images"), null,AForm.image));
+             AForm.oldpath = rs.getString("u_images");
+             AForm.path = rs.getString("u_images");
+             AForm.destination = rs.getString("u_images");
             AForm.setVisible(true);
+            
+            if(rs.getString("u_images").isEmpty()){
+              AForm.selectbut.setEnabled(true);
+               AForm.removebut.setEnabled(false);
+            }else{
+              AForm.selectbut.setEnabled(false);
+               AForm.removebut.setEnabled(true);
+            }
+            
            
              AForm.action = "Update";
              AForm.u_save.setText("UPDATE");
             this.dispose();
         }
+            }catch(SQLException ex){
+                System.out.println(""+ex);
+            
+            }
+            }
     }//GEN-LAST:event_editbuttonMouseClicked
 
     private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
@@ -309,6 +332,9 @@ public class userlist extends javax.swing.JFrame {
             this.dispose();
         Aform.action = "NEW";
         Aform.u_save.setText("SAVE");
+        
+        Aform.removebut.setEnabled(false);
+        Aform.selectbut.setEnabled(true);
     }//GEN-LAST:event_addMouseClicked
 
     private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered
