@@ -6,7 +6,15 @@
 package doctors;
 
 import admin.*;
+import static admin.admin_Addacc.getHeightFromWidth;
 import config.Session;
+import config.dbConnector;
+import java.awt.Image;
+import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -20,6 +28,28 @@ public class doctorsetting extends javax.swing.JFrame {
     public doctorsetting() {
         initComponents();
     }
+    
+     public String destination = "";
+     File selectedFile;
+    public String oldpath;
+    public String path;
+    
+     public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+    
  public void userdetails(){
         Session sess = Session.getInstance();
         
@@ -29,7 +59,7 @@ public class doctorsetting extends javax.swing.JFrame {
         Lname.setText(""+sess.getLname());
         email.setText(""+sess.getEmail());
         uname.setText(""+sess.getUname());
-    
+         picture.setIcon(ResizeImage(sess.getImage(), null, picture));
     
     }
     /**
@@ -59,6 +89,8 @@ public class doctorsetting extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        picture = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -76,71 +108,65 @@ public class doctorsetting extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.blue, java.awt.Color.black, java.awt.Color.black));
         jPanel2.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setText("ID:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(30, 27, 60, 20);
+        jLabel2.setBounds(130, 250, 40, 20);
 
         id.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        id.setText("jLabel4");
         id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(id);
-        id.setBounds(110, 24, 130, 20);
+        id.setBounds(80, 220, 130, 20);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setText("Accountype:");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(20, 60, 90, 20);
+        jLabel5.setBounds(300, 50, 110, 20);
 
         acctype.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        acctype.setText("jLabel4");
         acctype.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(acctype);
-        acctype.setBounds(110, 60, 130, 14);
+        acctype.setBounds(300, 80, 130, 20);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel7.setText("Username:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(30, 90, 80, 20);
+        jLabel7.setBounds(300, 100, 100, 20);
 
         uname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        uname.setText("jLabel4");
         uname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(uname);
-        uname.setBounds(110, 90, 130, 14);
+        uname.setBounds(300, 130, 130, 20);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel9.setText("Firstname:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(300, 20, 70, 30);
+        jLabel9.setBounds(300, 150, 90, 20);
 
         Fname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        Fname.setText("jLabel4");
         Fname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(Fname);
-        Fname.setBounds(390, 30, 130, 14);
+        Fname.setBounds(300, 180, 130, 20);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel11.setText("Lastname:");
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(300, 50, 80, 30);
+        jLabel11.setBounds(300, 200, 100, 20);
 
         Lname.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        Lname.setText("jLabel4");
         Lname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(Lname);
-        Lname.setBounds(390, 60, 130, 14);
+        Lname.setBounds(300, 230, 130, 20);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel13.setText("Email:");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(330, 90, 40, 20);
+        jLabel13.setBounds(300, 250, 60, 20);
 
         email.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        email.setText("jLabel4");
         email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(email);
-        email.setBounds(390, 90, 130, 14);
+        email.setBounds(300, 280, 130, 20);
 
         jPanel3.setBackground(new java.awt.Color(0, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -160,7 +186,7 @@ public class doctorsetting extends javax.swing.JFrame {
         jLabel15.setBounds(0, 0, 110, 40);
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(270, 180, 110, 40);
+        jPanel3.setBounds(110, 330, 110, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -180,16 +206,23 @@ public class doctorsetting extends javax.swing.JFrame {
         jLabel16.setBounds(0, 0, 160, 40);
 
         jPanel2.add(jPanel4);
-        jPanel4.setBounds(400, 180, 160, 40);
+        jPanel4.setBounds(250, 330, 160, 40);
+
+        jPanel5.setLayout(null);
+        jPanel5.add(picture);
+        picture.setBounds(0, 0, 210, 150);
+
+        jPanel2.add(jPanel5);
+        jPanel5.setBounds(40, 50, 210, 150);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 90, 590, 230);
+        jPanel2.setBounds(20, 90, 500, 380);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
         jLabel1.setText("ACCOUNT SETTING");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(120, 30, 390, 40);
+        jLabel1.setBounds(70, 40, 390, 40);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/chevron_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -205,11 +238,11 @@ public class doctorsetting extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
         );
 
         pack();
@@ -227,9 +260,36 @@ public class doctorsetting extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-       Updateforms upform = new Updateforms();
-       upform.setVisible(true);
-       this.dispose();
+
+         try{
+             Session sess = Session.getInstance();
+             int userId = sess.getId();     
+             dbConnector dbc = new dbConnector();
+             
+             ResultSet rs = dbc.getData("SELECT * FROM tbl_userdetails WHERE u_id = '"+userId+"'");
+                
+              if(rs.next()){
+           Updateforms upform = new Updateforms();
+              upform.picture.setIcon(upform.ResizeImage(rs.getString("u_images"), null,upform.picture));
+              upform.oldpath = rs.getString("u_images");
+             upform.path = rs.getString("u_images");
+             upform.destination = rs.getString("u_images");
+             
+             if(rs.getString("u_images").isEmpty()){
+              upform.selectbut.setEnabled(true);
+               upform.removebut.setEnabled(false);
+            }else{
+              upform.selectbut.setEnabled(false);
+               upform.removebut.setEnabled(true);
+            }
+              upform.setVisible(true);
+             this.dispose();
+              }
+              
+            }catch(SQLException ex){
+                System.out.println(""+ex);
+            }
+       
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
@@ -295,6 +355,8 @@ public class doctorsetting extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel picture;
     private javax.swing.JLabel uname;
     // End of variables declaration//GEN-END:variables
 }

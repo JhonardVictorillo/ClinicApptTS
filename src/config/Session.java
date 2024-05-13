@@ -19,6 +19,7 @@ public class Session {
     private String type;
     private String pass;
     private String status;
+    private String image;
     
     private Session(){
     //private cons pevents intance
@@ -105,5 +106,15 @@ public class Session {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    
     
 }

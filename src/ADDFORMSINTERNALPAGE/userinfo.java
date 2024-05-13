@@ -5,8 +5,15 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import static admin.admin_Addacc.getHeightFromWidth;
 import config.Session;
 import config.dbConnector;
+import java.awt.Image;
+import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import user.desk_dashboard;
 
@@ -22,6 +29,26 @@ public class userinfo extends javax.swing.JFrame {
     public userinfo() {
         initComponents();
     }
+     public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+     
+     public String destination = "";
+    File selectedFile;
+    public String oldpath;
+    public String path;
     
     public void userdetails(){
         Session sess = Session.getInstance();
@@ -32,8 +59,10 @@ public class userinfo extends javax.swing.JFrame {
         Lname.setText(""+sess.getLname());
         email.setText(""+sess.getEmail());
         uname.setText(""+sess.getUname());
-    
-    
+        picture.setIcon(ResizeImage(sess.getImage(), null, picture));
+        
+        
+              
     }
     
 
@@ -54,7 +83,7 @@ public class userinfo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        picture = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         acctype = new javax.swing.JLabel();
@@ -112,14 +141,14 @@ public class userinfo extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(null);
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-test-account-100.png"))); // NOI18N
-        jLabel8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.orange, java.awt.Color.blue, null));
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(0, 0, 350, 110);
+        picture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        picture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-test-account-100.png"))); // NOI18N
+        picture.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.orange, java.awt.Color.blue, null));
+        jPanel2.add(picture);
+        picture.setBounds(0, 0, 220, 130);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 50, 350, 110);
+        jPanel2.setBounds(80, 30, 220, 130);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/arrow_circle_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -217,9 +246,35 @@ public class userinfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-             Udetails update = new Udetails();  
-            update.setVisible(true);
-            this.dispose();
+           
+        try{
+             Session sess = Session.getInstance();
+             int userId = sess.getId();     
+             dbConnector dbc = new dbConnector();
+             
+             ResultSet rs = dbc.getData("SELECT * FROM tbl_userdetails WHERE u_id = '"+userId+"'");
+                
+              if(rs.next()){
+             Udetails update = new Udetails();
+              update.picture.setIcon(update.ResizeImage(rs.getString("u_images"), null,update.picture));
+              update.oldpath = rs.getString("u_images");
+             update.path = rs.getString("u_images");
+             update.destination = rs.getString("u_images");
+             
+             if(rs.getString("u_images").isEmpty()){
+              update.selectbut.setEnabled(true);
+               update.removebut.setEnabled(false);
+            }else{
+              update.selectbut.setEnabled(false);
+               update.removebut.setEnabled(true);
+            }
+              update.setVisible(true);
+             this.dispose();
+              }
+              
+            }catch(SQLException ex){
+                System.out.println(""+ex);
+            }
 //        dbConnector dbc = new dbConnector();
 //            dbc.UpdateData("UPDATE tbl_userdetails SET u_firstname = '"+Fname.getText()+"',u_lastname = '"+Lname.getText()+"',u_email = '"+Email.getText()+"',u_username =  '"+uname.getText()+"',u_password = '"+pass.getText()+"',u_account = '"+acctype.getText()+"'Where u_id = '"+id.getText()+"'");
 //             JOptionPane.showMessageDialog(null,"Data Updated Please Login Again to Refresh the Information!");
@@ -287,10 +342,10 @@ public class userinfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel picture;
     private javax.swing.JLabel uname;
     // End of variables declaration//GEN-END:variables
 }

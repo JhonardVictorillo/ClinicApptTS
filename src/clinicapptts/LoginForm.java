@@ -49,9 +49,9 @@ public class LoginForm extends javax.swing.JFrame {
          sess.setEmail(rs.getString("u_email"));
          sess.setUname(rs.getString("u_username"));
          sess.setType(rs.getString("u_account"));
-          sess.setStatus(rs.getString("u_status"));
+         sess.setStatus(rs.getString("u_status"));
          sess.setPass(rs.getString("u_password"));
-         
+         sess.setImage(rs.getString("u_images"));
         
          return rs.getString("u_account");
      }else{

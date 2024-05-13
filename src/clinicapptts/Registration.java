@@ -1,10 +1,24 @@
 package clinicapptts;
 
+import static admin.admin_Addacc.getHeightFromWidth;
+import admin.userlist;
 import config.dbConnector;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /*
@@ -83,6 +97,75 @@ public class Registration extends javax.swing.JFrame {
     
     }
     
+    
+    public String destination = "";
+    File selectedFile;
+    public String oldpath;
+    public String path;
+    
+   
+    
+    
+    
+    
+     public int FileExistenceChecker(String path){
+        File file = new File(path);
+        String fileName = file.getName();
+        
+        Path filePath = Paths.get("src/images", fileName);
+        boolean fileExists = Files.exists(filePath);
+        
+        if (fileExists) {
+            return 1;
+        } else {
+            return 0;
+        }
+    
+    }
+     
+      public static int getHeightFromWidth(String imagePath, int desiredWidth) {
+        try {
+            // Read the image file
+            File imageFile = new File(imagePath);
+            BufferedImage image = ImageIO.read(imageFile);
+            
+            // Get the original width and height of the image
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
+            
+            // Calculate the new height based on the desired width and the aspect ratio
+            int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
+            
+            return newHeight;
+        } catch (IOException ex) {
+            System.out.println("No image found!");
+        }
+        
+        return -1;
+    }
+      
+        public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+        ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+    
+    
+    
+    
+    
+    
+    
    
     
            
@@ -126,11 +209,11 @@ public class Registration extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        image = new javax.swing.JLabel();
+        picture = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
+        selectbut = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
+        removebut = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -289,8 +372,8 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
         jPanel8.setLayout(null);
-        jPanel8.add(image);
-        image.setBounds(0, 1, 190, 180);
+        jPanel8.add(picture);
+        picture.setBounds(0, 1, 190, 180);
 
         jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 190, 180));
 
@@ -298,11 +381,16 @@ public class Registration extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setLayout(null);
 
-        jLabel15.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("SELECT");
-        jPanel7.add(jLabel15);
-        jLabel15.setBounds(10, 4, 70, 20);
+        selectbut.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        selectbut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectbut.setText("SELECT");
+        selectbut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectbutMouseClicked(evt);
+            }
+        });
+        jPanel7.add(selectbut);
+        selectbut.setBounds(0, 4, 90, 20);
 
         jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 90, 30));
 
@@ -310,11 +398,11 @@ public class Registration extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel9.setLayout(null);
 
-        jLabel16.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("REMOVE");
-        jPanel9.add(jLabel16);
-        jLabel16.setBounds(10, 4, 60, 20);
+        removebut.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        removebut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        removebut.setText("REMOVE");
+        jPanel9.add(removebut);
+        removebut.setBounds(10, 4, 60, 20);
 
         jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 80, 30));
 
@@ -380,17 +468,28 @@ public class Registration extends javax.swing.JFrame {
                  
         dbConnector dbc = new dbConnector();
        
-     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_status)VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+Passwordhash+"','Inactive')")){
+     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_imges,u_status)VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+Passwordhash+"','"+destination+"','Inactive')")){
         
-         JOptionPane.showMessageDialog(null, "Created Successfully!");
+         try{
+                Files.copy(selectedFile.toPath(),new File(destination).toPath(),StandardCopyOption.REPLACE_EXISTING);
+            JOptionPane.showMessageDialog(null, "Created Successfully!");
+
+            userlist ulist = new userlist();
+            ulist.setVisible(true);
+            this.dispose();
+
+                }catch(IOException ex){
+                    System.out.println("Insert image Error!:"+ex);
+                }
+        
        
-       LoginForm Lform = new LoginForm();
-       Lform.setVisible(true);
-       this.dispose();
+            LoginForm Lform = new LoginForm();
+            Lform.setVisible(true);
+            this.dispose();
+
+              }else{
+           JOptionPane.showMessageDialog(null, "Connection Error!");
        
-    }else{
-       JOptionPane.showMessageDialog(null, "Connection Error!");
-                
             }
            }
     
@@ -401,6 +500,32 @@ public class Registration extends javax.swing.JFrame {
         LForm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void selectbutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectbutMouseClicked
+          JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        selectedFile = fileChooser.getSelectedFile();
+                        destination = "src/images/" + selectedFile.getName();
+                        path  = selectedFile.getAbsolutePath();
+                        
+                        
+                        if(FileExistenceChecker(path) == 1){
+                          JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                            destination = "";
+                            path="";
+                        }else{
+                            picture.setIcon(ResizeImage(path, null, picture));
+                            selectbut.setEnabled(false);
+                           removebut.setEnabled(true);
+                           
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("File Error!");
+                    }
+                }
+    }//GEN-LAST:event_selectbutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -445,15 +570,12 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel createbutton;
     private javax.swing.JTextField email;
     public javax.swing.JTextField fname;
-    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -473,6 +595,9 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     public javax.swing.JTextField lname;
     public javax.swing.JPasswordField password;
+    private javax.swing.JLabel picture;
+    private javax.swing.JLabel removebut;
+    private javax.swing.JLabel selectbut;
     private javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables
 }
