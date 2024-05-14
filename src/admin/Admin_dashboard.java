@@ -5,11 +5,15 @@
  */
 package admin;
 
+import static admin.admin_Addacc.getHeightFromWidth;
 import doctors.ApptList;
 import doctors.schedule;
 import clinicapptts.LoginForm;
 import config.Session;
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +28,23 @@ public class Admin_dashboard extends javax.swing.JFrame {
     public Admin_dashboard() {
         initComponents();
     }
+    
+     public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+    
      Color navcolor = new Color(0,204,204);
     Color bodycolor = new Color(153,204,255);
     
@@ -51,7 +72,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        picture = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -170,11 +191,11 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(null);
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-admin-100-removebg-preview.png"))); // NOI18N
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(0, 0, 210, 190);
+        picture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        picture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-admin-100-removebg-preview.png"))); // NOI18N
+        picture.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.add(picture);
+        picture.setBounds(0, 0, 210, 190);
 
         jPanel4.add(jPanel2);
         jPanel2.setBounds(520, 20, 210, 190);
@@ -291,6 +312,7 @@ public class Admin_dashboard extends javax.swing.JFrame {
         this.dispose();
         }else{
           Name.setText(""+sess.getFname());
+          picture.setIcon(ResizeImage(sess.getImage(), null, picture));
         }
        
     }//GEN-LAST:event_formWindowActivated
@@ -341,7 +363,6 @@ public class Admin_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -350,5 +371,6 @@ public class Admin_dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel picture;
     // End of variables declaration//GEN-END:variables
 }

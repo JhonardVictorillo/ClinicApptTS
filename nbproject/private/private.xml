@@ -5,10 +5,13 @@
         <group>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/admin/userlist.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/userinfo.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/apptUpdateStatus.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/Updateforms.java</file>
             <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/admin/admin_Addacc.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/apptReports1.java</file>
-            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/internalpages/patients.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/doctorsetting.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/doctor_dashboard.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/doctors/ApptList.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/ADDFORMSINTERNALPAGE/Udetails.java</file>
+            <file>file:/D:/nards/CLONE%20APP/ClinicApptTS/src/clinicapptts/Registration.java</file>
         </group>
     </open-files>
 </project-private>

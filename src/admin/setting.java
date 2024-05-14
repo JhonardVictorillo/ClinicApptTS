@@ -5,7 +5,11 @@
  */
 package admin;
 
+import static admin.admin_Addacc.getHeightFromWidth;
 import config.Session;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -20,6 +24,25 @@ public class setting extends javax.swing.JFrame {
         initComponents();
     }
     
+   public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+        
+    
+    
+    
     public void userdetails(){
         Session sess = Session.getInstance();
         
@@ -29,7 +52,8 @@ public class setting extends javax.swing.JFrame {
         Lname.setText(""+sess.getLname());
         email.setText(""+sess.getEmail());
         uname.setText(""+sess.getUname());
-    
+        picture.setIcon(ResizeImage(sess.getImage(), null, picture));
+        
     
     }
 
@@ -55,6 +79,7 @@ public class setting extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         uname = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        picture = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         acctype = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -76,92 +101,85 @@ public class setting extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel2.setText("ID:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(70, 120, 21, 16);
+        jLabel2.setBounds(90, 160, 21, 16);
 
         id.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         id.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(id);
-        id.setBounds(100, 120, 190, 20);
+        id.setBounds(120, 160, 190, 20);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel5.setText("Firstname:");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(20, 150, 71, 16);
+        jLabel5.setBounds(40, 190, 71, 16);
 
         Fname.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         Fname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Fname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(Fname);
-        Fname.setBounds(100, 140, 190, 30);
+        Fname.setBounds(120, 180, 190, 30);
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel7.setText("Lastname: ");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(20, 190, 73, 16);
+        jLabel7.setBounds(40, 230, 73, 16);
 
         Lname.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         Lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Lname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(Lname);
-        Lname.setBounds(100, 180, 190, 20);
+        Lname.setBounds(120, 220, 190, 20);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel9.setText("Email:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(40, 220, 41, 16);
+        jLabel9.setBounds(60, 260, 41, 16);
 
         email.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         email.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(email);
-        email.setBounds(100, 210, 190, 20);
+        email.setBounds(120, 250, 190, 20);
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel11.setText("Username:");
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(20, 240, 80, 20);
+        jLabel11.setBounds(40, 280, 80, 20);
 
         uname.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         uname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         uname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(uname);
-        uname.setBounds(100, 240, 190, 20);
+        uname.setBounds(120, 280, 190, 20);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(null);
+        jPanel3.add(picture);
+        picture.setBounds(0, 0, 160, 140);
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(120, 10, 140, 100);
+        jPanel3.setBounds(120, 10, 160, 140);
 
         jLabel13.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel13.setText("Account:");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(30, 270, 70, 20);
+        jLabel13.setBounds(50, 310, 70, 20);
 
         acctype.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         acctype.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acctype.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel2.add(acctype);
-        acctype.setBounds(100, 270, 190, 20);
+        acctype.setBounds(120, 310, 190, 20);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(30, 70, 370, 350);
+        jPanel2.setBounds(30, 60, 370, 360);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Account Settings");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(120, 20, 180, 40);
+        jLabel1.setBounds(120, 0, 180, 40);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/chevron_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -250,6 +268,7 @@ public class setting extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel picture;
     private javax.swing.JLabel uname;
     // End of variables declaration//GEN-END:variables
 }

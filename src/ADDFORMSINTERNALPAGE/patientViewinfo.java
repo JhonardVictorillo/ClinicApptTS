@@ -5,7 +5,9 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.PanelPrinter;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -32,7 +34,7 @@ public class patientViewinfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        printpage = new javax.swing.JPanel();
         pfname = new javax.swing.JLabel();
         plname = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -59,97 +61,68 @@ public class patientViewinfo extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        PRINTBUT = new javax.swing.JPanel();
-        refresh = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel28 = new javax.swing.JLabel();
+        PRINTBUT = new javax.swing.JPanel();
+        printbut = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel2.setLayout(null);
+        printpage.setBackground(new java.awt.Color(255, 255, 255));
+        printpage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pfname.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         pfname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(pfname);
-        pfname.setBounds(120, 50, 130, 20);
 
         plname.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         plname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(plname);
-        plname.setBounds(120, 80, 130, 20);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setText("Age:");
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(20, 100, 50, 20);
 
         pAge.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         pAge.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(pAge);
-        pAge.setBounds(120, 100, 130, 20);
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel7.setText("Gender: ");
-        jPanel2.add(jLabel7);
-        jLabel7.setBounds(20, 130, 80, 20);
 
         pGender.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         pGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(pGender);
-        pGender.setBounds(120, 130, 130, 20);
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel9.setText("Birthdate:");
-        jPanel2.add(jLabel9);
-        jLabel9.setBounds(20, 160, 80, 20);
 
         pBirthdate.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         pBirthdate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(pBirthdate);
-        pBirthdate.setBounds(120, 160, 130, 20);
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel11.setText("Contact:");
-        jPanel2.add(jLabel11);
-        jLabel11.setBounds(20, 190, 80, 20);
 
         pContact.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         pContact.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(pContact);
-        pContact.setBounds(120, 190, 130, 20);
 
         jLabel13.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel13.setText("Address:");
-        jPanel2.add(jLabel13);
-        jLabel13.setBounds(20, 220, 80, 20);
 
         pAddress.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         pAddress.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(pAddress);
-        pAddress.setBounds(120, 220, 130, 20);
 
         jLabel15.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel15.setText("PATIENT DIAGNOSIS");
         jLabel15.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel15);
-        jLabel15.setBounds(30, 290, 220, 30);
 
         jLabel16.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel16.setText("PATIENT INFORMATION");
         jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel16);
-        jLabel16.setBounds(20, 10, 250, 30);
 
         jLabel18.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel18.setText("DIAGNOSIS:");
-        jPanel2.add(jLabel18);
-        jLabel18.setBounds(40, 340, 130, 16);
 
         Diagnosis.setEditable(false);
         Diagnosis.setColumns(20);
@@ -157,57 +130,194 @@ public class patientViewinfo extends javax.swing.JFrame {
         Diagnosis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jScrollPane2.setViewportView(Diagnosis);
 
-        jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 360, 550, 160);
-
         jLabel19.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel19.setText("Firstname:");
-        jPanel2.add(jLabel19);
-        jLabel19.setBounds(320, 60, 90, 20);
 
         dfname.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         dfname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(dfname);
-        dfname.setBounds(430, 60, 160, 20);
 
         jLabel21.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel21.setText("Lastname:");
-        jPanel2.add(jLabel21);
-        jLabel21.setBounds(320, 90, 90, 20);
 
         dlname.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         dlname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(dlname);
-        dlname.setBounds(430, 90, 160, 20);
 
         jLabel23.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel23.setText("Email:");
-        jPanel2.add(jLabel23);
-        jLabel23.setBounds(320, 120, 90, 20);
 
         demail.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         demail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(demail);
-        demail.setBounds(430, 120, 160, 20);
 
         jLabel25.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel25.setText("Date check:");
-        jPanel2.add(jLabel25);
-        jLabel25.setBounds(300, 330, 110, 20);
 
         date.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         date.setText("jLabel1");
         date.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(date);
-        date.setBounds(410, 330, 130, 20);
 
         jLabel27.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel27.setText("DOCTOR INFORMATION");
         jLabel27.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(jLabel27);
-        jLabel27.setBounds(330, 10, 250, 30);
 
-        PRINTBUT.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel20.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel20.setText("Firstname:");
+
+        jLabel22.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel22.setText("Lastname:");
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("CLINIC CARE APPOINTMENT TRACKER SYSTEM");
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout printpageLayout = new javax.swing.GroupLayout(printpage);
+        printpage.setLayout(printpageLayout);
+        printpageLayout.setHorizontalGroup(
+            printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(printpageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pfname, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plname, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pAge, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)
+                        .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dfname, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dlname, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(pGender, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(demail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(pBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(pContact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(pAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
+        );
+        printpageLayout.setVerticalGroup(
+            printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, printpageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addComponent(pfname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(plname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(pAge, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(printpageLayout.createSequentialGroup()
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(printpageLayout.createSequentialGroup()
+                                .addComponent(dfname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(dlname, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(demail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pGender, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(10, 10, 10)
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pContact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(printpageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(printpageLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel18))
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+        );
+
+        jPanel1.add(printpage);
+        printpage.setBounds(20, 50, 600, 650);
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/arrow_circle_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
+        jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel28MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel28);
+        jLabel28.setBounds(6, 4, 60, 40);
+
+        PRINTBUT.setBackground(new java.awt.Color(204, 204, 204));
         PRINTBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         PRINTBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -219,41 +329,19 @@ public class patientViewinfo extends javax.swing.JFrame {
         });
         PRINTBUT.setLayout(null);
 
-        refresh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        refresh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        refresh.setText("PRINT");
-        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+        printbut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        printbut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        printbut.setText("PRINT");
+        printbut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refreshMouseClicked(evt);
+                printbutMouseClicked(evt);
             }
         });
-        PRINTBUT.add(refresh);
-        refresh.setBounds(10, 0, 70, 30);
+        PRINTBUT.add(printbut);
+        printbut.setBounds(10, 0, 70, 30);
 
-        jPanel2.add(PRINTBUT);
-        PRINTBUT.setBounds(470, 540, 90, 30);
-
-        jLabel20.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel20.setText("Firstname:");
-        jPanel2.add(jLabel20);
-        jLabel20.setBounds(20, 50, 90, 20);
-
-        jLabel22.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel22.setText("Lastname:");
-        jPanel2.add(jLabel22);
-        jLabel22.setBounds(20, 70, 90, 30);
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 50, 600, 580);
-
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/arrow_circle_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
-        jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel28MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel28);
-        jLabel28.setBounds(6, 4, 60, 40);
+        jPanel1.add(PRINTBUT);
+        PRINTBUT.setBounds(530, 710, 92, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,16 +353,19 @@ public class patientViewinfo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-        //        displaydata();
-    }//GEN-LAST:event_refreshMouseClicked
+    private void printbutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printbutMouseClicked
+       JPanel printpanel = new JPanel();
+       PanelPrinter Pprint = new PanelPrinter(printpage);
+       Pprint.printPanel();
+       
+    }//GEN-LAST:event_printbutMouseClicked
 
     private void PRINTBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PRINTBUTMouseEntered
         PRINTBUT.setBackground(bodycolor);
@@ -285,10 +376,8 @@ public class patientViewinfo extends javax.swing.JFrame {
     }//GEN-LAST:event_PRINTBUTMouseExited
 
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
-        //         desk_dashboard dashB = new desk_dashboard();
-        //       dashB.setVisible(true);
-        //        reports_dash dashreports = new reports_dash();
-        //       dashB.maindesktop.add(dashreports).setVisible(true);
+        apptReports1 reports = new apptReports1();
+        reports.setVisible(true);
 
         this.dispose();
     }//GEN-LAST:event_jLabel28MouseClicked
@@ -335,6 +424,7 @@ public class patientViewinfo extends javax.swing.JFrame {
     public javax.swing.JLabel demail;
     public javax.swing.JLabel dfname;
     public javax.swing.JLabel dlname;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
@@ -352,8 +442,8 @@ public class patientViewinfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel pAddress;
     public javax.swing.JLabel pAge;
     public javax.swing.JLabel pBirthdate;
@@ -361,6 +451,7 @@ public class patientViewinfo extends javax.swing.JFrame {
     public javax.swing.JLabel pGender;
     public javax.swing.JLabel pfname;
     public javax.swing.JLabel plname;
-    private javax.swing.JLabel refresh;
+    private javax.swing.JLabel printbut;
+    private javax.swing.JPanel printpage;
     // End of variables declaration//GEN-END:variables
 }
