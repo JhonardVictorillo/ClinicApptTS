@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -84,7 +85,7 @@ public class appointment extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         apptTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        searchbar = new javax.swing.JTextField();
         ADDBUTTON = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         UPDATEBUTTON = new javax.swing.JPanel();
@@ -126,9 +127,14 @@ public class appointment extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(550, 30, 60, 20);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(550, 50, 170, 30);
+        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchbarKeyTyped(evt);
+            }
+        });
+        jPanel2.add(searchbar);
+        searchbar.setBounds(550, 50, 170, 30);
 
         ADDBUTTON.setBackground(new java.awt.Color(0, 204, 204));
         ADDBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
@@ -250,6 +256,56 @@ public class appointment extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_UpdateMouseClicked
 
+    private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
+
+
+    String query = searchbar.getText();
+    String searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, " +
+            "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, tbl_userdetails.u_id, " +
+            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus " +
+            "FROM tbl_appointment " +
+            "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id " +
+            "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id " +
+            "WHERE tbl_appointment.appt_id LIKE '%" + query + "%' " +
+            "OR tbl_patients.p_firstname LIKE '%" + query + "%' " +
+            "OR tbl_patients.p_lastname LIKE '%" + query + "%'";
+
+    try {
+        dbConnector connect = new dbConnector();
+        ResultSet rs = connect.getData(searchQuery);
+        DefaultTableModel model = (DefaultTableModel) apptTable.getModel();
+        model.setRowCount(0); // Clear the existing rows
+        
+        while (rs.next()) {
+            Object[] rowData = {
+                rs.getInt("appt_id"),
+                rs.getString("p_firstname"),
+                rs.getString("p_lastname"),
+                rs.getString("apptType"),
+                rs.getString("date"),
+                rs.getString("time"),
+                rs.getString("u_id"),
+                rs.getString("u_firstname"),
+                rs.getString("u_lastname"),
+                rs.getString("apptStatus")
+            };
+            model.addRow(rowData);
+        }
+
+        // Refresh the table UI
+        apptTable.getTableHeader().repaint();
+
+    } catch(SQLException ex) {
+        System.out.println("Error searching appointments: " + ex.getMessage());
+
+      
+    }
+
+
+
+
+    }//GEN-LAST:event_searchbarKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ADDBUTTON;
@@ -264,6 +320,6 @@ public class appointment extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField searchbar;
     // End of variables declaration//GEN-END:variables
 }

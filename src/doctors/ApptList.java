@@ -330,22 +330,12 @@ public class ApptList extends javax.swing.JFrame {
             + "OR tbl_patients.p_firstname LIKE '%" + query + "%' "
             + "OR tbl_patients.p_lastname LIKE '%" + query + "%')";
     
-    if (query.matches("\\d+")) {
-        searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, "
-                + "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, "
-                + "tbl_userdetails.u_lastname, tbl_userdetails.u_id, tbl_appointment.apptStatus "
-                + "FROM tbl_appointment "
-                + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
-                + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id "
-                + "WHERE tbl_userdetails.u_id = " + docid + " "
-                + "AND tbl_appointment.appt_id = " + query;
-    }
+
     
     try {
         dbConnector connect = new dbConnector();
         ResultSet rs = connect.getData(searchQuery);
         
-      
         DefaultTableModel model = (DefaultTableModel) apptListtable.getModel();
         model.setRowCount(0); 
         

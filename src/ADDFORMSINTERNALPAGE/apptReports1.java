@@ -10,6 +10,7 @@ import internalpages.reports_dash;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -34,7 +35,7 @@ public class apptReports1 extends javax.swing.JFrame {
       dbConnector DBconnector = new dbConnector();
       ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_userdetails.u_firstname,tbl_userdetails.u_lastname,tbl_appointment.apptStatus FROM `tbl_appointment` "
               + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
-              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id;");
+              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE apptStatus = 'Completed';");
       apptTableReports.setModel(DbUtils.resultSetToTableModel(rs));
     
      TableColumnModel columnModel = apptTableReports.getColumnModel();
@@ -79,7 +80,7 @@ public class apptReports1 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        searchbar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -97,13 +98,13 @@ public class apptReports1 extends javax.swing.JFrame {
 
         apptTableReports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "appointment ID", "firstname", "lastname", "Type", "Date", "Time", "Doctor Id", "firstname", "lastname", "status"
             }
         ));
         jScrollPane1.setViewportView(apptTableReports);
@@ -142,13 +143,19 @@ public class apptReports1 extends javax.swing.JFrame {
         jPanel2.add(jPanel4);
         jPanel4.setBounds(20, 420, 120, 40);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        searchbar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchbarActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(610, 50, 180, 30);
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchbarKeyTyped(evt);
+            }
+        });
+        jPanel2.add(searchbar);
+        searchbar.setBounds(610, 50, 180, 30);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -170,7 +177,7 @@ public class apptReports1 extends javax.swing.JFrame {
         jPanel5.setBounds(170, 40, 120, 40);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 60, 830, 480);
+        jPanel2.setBounds(20, 70, 830, 480);
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -203,9 +210,9 @@ public class apptReports1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchbarActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
        desk_dashboard dashB = new desk_dashboard();
@@ -294,6 +301,51 @@ public class apptReports1 extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
+       String query = searchbar.getText();
+       String searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, " +
+            "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, tbl_userdetails.u_id, " +
+            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus " +
+            "FROM tbl_appointment " +
+            "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id " +
+            "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id " +
+            "WHERE tbl_appointment.appt_id LIKE '%" + query + "%' " +
+            "OR tbl_patients.p_firstname LIKE '%" + query + "%' " +
+            "OR tbl_patients.p_lastname LIKE '%" + query + "%'";
+       
+          try {
+        dbConnector connect = new dbConnector();
+        ResultSet rs = connect.getData(searchQuery);
+        DefaultTableModel model = (DefaultTableModel) apptTableReports.getModel();
+        model.setRowCount(0); 
+        
+        while (rs.next()) {
+            Object[] rowData = {
+                rs.getInt("appt_id"),
+                rs.getString("p_firstname"),
+                rs.getString("p_lastname"),
+                rs.getString("apptType"),
+                rs.getString("date"),
+                rs.getString("time"),
+                rs.getString("u_id"),
+                rs.getString("u_firstname"),
+                rs.getString("u_lastname"),
+                rs.getString("apptStatus")
+            };
+            model.addRow(rowData);
+        }
+
+        // Refresh the table UI
+        apptTableReports.getTableHeader().repaint();
+
+    } catch(SQLException ex) {
+        System.out.println("Error searching appointments: " + ex.getMessage());
+    }
+       
+       
+       
+    }//GEN-LAST:event_searchbarKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +396,6 @@ public class apptReports1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField searchbar;
     // End of variables declaration//GEN-END:variables
 }

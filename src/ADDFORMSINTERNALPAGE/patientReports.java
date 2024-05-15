@@ -5,11 +5,17 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.PanelPrinter;
 import config.dbConnector;
 import internalpages.apptreports;
 import internalpages.reports_dash;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 import user.desk_dashboard;
@@ -72,14 +78,16 @@ public class patientReports extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        patientTableReports = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        patientprinttable = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        patientTableReports = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -92,22 +100,6 @@ public class patientReports extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(null);
 
-        patientTableReports.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(patientTableReports);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 90, 790, 130);
-
         jPanel4.setBackground(new java.awt.Color(0, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(null);
@@ -115,12 +107,18 @@ public class patientReports extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("PRINT TABLE");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jPanel4.add(jLabel3);
         jLabel3.setBounds(0, 0, 120, 40);
 
         jPanel2.add(jPanel4);
         jPanel4.setBounds(30, 40, 120, 40);
 
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -147,6 +145,58 @@ public class patientReports extends javax.swing.JFrame {
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(170, 40, 120, 40);
+
+        patientTableReports.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        patientTableReports.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        jScrollPane1.setViewportView(patientTableReports);
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("PATIENT REPORTS");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        javax.swing.GroupLayout patientprinttableLayout = new javax.swing.GroupLayout(patientprinttable);
+        patientprinttable.setLayout(patientprinttableLayout);
+        patientprinttableLayout.setHorizontalGroup(
+            patientprinttableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(patientprinttableLayout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addGroup(patientprinttableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientprinttableLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(229, 229, 229))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientprinttableLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))))
+        );
+        patientprinttableLayout.setVerticalGroup(
+            patientprinttableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(patientprinttableLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(patientprinttable);
+        patientprinttable.setBounds(10, 90, 810, 380);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 830, 480);
@@ -194,6 +244,26 @@ public class patientReports extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+//        MessageFormat header = new MessageFormat("PATIENTS REPORTS");
+//        
+//        try{
+//           
+//            patientTableReports.print(JTable.PrintMode.NORMAL,header,null);
+//            
+//            
+//        }catch(PrinterException ex){
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        
+//        
+//        }
+
+         JPanel printpanel = new JPanel();
+       PanelPrinter Pprint = new PanelPrinter(patientprinttable);
+       Pprint.printPanel();
+
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -231,6 +301,7 @@ public class patientReports extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -242,5 +313,6 @@ public class patientReports extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable patientTableReports;
+    private javax.swing.JPanel patientprinttable;
     // End of variables declaration//GEN-END:variables
 }
