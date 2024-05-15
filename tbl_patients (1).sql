@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2024 at 03:34 PM
+-- Generation Time: May 15, 2024 at 08:48 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -43,11 +43,14 @@ CREATE TABLE `tbl_patients` (
 --
 
 INSERT INTO `tbl_patients` (`p_id`, `p_firstname`, `p_lastname`, `p_age`, `p_gender`, `p_dateofbirth`, `p_contact`, `p_address`) VALUES
-(1, 'kent', 'sds', 34, 'male', '2/23/24', 'secret', '122345567'),
-(2, 'jake', 'bake', 1, 'male', '12/23/22', 'tubud', '099912923'),
-(3, 'jane', 'batas', 34, 'Female', '3/23/23', '2334444', '212133323'),
-(4, 'sdsdd', 'sdsd', 32, 'Male', '3/23/23', '212133323', 'dsdsds'),
-(5, 'lay', 'lapoz', 23, 'Male', '3/2/23', '232323', 'dsds');
+(2, 'jake', 'bake', 45, 'male', '12/23/22', '09992233', 'relis'),
+(3, 'jane', 'batas', 34, 'Female', '3/23/23', '2334444', 'mingla'),
+(4, 'mary', 'lapiz', 32, 'Male', '3/23/23', '212133323', 'mayana'),
+(7, 'test', 'test', 21, 'Male', '12-17-97', '234324234', 'test'),
+(8, 'cutie', 'ewwe', 23, 'Female', '12-24-12', '09319393', 'mayana'),
+(9, 'jane', 'nard', 12, 'Female', '12/23/23', '099122233', 'mayana'),
+(10, 'kitty', 'brice', 16, 'Female', '06/26/2008', '0992339453', 'Minglanilla'),
+(11, 'renan', 'bakosa', 23, 'Male', '09/23/24', '099122332323', 'tubod');
 
 --
 -- Indexes for dumped tables
@@ -67,7 +70,7 @@ ALTER TABLE `tbl_patients`
 -- AUTO_INCREMENT for table `tbl_patients`
 --
 ALTER TABLE `tbl_patients`
-  MODIFY `p_id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `p_id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
