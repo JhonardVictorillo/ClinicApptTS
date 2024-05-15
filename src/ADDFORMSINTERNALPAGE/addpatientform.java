@@ -36,7 +36,10 @@ public class addpatientform extends javax.swing.JFrame {
     Ddash.maindesktop.add(pform).setVisible(true);
     
     }
-    
+     private boolean isValidPhoneNumber(String phoneNumber) {
+        String regex = "\\d{10}"; 
+        return phoneNumber.matches(regex);
+    }
     
     
 Color navcolor = new Color(0,204,204);
@@ -265,6 +268,13 @@ Color navcolor = new Color(0,204,204);
     }//GEN-LAST:event_femaleActionPerformed
 
     private void p_saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_p_saveMouseClicked
+       
+        
+        if (!isValidPhoneNumber(contact.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid phone number.", "Invalid Phone Number", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         if(action.equals("ADD")){
             dbConnector dbc = new dbConnector();
             boolean result = dbc.insertData("INSERT INTO  tbl_patients(p_firstname,p_lastname,p_age,p_gender,p_dateofbirth,p_contact,p_address)VALUES('"+fname.getText()+"','"+lname.getText()+"','"+age.getText()+"','"+gender+"','"+birthdate.getText()+"','"+contact.getText()+"','"+address.getText()+"')");

@@ -5,11 +5,13 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.PanelPrinter;
 import config.dbConnector;
 import internalpages.reports_dash;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -74,8 +76,6 @@ public class apptReports1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        apptTableReports = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -84,6 +84,9 @@ public class apptReports1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        apptreportstable = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        apptTableReports = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -95,22 +98,6 @@ public class apptReports1 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(null);
-
-        apptTableReports.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "appointment ID", "firstname", "lastname", "Type", "Date", "Time", "Doctor Id", "firstname", "lastname", "status"
-            }
-        ));
-        jScrollPane1.setViewportView(apptTableReports);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 90, 790, 130);
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -137,6 +124,11 @@ public class apptReports1 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("PRINT TABLE");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jPanel4.add(jLabel3);
         jLabel3.setBounds(0, 0, 120, 40);
 
@@ -175,6 +167,39 @@ public class apptReports1 extends javax.swing.JFrame {
 
         jPanel2.add(jPanel5);
         jPanel5.setBounds(170, 40, 120, 40);
+
+        apptTableReports.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        apptTableReports.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "appointment ID", "firstname", "lastname", "Type", "Date", "Time", "Doctor Id", "firstname", "lastname", "status"
+            }
+        ));
+        jScrollPane1.setViewportView(apptTableReports);
+
+        javax.swing.GroupLayout apptreportstableLayout = new javax.swing.GroupLayout(apptreportstable);
+        apptreportstable.setLayout(apptreportstableLayout);
+        apptreportstableLayout.setHorizontalGroup(
+            apptreportstableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, apptreportstableLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        apptreportstableLayout.setVerticalGroup(
+            apptreportstableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(apptreportstableLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(apptreportstable);
+        apptreportstable.setBounds(10, 130, 810, 270);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 70, 830, 480);
@@ -346,6 +371,13 @@ public class apptReports1 extends javax.swing.JFrame {
        
     }//GEN-LAST:event_searchbarKeyTyped
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+      JPanel printpanel = new JPanel();
+       PanelPrinter Pprint = new PanelPrinter(apptreportstable);
+       Pprint.printPanel();
+
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -384,6 +416,7 @@ public class apptReports1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable apptTableReports;
+    private javax.swing.JPanel apptreportstable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
