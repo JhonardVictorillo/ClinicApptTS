@@ -98,6 +98,7 @@ public class apptUpdateStatus extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         calendar = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,7 +175,17 @@ public class apptUpdateStatus extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("UPDATE STATUS & DATE/TIME");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(40, 20, 280, 30);
+        jLabel5.setBounds(110, 20, 280, 30);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/chevron_left_FILL0_wght400_GRAD0_opsz48.png"))); // NOI18N
+        jLabel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(20, 10, 50, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,6 +231,11 @@ public class apptUpdateStatus extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_jLabel6MouseClicked
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+       
+        dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +280,7 @@ public class apptUpdateStatus extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public javax.swing.JComboBox<String> status;

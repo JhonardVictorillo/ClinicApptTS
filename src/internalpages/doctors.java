@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 
@@ -137,6 +138,11 @@ Color navcolor = new Color(0,204,204);
         REFRESHBUT.setBounds(10, 50, 90, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchbarKeyTyped(evt);
+            }
+        });
         jPanel5.add(searchbar);
         searchbar.setBounds(520, 50, 200, 30);
 
@@ -173,6 +179,36 @@ Color navcolor = new Color(0,204,204);
     private void REFRESHBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseExited
         REFRESHBUT.setBackground(navcolor);
     }//GEN-LAST:event_REFRESHBUTMouseExited
+
+    private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
+       String query = searchbar.getText();
+       
+            String searchquery = "SELECT u_id, u_firstname, u_lastname, u_email, u_account, u_status " +
+                     "FROM tbl_userdetails " +
+                     "WHERE u_account = 'DOCTOR' AND u_status = 'Active' AND " +
+                     "(u_id LIKE '%" + query + "%' OR  u_firstname LIKE '%" + query + "%' OR u_lastname LIKE '%" + query + "%')";
+       
+           try {
+            dbConnector connect = new dbConnector();
+            ResultSet rs = connect.getData(searchquery);
+          DefaultTableModel model = (DefaultTableModel) Doctortbl.getModel();
+        model.setRowCount(0); 
+        
+        while (rs.next()) {
+            Object[] rowData = {
+                rs.getInt("u_id"),
+                rs.getString("u_lastname"),
+                rs.getString("u_firstname"),
+                rs.getString("u_email"),
+                rs.getString("u_account"),
+                rs.getString("u_status")
+            };
+            model.addRow(rowData);
+        }
+        } catch(SQLException ex) {
+            System.out.println("Error searching users: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_searchbarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

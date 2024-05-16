@@ -61,14 +61,10 @@ public class doctor_dashboard extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         APPOINTMENT = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        SCHEDULE = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         SETTINGS = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
@@ -120,32 +116,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
         APPOINTMENT.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
 
         jPanel4.add(APPOINTMENT);
-        APPOINTMENT.setBounds(140, 450, 150, 40);
-
-        SCHEDULE.setBackground(new java.awt.Color(0, 204, 204));
-        SCHEDULE.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SCHEDULEMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                SCHEDULEMouseExited(evt);
-            }
-        });
-        SCHEDULE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("SCHEDULE ");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        SCHEDULE.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
-
-        jPanel4.add(SCHEDULE);
-        SCHEDULE.setBounds(340, 450, 150, 40);
+        APPOINTMENT.setBounds(210, 440, 150, 40);
 
         SETTINGS.setBackground(new java.awt.Color(0, 204, 204));
         SETTINGS.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -171,7 +142,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
         jLabel5.setBounds(0, 0, 150, 40);
 
         jPanel4.add(SETTINGS);
-        SETTINGS.setBounds(520, 450, 150, 40);
+        SETTINGS.setBounds(400, 440, 150, 40);
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -184,19 +155,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
         jLabel7.setBounds(0, 0, 130, 110);
 
         jPanel4.add(jPanel5);
-        jPanel5.setBounds(150, 330, 130, 110);
-
-        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.setLayout(null);
-
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsImage/icons8-schedule-100 (1).png"))); // NOI18N
-        jPanel7.add(jLabel9);
-        jLabel9.setBounds(0, 0, 130, 110);
-
-        jPanel4.add(jPanel7);
-        jPanel7.setBounds(350, 330, 130, 110);
+        jPanel5.setBounds(220, 320, 130, 110);
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -208,7 +167,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
         jLabel10.setBounds(0, 0, 130, 110);
 
         jPanel4.add(jPanel9);
-        jPanel9.setBounds(530, 330, 130, 110);
+        jPanel9.setBounds(410, 320, 130, 110);
 
         jPanel10.setBackground(new java.awt.Color(153, 204, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -318,14 +277,6 @@ public class doctor_dashboard extends javax.swing.JFrame {
         APPOINTMENT.setBackground(navcolor);
     }//GEN-LAST:event_APPOINTMENTMouseExited
 
-    private void SCHEDULEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SCHEDULEMouseEntered
-        SCHEDULE.setBackground(bodycolor);
-    }//GEN-LAST:event_SCHEDULEMouseEntered
-
-    private void SCHEDULEMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SCHEDULEMouseExited
-        SCHEDULE.setBackground(navcolor);
-    }//GEN-LAST:event_SCHEDULEMouseExited
-
     private void SETTINGSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SETTINGSMouseEntered
         SETTINGS.setBackground(bodycolor);
     }//GEN-LAST:event_SETTINGSMouseEntered
@@ -355,12 +306,6 @@ public class doctor_dashboard extends javax.swing.JFrame {
        Alist.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        schedule sched = new schedule();
-        sched.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
        doctorsetting set = new  doctorsetting();
@@ -425,7 +370,6 @@ public class doctor_dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel APPOINTMENT;
     private javax.swing.JLabel LOGOUT;
     public javax.swing.JLabel Name;
-    private javax.swing.JPanel SCHEDULE;
     private javax.swing.JPanel SETTINGS;
     public javax.swing.JLabel docID;
     private javax.swing.JLabel jLabel1;
@@ -434,17 +378,14 @@ public class doctor_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     public javax.swing.JLabel picture;
     // End of variables declaration//GEN-END:variables
