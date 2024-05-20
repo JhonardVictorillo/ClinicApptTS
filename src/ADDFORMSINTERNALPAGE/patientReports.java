@@ -32,6 +32,7 @@ public class patientReports extends javax.swing.JFrame {
     public patientReports() {
         initComponents();
         displaydata();
+         patientTableReports.setDefaultEditor(Object.class, null);
     }
     
     

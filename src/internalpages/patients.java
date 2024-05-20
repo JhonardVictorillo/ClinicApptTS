@@ -166,7 +166,7 @@ public class patients extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(patienttable);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 700, 100);
+        jScrollPane1.setBounds(10, 90, 700, 290);
 
         EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));

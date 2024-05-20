@@ -30,6 +30,7 @@ public class apptReports1 extends javax.swing.JFrame {
     public apptReports1() {
         initComponents();
         displaydata();
+         apptTableReports.setDefaultEditor(Object.class, null);
     }
     
      public void displaydata(){

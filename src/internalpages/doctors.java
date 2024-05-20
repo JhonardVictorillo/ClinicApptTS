@@ -31,6 +31,7 @@ public class doctors extends javax.swing.JInternalFrame {
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
+        Doctortbl.setDefaultEditor(Object.class, null);
     }
     
      public void displaydata(){
@@ -109,7 +110,7 @@ Color navcolor = new Color(0,204,204);
         jScrollPane1.setViewportView(Doctortbl);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 720, 100);
+        jScrollPane1.setBounds(10, 90, 720, 270);
 
         REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));

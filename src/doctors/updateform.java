@@ -148,6 +148,11 @@ public class updateform extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("CANCEL");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         CANCEL.add(jLabel6);
         jLabel6.setBounds(20, 0, 80, 30);
 
@@ -261,6 +266,12 @@ public class updateform extends javax.swing.JFrame {
       Session sess = Session.getInstance();
         docID.setText("DOCTOR ID:"+sess.getId());
     }//GEN-LAST:event_formWindowActivated
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+          ApptList list = new ApptList();
+          list.setVisible(true);
+          this.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
