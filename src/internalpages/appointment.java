@@ -7,14 +7,18 @@ package internalpages;
 
 import ADDFORMSINTERNALPAGE.*;
 import config.dbConnector;
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -35,7 +39,23 @@ public class appointment extends javax.swing.JInternalFrame {
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
-         apptTable.setDefaultEditor(Object.class, null);
+        customizeTable();
+    }
+    
+    private void customizeTable() {
+        // Disable cell editing
+        apptTable.setDefaultEditor(Object.class, null);
+       apptTable.getTableHeader().setBackground(Color.decode("#2A629A"));
+        
+        // Customize table header
+        Font headerfont = new Font("Verdana",Font.PLAIN,12);
+        apptTable.getTableHeader().setFont(headerfont);
+        apptTable.setRowHeight(25);
+
+        TableCellRenderer renderer = apptTable.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) renderer;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+      
     }
     
     
@@ -117,10 +137,15 @@ public class appointment extends javax.swing.JInternalFrame {
                 "A_ID", "FIRSTNAME", "LASTNAME", "TYPE OF APPOINTMENT", "DOCTORS", "DATE", "TIME", "STATUS"
             }
         ));
+        apptTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        apptTable.setRowHeight(25);
+        apptTable.setSelectionBackground(new java.awt.Color(80, 196, 237));
+        apptTable.setShowVerticalLines(false);
+        apptTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(apptTable);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 730, 94);
+        jScrollPane1.setBounds(10, 90, 730, 260);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("SEARCH:");

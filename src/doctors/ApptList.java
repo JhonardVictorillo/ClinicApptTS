@@ -9,10 +9,13 @@ import admin.Admin_dashboard;
 import config.Session;
 import config.dbConnector;
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -29,24 +32,24 @@ public class ApptList extends javax.swing.JFrame {
         initComponents();
         
        displaydata(); 
-        apptListtable.setDefaultEditor(Object.class, null);
+       customizeTable();
     }
 
-//    public void displaydata(){
-//          
-//        try{
-//            Session sess = Session.getInstance();
-//        int docid = sess.getId();
-//    dbConnector dbc = new dbConnector();
-//    ResultSet rs = dbc.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_appointment.apptStatus FROM `tbl_appointment` "
-//              + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
-//              + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE tbl_userdetails.u_id = "+docid);
-//      }catch(SQLException ex){
-//        System.out.println("Errors:"+ex.getMessage());
-//    
-//    }
-//    
-//    }
+private void customizeTable() {
+        // Disable cell editing
+        apptListtable.setDefaultEditor(Object.class, null);
+        apptListtable.getTableHeader().setBackground(Color.decode("#2A629A"));
+        
+// Customize table header
+        Font headerfont = new Font("Verdana",Font.PLAIN,12);
+         apptListtable.getTableHeader().setFont(headerfont);
+         apptListtable.setRowHeight(25);
+
+        TableCellRenderer renderer = apptListtable.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) renderer;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+      
+    }
     
     
     public void displaydata() {
@@ -127,6 +130,8 @@ public class ApptList extends javax.swing.JFrame {
         docID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -158,10 +163,15 @@ public class ApptList extends javax.swing.JFrame {
                 "ID", "LASTNAME", "FIRSTNAME", "DATE", "TIME", "DOCTOR", "STATUS"
             }
         ));
+        apptListtable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        apptListtable.setRowHeight(25);
+        apptListtable.setSelectionBackground(new java.awt.Color(80, 196, 237));
+        apptListtable.setShowVerticalLines(false);
+        apptListtable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(apptListtable);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 100, 560, 100);
+        jScrollPane1.setBounds(10, 100, 560, 280);
 
         EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));

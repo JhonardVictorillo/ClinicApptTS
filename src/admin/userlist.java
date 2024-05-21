@@ -7,10 +7,13 @@ package admin;
 
 import config.dbConnector;
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -29,8 +32,26 @@ public class userlist extends javax.swing.JFrame {
         
         displaydata();
          usertable.setDefaultEditor(Object.class, null);
-        
+        customizeTable();
     }
+    
+    private void customizeTable() {
+        // Disable cell editing
+        usertable.setDefaultEditor(Object.class, null);
+       usertable.getTableHeader().setBackground(Color.decode("#2A629A"));
+        
+        // Customize table header
+        Font headerfont = new Font("Verdana",Font.PLAIN,12);
+        usertable.getTableHeader().setFont(headerfont);
+        usertable.setRowHeight(25);
+
+        TableCellRenderer renderer = usertable.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) renderer;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+    
+    
+    }
+    
         Color navcolor = new Color(0,204,204);
        Color bodycolor = new Color(153,204,255);
     
@@ -91,6 +112,7 @@ public class userlist extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
@@ -218,10 +240,15 @@ public class userlist extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        usertable.setFocusable(false);
+        usertable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        usertable.setRowHeight(25);
+        usertable.setSelectionBackground(new java.awt.Color(80, 196, 237));
+        usertable.setShowVerticalLines(false);
         jScrollPane1.setViewportView(usertable);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 90, 720, 100);
+        jScrollPane1.setBounds(10, 90, 720, 290);
 
         jPanel1.add(jPanel5);
         jPanel5.setBounds(10, 70, 750, 400);

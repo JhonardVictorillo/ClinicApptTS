@@ -9,13 +9,18 @@ import config.PanelPrinter;
 import config.dbConnector;
 import internalpages.apptreports;
 import internalpages.reports_dash;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 import user.desk_dashboard;
@@ -32,8 +37,36 @@ public class patientReports extends javax.swing.JFrame {
     public patientReports() {
         initComponents();
         displaydata();
-         patientTableReports.setDefaultEditor(Object.class, null);
+        customizeTable();
     }
+    
+    private void customizeTable() {
+        // Disable cell editing
+        patientTableReports.setDefaultEditor(Object.class, null);
+        patientTableReports.getTableHeader().setBackground(Color.decode("#2A629A"));
+        
+// Customize table header
+        Font headerfont = new Font("Verdana",Font.BOLD,14);
+         patientTableReports.getTableHeader().setFont(headerfont);
+         patientTableReports.setRowHeight(25);
+
+        TableCellRenderer renderer = patientTableReports.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) renderer;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+      
+    }
+
+    
+     private void printTable(JTable table){
+ 
+                try {
+                  MessageFormat headerFormat = new MessageFormat("PATIENT REPORTS");
+                  MessageFormat footerFormat = new MessageFormat("- {0} -");
+                  table.print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
+                } catch (PrinterException pe) {
+                  System.err.println("Error printing: " + pe.getMessage());
+                }
+              }
     
     
     public void displaydata(){
@@ -56,11 +89,11 @@ public class patientReports extends javax.swing.JFrame {
             columnModel.getColumn(5).setHeaderValue("Birthdate");
             columnModel.getColumn(6).setHeaderValue("Contact");
             columnModel.getColumn(7).setHeaderValue("Address");
-
+            
             // Refresh the table UI
            patientTableReports.getTableHeader().repaint();  
     
-    
+      
     }catch(SQLException ex){
         System.out.println("Errors:"+ex.getMessage());
     
@@ -93,6 +126,8 @@ public class patientReports extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
@@ -147,6 +182,10 @@ public class patientReports extends javax.swing.JFrame {
         jPanel2.add(jPanel5);
         jPanel5.setBounds(170, 40, 120, 40);
 
+        patientprinttable.setLayout(null);
+
+        patientTableReports.setBackground(new java.awt.Color(204, 255, 255));
+        patientTableReports.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         patientTableReports.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         patientTableReports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,40 +203,35 @@ public class patientReports extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        patientTableReports.setFocusable(false);
+        patientTableReports.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        patientTableReports.setRowHeight(25);
+        patientTableReports.setSelectionBackground(new java.awt.Color(42, 98, 154));
+        patientTableReports.setShowVerticalLines(false);
+        patientTableReports.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(patientTableReports);
+
+        patientprinttable.add(jScrollPane1);
+        jScrollPane1.setBounds(0, 60, 800, 280);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PATIENT REPORTS");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        javax.swing.GroupLayout patientprinttableLayout = new javax.swing.GroupLayout(patientprinttable);
-        patientprinttable.setLayout(patientprinttableLayout);
-        patientprinttableLayout.setHorizontalGroup(
-            patientprinttableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(patientprinttableLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(patientprinttableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientprinttableLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(229, 229, 229))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, patientprinttableLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))))
-        );
-        patientprinttableLayout.setVerticalGroup(
-            patientprinttableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(patientprinttableLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
+        patientprinttable.add(jLabel2);
+        jLabel2.setBounds(234, 15, 347, 34);
 
         jPanel2.add(patientprinttable);
-        patientprinttable.setBounds(10, 90, 810, 380);
+        patientprinttable.setBounds(10, 90, 810, 340);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 60, 830, 480);
@@ -259,9 +293,12 @@ public class patientReports extends javax.swing.JFrame {
 //        
 //        }
 
-         JPanel printpanel = new JPanel();
-       PanelPrinter Pprint = new PanelPrinter(patientprinttable);
-       Pprint.printPanel();
+//         JPanel printpanel = new JPanel();
+//       PanelPrinter Pprint = new PanelPrinter(patientprinttable);
+//       Pprint.printPanel();
+
+    printTable(patientTableReports);
+
 
     }//GEN-LAST:event_jLabel3MouseClicked
 

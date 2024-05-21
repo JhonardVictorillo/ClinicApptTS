@@ -8,11 +8,18 @@ package ADDFORMSINTERNALPAGE;
 import config.PanelPrinter;
 import config.dbConnector;
 import internalpages.reports_dash;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -30,8 +37,40 @@ public class apptReports1 extends javax.swing.JFrame {
     public apptReports1() {
         initComponents();
         displaydata();
-         apptTableReports.setDefaultEditor(Object.class, null);
+                    
+        customizeTable();
+       
     }
+    
+    
+        private void customizeTable() {
+        // Disable cell editing
+        apptTableReports.setDefaultEditor(Object.class, null);
+       apptTableReports.getTableHeader().setBackground(Color.decode("#2A629A"));
+        
+        // Customize table header
+        Font headerfont = new Font("Verdana",Font.PLAIN,12);
+        apptTableReports.getTableHeader().setFont(headerfont);
+        apptTableReports.setRowHeight(25);
+
+        TableCellRenderer renderer = apptTableReports.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) renderer;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+      
+    }
+    
+    private void printTable(JTable table){
+ 
+                try {
+                  MessageFormat headerFormat = new MessageFormat("APPOINTMENT REPORTS");
+                  MessageFormat footerFormat = new MessageFormat("- {0} -");
+                  table.print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
+                } catch (PrinterException pe) {
+                  System.err.println("Error printing: " + pe.getMessage());
+                }
+              }
+    
+    
     
      public void displaydata(){
     try{
@@ -92,6 +131,7 @@ public class apptReports1 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(null);
@@ -169,7 +209,10 @@ public class apptReports1 extends javax.swing.JFrame {
         jPanel2.add(jPanel5);
         jPanel5.setBounds(170, 40, 120, 40);
 
-        apptTableReports.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        apptreportstable.setLayout(null);
+
+        apptTableReports.setBackground(new java.awt.Color(204, 255, 255));
+        apptTableReports.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         apptTableReports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -181,23 +224,14 @@ public class apptReports1 extends javax.swing.JFrame {
                 "appointment ID", "firstname", "lastname", "Type", "Date", "Time", "Doctor Id", "firstname", "lastname", "status"
             }
         ));
+        apptTableReports.setRowHeight(25);
+        apptTableReports.setSelectionBackground(new java.awt.Color(80, 196, 237));
+        apptTableReports.setShowVerticalLines(false);
+        apptTableReports.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(apptTableReports);
 
-        javax.swing.GroupLayout apptreportstableLayout = new javax.swing.GroupLayout(apptreportstable);
-        apptreportstable.setLayout(apptreportstableLayout);
-        apptreportstableLayout.setHorizontalGroup(
-            apptreportstableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, apptreportstableLayout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        apptreportstableLayout.setVerticalGroup(
-            apptreportstableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(apptreportstableLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
+        apptreportstable.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 50, 790, 146);
 
         jPanel2.add(apptreportstable);
         apptreportstable.setBounds(10, 130, 810, 270);
@@ -373,9 +407,10 @@ public class apptReports1 extends javax.swing.JFrame {
     }//GEN-LAST:event_searchbarKeyTyped
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-      JPanel printpanel = new JPanel();
-       PanelPrinter Pprint = new PanelPrinter(apptreportstable);
-       Pprint.printPanel();
+//      JPanel printpanel = new JPanel();
+//       PanelPrinter Pprint = new PanelPrinter(apptreportstable);
+//       Pprint.printPanel();
+        printTable(apptTableReports);
 
     }//GEN-LAST:event_jLabel3MouseClicked
 

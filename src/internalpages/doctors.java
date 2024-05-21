@@ -7,10 +7,13 @@ package internalpages;
 
 import config.dbConnector;
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JLabel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 
@@ -31,7 +34,25 @@ public class doctors extends javax.swing.JInternalFrame {
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
-        Doctortbl.setDefaultEditor(Object.class, null);
+        customizeTable();
+    }
+    
+    
+    
+    private void customizeTable() {
+        // Disable cell editing
+       Doctortbl.setDefaultEditor(Object.class, null);
+       Doctortbl.getTableHeader().setBackground(Color.decode("#2A629A"));
+        
+        // Customize table header
+        Font headerfont = new Font("Verdana",Font.PLAIN,12);
+        Doctortbl.getTableHeader().setFont(headerfont);
+        Doctortbl.setRowHeight(25);
+
+        TableCellRenderer renderer = Doctortbl.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) renderer;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+      
     }
     
      public void displaydata(){
@@ -107,6 +128,11 @@ Color navcolor = new Color(0,204,204);
                 "ID", "LASTNAME", "FIRSTNAME", "CONTACTS", "ADDRESS", "STATUS"
             }
         ));
+        Doctortbl.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        Doctortbl.setRowHeight(25);
+        Doctortbl.setSelectionBackground(new java.awt.Color(80, 196, 237));
+        Doctortbl.setShowVerticalLines(false);
+        Doctortbl.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(Doctortbl);
 
         jPanel5.add(jScrollPane1);

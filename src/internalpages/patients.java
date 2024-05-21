@@ -8,13 +8,16 @@ package internalpages;
 import ADDFORMSINTERNALPAGE.*;
 import config.dbConnector;
 import java.awt.Color;
+import java.awt.Font;
 import user.desk_dashboard;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -37,8 +40,28 @@ public class patients extends javax.swing.JInternalFrame {
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
-         patienttable.setDefaultEditor(Object.class, null);
+         customizeTable();
     }
+    
+    
+    private void customizeTable() {
+        // Disable cell editing
+        patienttable.setDefaultEditor(Object.class, null);
+       patienttable.getTableHeader().setBackground(Color.decode("#2A629A"));
+        
+        // Customize table header
+        Font headerfont = new Font("Verdana",Font.PLAIN,12);
+        patienttable.getTableHeader().setFont(headerfont);
+        patienttable.setRowHeight(25);
+
+        TableCellRenderer renderer = patienttable.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) renderer;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+    
+    
+    
+    }
+    
     
      Color navcolor = new Color(0,204,204);
     Color bodycolor = new Color(153,204,255);
@@ -163,6 +186,7 @@ public class patients extends javax.swing.JInternalFrame {
                 "ID", "LASTNAME", "FIRSTNAME", "AGE", "GENDER", "BIRTHDATE", "CONTACTS", "ADDRESS"
             }
         ));
+        patienttable.setSelectionBackground(new java.awt.Color(80, 196, 237));
         jScrollPane1.setViewportView(patienttable);
 
         jPanel5.add(jScrollPane1);
