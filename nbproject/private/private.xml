@@ -5,9 +5,8 @@
         <group>
             <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/ADDFORMSINTERNALPAGE/patientReports.java</file>
             <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/internalpages/appointment.java</file>
-            <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/ADDFORMSINTERNALPAGE/apptReports1.java</file>
-            <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/doctors/ApptList.java</file>
-            <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/internalpages/doctors.java</file>
+            <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/ADDFORMSINTERNALPAGE/addAppointment.java</file>
+            <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/user/desk_dashboard.java</file>
             <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/internalpages/patients.java</file>
             <file>file:/D:/NARDS/CLONE(CLINIC)/ClinicApptTS/src/admin/userlist.java</file>
         </group>

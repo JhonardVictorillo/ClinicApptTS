@@ -62,7 +62,13 @@ public class desk_dashboard extends javax.swing.JFrame {
         
     }
     
-    
+    public String getCurrentDate() {
+        return date.getText();
+    }
+
+    public String getCurrentTime() {
+        return time.getText();
+    }
     
     
     Color navcolor = new Color(0,204,204);

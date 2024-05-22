@@ -22,6 +22,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+import user.desk_dashboard;
 
 /**
  *
@@ -32,7 +33,12 @@ public class appointment extends javax.swing.JInternalFrame {
     /**
      * Creates new form appointment
      */
+    
+    
+        
+
     public appointment() {
+       
         initComponents();
         
         displaydata();
@@ -62,7 +68,7 @@ public class appointment extends javax.swing.JInternalFrame {
      public void displaydata(){
     try{
       dbConnector DBconnector = new dbConnector();
-      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_userdetails.u_firstname,tbl_userdetails.u_lastname,tbl_appointment.apptStatus FROM `tbl_appointment` "
+      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_userdetails.u_firstname,tbl_userdetails.u_lastname,tbl_appointment.apptStatus,tbl_appointment.created_by,tbl_appointment.created_date FROM `tbl_appointment` "
               + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
               + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id;");
       apptTable.setModel(DbUtils.resultSetToTableModel(rs));
@@ -78,6 +84,8 @@ public class appointment extends javax.swing.JInternalFrame {
             columnModel.getColumn(7).setHeaderValue("Doctor Firstname");
             columnModel.getColumn(8).setHeaderValue("Doctor Lastname");
             columnModel.getColumn(9).setHeaderValue("Status");
+            columnModel.getColumn(10).setHeaderValue("Created By");
+            columnModel.getColumn(11).setHeaderValue("Created Date");
             
 
             // Refresh the table UI
@@ -233,7 +241,9 @@ public class appointment extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+       
         addAppointment apptform = new addAppointment();
+       
         apptform.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
@@ -287,7 +297,7 @@ public class appointment extends javax.swing.JInternalFrame {
     String query = searchbar.getText();
     String searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, " +
             "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, tbl_userdetails.u_id, " +
-            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus " +
+            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus,tbl_appointment.created_by, " +
             "FROM tbl_appointment " +
             "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id " +
             "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id " +
@@ -312,7 +322,8 @@ public class appointment extends javax.swing.JInternalFrame {
                 rs.getString("u_id"),
                 rs.getString("u_firstname"),
                 rs.getString("u_lastname"),
-                rs.getString("apptStatus")
+                rs.getString("apptStatus"),
+                rs.getString("created_by")
             };
             model.addRow(rowData);
         }

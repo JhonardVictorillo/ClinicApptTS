@@ -5,6 +5,7 @@
  */
 package ADDFORMSINTERNALPAGE;
 
+import config.Session;
 import config.dbConnector;
 import internalpages.appointment;
 import java.sql.ResultSet;
@@ -34,6 +35,7 @@ public class addAppointment extends javax.swing.JFrame {
 //        createTimeField();
        
     }
+    
     
     private void populateDoctorComboBox() {
     try {
@@ -301,14 +303,23 @@ public class addAppointment extends javax.swing.JFrame {
          String[] patientParts = selectedpatientInfo.split(" - ");
         String selectedpatientID = patientParts[0];
         
+            
         Date selectedDateObj = calendar.getDate();
         
+                
         String selectedTime = time.getText();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String selectedDate = dateFormat.format(selectedDateObj);
+        
+        if (selectedpatientID.equals("Select patient ID") || selectedDoctorID.equals("Select Doctor ") || calendar.getDate() == null || selectedTime.isEmpty() || appttype.getSelectedItem().equals("Please Select")) {
+     JOptionPane.showMessageDialog(null, "Please fill out all required fields!", "Missing Information", JOptionPane.WARNING_MESSAGE);
+    return;
+  }
+            Session sess = Session.getInstance();
+            int deskID = sess.getId();
        
          if (isAppointmentTimeAvailable(selectedDate, selectedTime, selectedDoctorID)) {
-        String query = "INSERT INTO tbl_appointment (p_id, apptType, date, time, u_id, apptStatus) VALUES ('"+selectedpatientID+"','"+appttype.getSelectedItem()+"', '"+selectedDate+"', '"+selectedTime+"', "+selectedDoctorID+",'Scheduled')";
+        String query = "INSERT INTO tbl_appointment (p_id, apptType, date, time, u_id, apptStatus,created_by,created_date) VALUES ('"+selectedpatientID+"','"+appttype.getSelectedItem()+"', '"+selectedDate+"', '"+selectedTime+"', "+selectedDoctorID+",'Scheduled','"+deskID+"',NOW())";
          boolean result = dbc.insertData(query);
         if (result) {
         JOptionPane.showMessageDialog(null, "Successfully Saved!");
