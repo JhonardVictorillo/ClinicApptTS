@@ -93,7 +93,8 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel4.setLayout(null);
 
-        USERLIST.setBackground(new java.awt.Color(0, 204, 204));
+        USERLIST.setBackground(new java.awt.Color(0, 255, 255));
+        USERLIST.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         USERLIST.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 USERLISTMouseEntered(evt);
@@ -107,7 +108,6 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("USER LIST");
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -118,7 +118,8 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jPanel4.add(USERLIST);
         USERLIST.setBounds(430, 420, 170, 40);
 
-        SETTINGS.setBackground(new java.awt.Color(0, 204, 204));
+        SETTINGS.setBackground(new java.awt.Color(0, 255, 255));
+        SETTINGS.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         SETTINGS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SETTINGSMouseEntered(evt);
@@ -132,7 +133,6 @@ public class Admin_dashboard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("SETTINGS");
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);

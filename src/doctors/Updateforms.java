@@ -396,7 +396,7 @@ public class Updateforms extends javax.swing.JFrame {
         jPanel2.add(jPanel5);
         jPanel5.setBounds(340, 30, 210, 140);
 
-        jPanel6.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel6.setBackground(new java.awt.Color(0, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel6.setLayout(null);
 
@@ -415,7 +415,7 @@ public class Updateforms extends javax.swing.JFrame {
         jPanel2.add(jPanel6);
         jPanel6.setBounds(340, 190, 100, 30);
 
-        jPanel7.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel7.setBackground(new java.awt.Color(0, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setLayout(null);
 

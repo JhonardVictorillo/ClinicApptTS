@@ -143,7 +143,7 @@ public class patients extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(20, 10, 260, 40);
 
-        ADDBUT.setBackground(new java.awt.Color(0, 204, 204));
+        ADDBUT.setBackground(new java.awt.Color(0, 255, 255));
         ADDBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         ADDBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -192,7 +192,7 @@ public class patients extends javax.swing.JInternalFrame {
         jPanel5.add(jScrollPane1);
         jScrollPane1.setBounds(10, 90, 700, 290);
 
-        EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
+        EDITBUT.setBackground(new java.awt.Color(0, 255, 255));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         EDITBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -218,7 +218,7 @@ public class patients extends javax.swing.JInternalFrame {
         jPanel5.add(EDITBUT);
         EDITBUT.setBounds(110, 50, 70, 30);
 
-        DELETEBUT.setBackground(new java.awt.Color(0, 204, 204));
+        DELETEBUT.setBackground(new java.awt.Color(0, 255, 255));
         DELETEBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         DELETEBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -244,7 +244,7 @@ public class patients extends javax.swing.JInternalFrame {
         jPanel5.add(DELETEBUT);
         DELETEBUT.setBounds(210, 50, 70, 30);
 
-        REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
+        REFRESHBUT.setBackground(new java.awt.Color(0, 255, 255));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

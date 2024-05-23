@@ -142,7 +142,7 @@ Color navcolor = new Color(0,204,204);
         jPanel2.add(jLabel9);
         jLabel9.setBounds(20, 220, 90, 30);
 
-        SAVEbutton.setBackground(new java.awt.Color(0, 204, 204));
+        SAVEbutton.setBackground(new java.awt.Color(0, 255, 255));
         SAVEbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         SAVEbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -168,7 +168,7 @@ Color navcolor = new Color(0,204,204);
         jPanel2.add(SAVEbutton);
         SAVEbutton.setBounds(80, 360, 80, 30);
 
-        cancelbutton.setBackground(new java.awt.Color(0, 204, 204));
+        cancelbutton.setBackground(new java.awt.Color(0, 255, 255));
         cancelbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cancelbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

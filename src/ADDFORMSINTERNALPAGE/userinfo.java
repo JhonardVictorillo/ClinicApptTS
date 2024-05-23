@@ -85,15 +85,17 @@ public class userinfo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         picture = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         acctype = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         Fname = new javax.swing.JLabel();
         Lname = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         uname = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
 
         jLabel17.setText("jLabel17");
 
@@ -160,18 +162,6 @@ public class userinfo extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(6, 4, 60, 40);
 
-        jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("UPDATE INFO");
-        jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(120, 430, 130, 30);
-
         acctype.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         acctype.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acctype.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
@@ -208,22 +198,58 @@ public class userinfo extends javax.swing.JFrame {
         jPanel1.add(uname);
         uname.setBounds(100, 380, 190, 30);
 
+        jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel18.setText("or");
+        jPanel1.add(jLabel18);
+        jLabel18.setBounds(170, 470, 20, 14);
+
+        jPanel3.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
+
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("UPDATE INFO");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel9);
+        jLabel9.setBounds(0, 0, 130, 30);
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(120, 430, 130, 30);
+
+        jPanel4.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         jLabel16.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("CHANGE PASSWORD");
-        jLabel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel16MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel16);
-        jLabel16.setBounds(90, 490, 180, 30);
 
-        jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel18.setText("or");
-        jPanel1.add(jLabel18);
-        jLabel18.setBounds(170, 470, 20, 14);
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1.add(jPanel4);
+        jPanel4.setBounds(90, 490, 180, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -346,6 +372,8 @@ public class userinfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel picture;
     private javax.swing.JLabel uname;
     // End of variables declaration//GEN-END:variables

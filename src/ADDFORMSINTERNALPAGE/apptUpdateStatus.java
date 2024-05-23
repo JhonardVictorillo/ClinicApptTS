@@ -163,7 +163,7 @@ public class apptUpdateStatus extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(140, 230, 180, 30);
+        jLabel6.setBounds(130, 240, 180, 30);
 
         calendar.setDateFormatString("MM/ d/ yyyy");
         jPanel2.add(calendar);

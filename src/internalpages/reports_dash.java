@@ -83,7 +83,7 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(460, 180, 150, 120);
 
-        patientRep.setBackground(new java.awt.Color(0, 204, 204));
+        patientRep.setBackground(new java.awt.Color(0, 255, 255));
         patientRep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         patientRep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -109,7 +109,7 @@ public class reports_dash extends javax.swing.JInternalFrame {
         jPanel1.add(patientRep);
         patientRep.setBounds(150, 310, 180, 40);
 
-        ApptRep.setBackground(new java.awt.Color(0, 204, 204));
+        ApptRep.setBackground(new java.awt.Color(0, 255, 255));
         ApptRep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ApptRep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

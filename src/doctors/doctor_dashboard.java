@@ -95,7 +95,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel4.setLayout(null);
 
-        APPOINTMENT.setBackground(new java.awt.Color(0, 204, 204));
+        APPOINTMENT.setBackground(new java.awt.Color(0, 255, 255));
         APPOINTMENT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 APPOINTMENTMouseEntered(evt);
@@ -120,7 +120,7 @@ public class doctor_dashboard extends javax.swing.JFrame {
         jPanel4.add(APPOINTMENT);
         APPOINTMENT.setBounds(210, 440, 150, 40);
 
-        SETTINGS.setBackground(new java.awt.Color(0, 204, 204));
+        SETTINGS.setBackground(new java.awt.Color(0, 255, 255));
         SETTINGS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SETTINGSMouseEntered(evt);

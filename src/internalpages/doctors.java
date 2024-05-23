@@ -138,7 +138,7 @@ Color navcolor = new Color(0,204,204);
         jPanel5.add(jScrollPane1);
         jScrollPane1.setBounds(10, 90, 720, 270);
 
-        REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
+        REFRESHBUT.setBackground(new java.awt.Color(0, 255, 255));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

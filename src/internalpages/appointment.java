@@ -169,7 +169,7 @@ public class appointment extends javax.swing.JInternalFrame {
         jPanel2.add(searchbar);
         searchbar.setBounds(550, 50, 170, 30);
 
-        ADDBUTTON.setBackground(new java.awt.Color(0, 204, 204));
+        ADDBUTTON.setBackground(new java.awt.Color(0, 255, 255));
         ADDBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
         ADDBUTTON.setLayout(null);
 
@@ -187,7 +187,7 @@ public class appointment extends javax.swing.JInternalFrame {
         jPanel2.add(ADDBUTTON);
         ADDBUTTON.setBounds(30, 50, 100, 30);
 
-        UPDATEBUTTON.setBackground(new java.awt.Color(0, 204, 204));
+        UPDATEBUTTON.setBackground(new java.awt.Color(0, 255, 255));
         UPDATEBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
         UPDATEBUTTON.setLayout(null);
 
@@ -205,7 +205,7 @@ public class appointment extends javax.swing.JInternalFrame {
         jPanel2.add(UPDATEBUTTON);
         UPDATEBUTTON.setBounds(150, 50, 100, 30);
 
-        DELETEBUTTON.setBackground(new java.awt.Color(0, 204, 204));
+        DELETEBUTTON.setBackground(new java.awt.Color(0, 255, 255));
         DELETEBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.black));
         DELETEBUTTON.setLayout(null);
 

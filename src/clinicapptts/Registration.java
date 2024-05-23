@@ -324,8 +324,8 @@ public class Registration extends javax.swing.JFrame {
         jLabel5.setText("LASTNAME:");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
-        CREATEBUTTON.setBackground(new java.awt.Color(0, 204, 204));
-        CREATEBUTTON.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        CREATEBUTTON.setBackground(new java.awt.Color(0, 255, 255));
+        CREATEBUTTON.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         CREATEBUTTON.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         createbutton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -347,8 +347,8 @@ public class Registration extends javax.swing.JFrame {
         jLabel13.setText("USERNAME");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
 
-        cancelbutton.setBackground(new java.awt.Color(0, 204, 204));
-        cancelbutton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        cancelbutton.setBackground(new java.awt.Color(0, 255, 255));
+        cancelbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cancelbutton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -377,7 +377,7 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 190, 180));
 
-        jPanel7.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel7.setBackground(new java.awt.Color(0, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setLayout(null);
 
@@ -394,7 +394,7 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 90, 30));
 
-        jPanel9.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel9.setBackground(new java.awt.Color(0, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel9.setLayout(null);
 
@@ -468,7 +468,7 @@ public class Registration extends javax.swing.JFrame {
                  
         dbConnector dbc = new dbConnector();
        
-     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_imges,u_status)VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+Passwordhash+"','"+destination+"','Inactive')")){
+     if(dbc.insertData("INSERT INTO tbl_userdetails(u_account,u_firstname,u_lastname,u_email,u_username,u_password,u_images,u_status)VALUES ('"+account.getSelectedItem()+"','"+fname.getText()+"','"+lname.getText()+"','"+email.getText()+"','"+uname.getText()+"','"+Passwordhash+"','"+destination+"','Inactive')")){
         
          try{
                 Files.copy(selectedFile.toPath(),new File(destination).toPath(),StandardCopyOption.REPLACE_EXISTING);

@@ -136,7 +136,7 @@ public class patientReports extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(null);
 
-        jPanel4.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel4.setBackground(new java.awt.Color(0, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(null);
 
@@ -169,7 +169,7 @@ public class patientReports extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(610, 30, 60, 20);
 
-        jPanel5.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(0, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setLayout(null);
 

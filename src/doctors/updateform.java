@@ -106,7 +106,7 @@ public class updateform extends javax.swing.JFrame {
         jPanel2.add(apptID);
         apptID.setBounds(20, 50, 150, 30);
 
-        UPDATE.setBackground(new java.awt.Color(0, 204, 204));
+        UPDATE.setBackground(new java.awt.Color(0, 255, 255));
         UPDATE.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         UPDATE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -135,7 +135,7 @@ public class updateform extends javax.swing.JFrame {
         jPanel2.add(UPDATE);
         UPDATE.setBounds(30, 180, 120, 30);
 
-        CANCEL.setBackground(new java.awt.Color(0, 204, 204));
+        CANCEL.setBackground(new java.awt.Color(0, 255, 255));
         CANCEL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         CANCEL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

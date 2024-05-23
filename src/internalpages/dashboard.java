@@ -145,13 +145,14 @@ public class dashboard extends javax.swing.JInternalFrame {
         jPanel4.setBounds(530, 50, 200, 180);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(0, 190, 780, 280);
+        jPanel5.setBounds(0, 210, 780, 280);
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("<html>WELCOME TO\n CLINIC \n APPOINTMENT SYSTEM  TRACKER<html>");
+        jLabel1.setText("<html>WELCOME TO  CLINIC   APPOINTMENT TRACKER SYSTEM<html>");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 10, 620, 90);
+        jLabel1.setBounds(40, 10, 710, 190);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,7 +162,7 @@ public class dashboard extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
         );
 
         pack();

@@ -173,7 +173,7 @@ private void customizeTable() {
         jPanel5.add(jScrollPane1);
         jScrollPane1.setBounds(10, 100, 560, 280);
 
-        EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
+        EDITBUT.setBackground(new java.awt.Color(0, 255, 255));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         EDITBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -198,7 +198,7 @@ private void customizeTable() {
         jPanel5.add(EDITBUT);
         EDITBUT.setBounds(30, 50, 120, 30);
 
-        REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
+        REFRESHBUT.setBackground(new java.awt.Color(0, 255, 255));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -219,10 +219,10 @@ private void customizeTable() {
             }
         });
         REFRESHBUT.add(refresh);
-        refresh.setBounds(10, 0, 55, 30);
+        refresh.setBounds(10, 0, 70, 30);
 
         jPanel5.add(REFRESHBUT);
-        REFRESHBUT.setBounds(170, 50, 70, 30);
+        REFRESHBUT.setBounds(170, 50, 90, 30);
 
         searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
