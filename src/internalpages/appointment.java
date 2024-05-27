@@ -125,9 +125,9 @@ public class appointment extends javax.swing.JInternalFrame {
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setText("Appointments");
+        jLabel1.setText("APPOINTMENTS");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(30, 10, 200, 40);
+        jLabel1.setBounds(30, 10, 230, 40);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -297,7 +297,7 @@ public class appointment extends javax.swing.JInternalFrame {
     String query = searchbar.getText();
     String searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, " +
             "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, tbl_userdetails.u_id, " +
-            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus,tbl_appointment.created_by, " +
+            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus,tbl_appointment.created_by,tbl_appointment.created_date " +
             "FROM tbl_appointment " +
             "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id " +
             "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id " +

@@ -53,7 +53,7 @@ public class userlist extends javax.swing.JFrame {
     }
     
         Color navcolor = new Color(0,204,204);
-       Color bodycolor = new Color(153,204,255);
+       Color bodycolor = new Color(0,255,255);
     
     
      public void displaydata(){
@@ -128,7 +128,7 @@ public class userlist extends javax.swing.JFrame {
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(null);
 
-        EDITBUT.setBackground(new java.awt.Color(0, 204, 204));
+        EDITBUT.setBackground(new java.awt.Color(0, 255, 255));
         EDITBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         EDITBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -153,7 +153,7 @@ public class userlist extends javax.swing.JFrame {
         jPanel5.add(EDITBUT);
         EDITBUT.setBounds(100, 40, 70, 30);
 
-        REFRESHBUT.setBackground(new java.awt.Color(0, 204, 204));
+        REFRESHBUT.setBackground(new java.awt.Color(0, 255, 255));
         REFRESHBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         REFRESHBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -193,7 +193,7 @@ public class userlist extends javax.swing.JFrame {
         jPanel5.add(jLabel2);
         jLabel2.setBounds(530, 30, 80, 17);
 
-        ADDBUT.setBackground(new java.awt.Color(0, 204, 204));
+        ADDBUT.setBackground(new java.awt.Color(0, 255, 255));
         ADDBUT.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(0, 0, 0)));
         ADDBUT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -327,11 +327,11 @@ public class userlist extends javax.swing.JFrame {
     }//GEN-LAST:event_editbuttonMouseClicked
 
     private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
-        EDITBUT.setBackground(bodycolor);
+        EDITBUT.setBackground(navcolor);
     }//GEN-LAST:event_EDITBUTMouseEntered
 
     private void EDITBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseExited
-        EDITBUT.setBackground(navcolor);
+        EDITBUT.setBackground(bodycolor);
     }//GEN-LAST:event_EDITBUTMouseExited
 
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
@@ -343,7 +343,7 @@ public class userlist extends javax.swing.JFrame {
     }//GEN-LAST:event_REFRESHBUTMouseEntered
 
     private void REFRESHBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseExited
-        REFRESHBUT.setBackground(navcolor);
+        REFRESHBUT.setBackground(bodycolor);
     }//GEN-LAST:event_REFRESHBUTMouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -365,7 +365,7 @@ public class userlist extends javax.swing.JFrame {
     }//GEN-LAST:event_addMouseClicked
 
     private void ADDBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseEntered
-        ADDBUT.setBackground(bodycolor);
+        ADDBUT.setBackground(navcolor);
     }//GEN-LAST:event_ADDBUTMouseEntered
 
     private void ADDBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDBUTMouseExited

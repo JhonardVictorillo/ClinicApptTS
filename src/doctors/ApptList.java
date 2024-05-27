@@ -105,7 +105,7 @@ private void customizeTable() {
     
     
       Color navcolor = new Color(0,204,204);
-       Color bodycolor = new Color(153,204,255);
+       Color bodycolor = new Color(0,255,255);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -295,11 +295,11 @@ private void customizeTable() {
     }//GEN-LAST:event_UpdatebutMouseClicked
 
     private void EDITBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseEntered
-        EDITBUT.setBackground(bodycolor);
+        EDITBUT.setBackground(navcolor);
     }//GEN-LAST:event_EDITBUTMouseEntered
 
     private void EDITBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EDITBUTMouseExited
-        EDITBUT.setBackground(navcolor);
+        EDITBUT.setBackground(bodycolor);
     }//GEN-LAST:event_EDITBUTMouseExited
 
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
@@ -307,11 +307,11 @@ private void customizeTable() {
     }//GEN-LAST:event_refreshMouseClicked
 
     private void REFRESHBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseEntered
-        REFRESHBUT.setBackground(bodycolor);
+        REFRESHBUT.setBackground(navcolor);
     }//GEN-LAST:event_REFRESHBUTMouseEntered
 
     private void REFRESHBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseExited
-        REFRESHBUT.setBackground(navcolor);
+        REFRESHBUT.setBackground(bodycolor);
     }//GEN-LAST:event_REFRESHBUTMouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

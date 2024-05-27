@@ -84,7 +84,7 @@ public class doctors extends javax.swing.JInternalFrame {
     
     
 Color navcolor = new Color(0,204,204);
-    Color bodycolor = new Color(153,204,255);
+    Color bodycolor = new Color(0,255,255);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -200,11 +200,11 @@ Color navcolor = new Color(0,204,204);
     }//GEN-LAST:event_refreshMouseClicked
 
     private void REFRESHBUTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseEntered
-        REFRESHBUT.setBackground(bodycolor);
+        REFRESHBUT.setBackground(navcolor);
     }//GEN-LAST:event_REFRESHBUTMouseEntered
 
     private void REFRESHBUTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_REFRESHBUTMouseExited
-        REFRESHBUT.setBackground(navcolor);
+        REFRESHBUT.setBackground(bodycolor);
     }//GEN-LAST:event_REFRESHBUTMouseExited
 
     private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
