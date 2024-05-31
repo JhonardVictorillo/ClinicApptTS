@@ -75,7 +75,7 @@ public class apptReports1 extends javax.swing.JFrame {
      public void displaydata(){
     try{
       dbConnector DBconnector = new dbConnector();
-      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_userdetails.u_firstname,tbl_userdetails.u_lastname,tbl_appointment.apptStatus FROM `tbl_appointment` "
+      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_lastname,tbl_appointment.apptStatus FROM `tbl_appointment` "
               + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
               + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id WHERE apptStatus = 'Completed';");
       apptTableReports.setModel(DbUtils.resultSetToTableModel(rs));
@@ -87,10 +87,8 @@ public class apptReports1 extends javax.swing.JFrame {
             columnModel.getColumn(3).setHeaderValue("Type");
             columnModel.getColumn(4).setHeaderValue("Date");
             columnModel.getColumn(5).setHeaderValue("Time");
-            columnModel.getColumn(6).setHeaderValue("Doctor ID");
-            columnModel.getColumn(7).setHeaderValue("Doctor Firstname");
-            columnModel.getColumn(8).setHeaderValue("Doctor Lastname");
-            columnModel.getColumn(9).setHeaderValue("Status");
+            columnModel.getColumn(6).setHeaderValue("Doctor Lastname");
+            columnModel.getColumn(7).setHeaderValue("Status");
             
 
             // Refresh the table UI
@@ -320,14 +318,16 @@ public class apptReports1 extends javax.swing.JFrame {
                  
                  String patientID = rs.getString("p_id");
                  
-                  ResultSet diagnosisRS = dbc.getData("SELECT * FROM diagnosis WHERE p_id = '" + patientID + "'");
+                  ResultSet diagnosisRS = dbc.getData("SELECT diagnosis.newdiagnosis, tbl_appointment.date FROM diagnosis INNER JOIN tbl_appointment ON diagnosis.appt_id = tbl_appointment.appt_id "
+                          + "WHERE diagnosis.p_id = '" + patientID + "'");
                 
                   
                   StringBuilder diagnosisText = new StringBuilder();
                  while (diagnosisRS.next()) {
                     String newDiagnosis = diagnosisRS.getString("newdiagnosis");
+                    String diagnosisdate = diagnosisRS.getString("date");
                     if (newDiagnosis != null && !newDiagnosis.isEmpty()) {
-                        diagnosisText.append("New Diagnosis: ").append(newDiagnosis).append("\n");
+                        diagnosisText.append("Diagnosis Date: ").append(diagnosisdate).append("\t\t      -New Diagnosis:").append(newDiagnosis).append("\n");
                     }
                 }
                   
@@ -348,6 +348,7 @@ public class apptReports1 extends javax.swing.JFrame {
                 viewinfo.pfname.setText(""+firstName);
                 viewinfo.date.setText(""+date);
                 viewinfo.Diagnosis.setText(diagnosisText.toString());
+              
                 
                 viewinfo.setVisible(true);
                 this.dispose();

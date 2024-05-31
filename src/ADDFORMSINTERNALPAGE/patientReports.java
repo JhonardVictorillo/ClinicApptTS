@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -114,7 +115,7 @@ public class patientReports extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        searchbar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -154,14 +155,19 @@ public class patientReports extends javax.swing.JFrame {
         jPanel2.add(jPanel4);
         jPanel4.setBounds(30, 40, 120, 40);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchbar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        searchbar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchbarActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(610, 50, 180, 30);
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchbarKeyTyped(evt);
+            }
+        });
+        jPanel2.add(searchbar);
+        searchbar.setBounds(610, 50, 180, 30);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -266,9 +272,9 @@ public class patientReports extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchbarActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
 //         desk_dashboard dashB = new desk_dashboard();
@@ -301,6 +307,39 @@ public class patientReports extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void searchbarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyTyped
+        String query = searchbar.getText();
+        String searchQuery = "SELECT * FROM tbl_patients WHERE p_id LIKE '%" + query + "%' OR p_firstname LIKE '%" + query + "%' OR p_lastname LIKE '%" + query + "%'";
+    
+    
+        if (query.matches("\\d+")) {
+            searchQuery = "SELECT * FROM tbl_patients WHERE p_id = " + query;
+        }
+    
+        try {
+            dbConnector connect = new dbConnector();
+            ResultSet rs = connect.getData(searchQuery);
+          DefaultTableModel model = (DefaultTableModel) patientTableReports.getModel();
+        model.setRowCount(0); 
+        
+        while (rs.next()) {
+            Object[] rowData = {
+                rs.getInt("p_id"),
+                rs.getString("p_lastname"),
+                rs.getString("p_firstname"),
+                rs.getString("p_age"),
+                rs.getString("p_gender"),
+                rs.getString("p_dateofbirth"),
+                rs.getString("p_contact"),
+                rs.getString("p_address")
+            };
+            model.addRow(rowData);
+        }
+        } catch(SQLException ex) {
+            System.out.println("Error searching users: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_searchbarKeyTyped
 
     /**
      * @param args the command line arguments
@@ -349,8 +388,8 @@ public class patientReports extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable patientTableReports;
     private javax.swing.JPanel patientprinttable;
+    private javax.swing.JTextField searchbar;
     // End of variables declaration//GEN-END:variables
 }

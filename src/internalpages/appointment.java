@@ -68,24 +68,22 @@ public class appointment extends javax.swing.JInternalFrame {
      public void displaydata(){
     try{
       dbConnector DBconnector = new dbConnector();
-      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id,tbl_patients.p_firstname,tbl_patients.p_lastname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_id,tbl_userdetails.u_firstname,tbl_userdetails.u_lastname,tbl_appointment.apptStatus,tbl_appointment.created_by,tbl_appointment.created_date FROM `tbl_appointment` "
+      ResultSet rs = DBconnector.getData("SELECT tbl_appointment.appt_id"
+              + ",CONCAT(tbl_patients.p_firstname, ' ' ,tbl_patients.p_lastname) AS Patient_fullname,tbl_appointment.apptType,tbl_appointment.date,tbl_appointment.time ,tbl_userdetails.u_lastname,tbl_appointment.apptStatus,tbl_appointment.staff_id FROM `tbl_appointment` "
               + "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id "
               + "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id;");
       apptTable.setModel(DbUtils.resultSetToTableModel(rs));
     
      TableColumnModel columnModel = apptTable.getColumnModel();
             columnModel.getColumn(0).setHeaderValue("Appointment ID");
-            columnModel.getColumn(1).setHeaderValue("First Name");
-            columnModel.getColumn(2).setHeaderValue("Last Name");
-            columnModel.getColumn(3).setHeaderValue("Type");
-            columnModel.getColumn(4).setHeaderValue("Date");
-            columnModel.getColumn(5).setHeaderValue("Time");
-            columnModel.getColumn(6).setHeaderValue("Doctor ID");
-            columnModel.getColumn(7).setHeaderValue("Doctor Firstname");
-            columnModel.getColumn(8).setHeaderValue("Doctor Lastname");
-            columnModel.getColumn(9).setHeaderValue("Status");
-            columnModel.getColumn(10).setHeaderValue("Created By");
-            columnModel.getColumn(11).setHeaderValue("Created Date");
+            columnModel.getColumn(1).setHeaderValue("Patient Fullname");
+            columnModel.getColumn(2).setHeaderValue("Type");
+            columnModel.getColumn(3).setHeaderValue("Date");
+            columnModel.getColumn(4).setHeaderValue("Time");
+            columnModel.getColumn(5).setHeaderValue("Doctor Lastname");
+            columnModel.getColumn(6).setHeaderValue("Status");
+            columnModel.getColumn(7).setHeaderValue("Created By");
+        
             
 
             // Refresh the table UI
@@ -297,7 +295,7 @@ public class appointment extends javax.swing.JInternalFrame {
     String query = searchbar.getText();
     String searchQuery = "SELECT tbl_appointment.appt_id, tbl_patients.p_firstname, tbl_patients.p_lastname, " +
             "tbl_appointment.apptType, tbl_appointment.date, tbl_appointment.time, tbl_userdetails.u_id, " +
-            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus,tbl_appointment.created_by,tbl_appointment.created_date " +
+            "tbl_userdetails.u_firstname, tbl_userdetails.u_lastname, tbl_appointment.apptStatus,tbl_appointment.staff_id,tbl_appointment.created_date " +
             "FROM tbl_appointment " +
             "INNER JOIN tbl_patients ON tbl_appointment.p_id = tbl_patients.p_id " +
             "INNER JOIN tbl_userdetails ON tbl_appointment.u_id = tbl_userdetails.u_id " +
@@ -323,7 +321,7 @@ public class appointment extends javax.swing.JInternalFrame {
                 rs.getString("u_firstname"),
                 rs.getString("u_lastname"),
                 rs.getString("apptStatus"),
-                rs.getString("created_by")
+                rs.getString("staff_id")
             };
             model.addRow(rowData);
         }

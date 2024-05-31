@@ -247,7 +247,7 @@ public class updateform extends javax.swing.JFrame {
           
         String newDiagnosisText = newdiagnosis.getText();
        
-        String insertQuery = "INSERT INTO diagnosis( newdiagnosis,p_id,u_id) VALUES( '" + newDiagnosisText + "','"+patientID+"','"+docid+"')";
+        String insertQuery = "INSERT INTO diagnosis( newdiagnosis,p_id,u_id,appt_id) VALUES( '" + newDiagnosisText + "','"+patientID+"','"+docid+"','"+appointmentID+"')";
         dbc.insertData(insertQuery);
 
         JOptionPane.showMessageDialog(null, "Appointment updated successfully!");

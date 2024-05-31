@@ -97,24 +97,62 @@ public class addAppointment extends javax.swing.JFrame {
     }
    
    
-  private boolean isAppointmentTimeAvailable(String selectedDate, String selectedTime, String selectedDoctorID) {
+//  private boolean isAppointmentTimeAvailable(String selectedDate, String selectedTime, String selectedDoctorID) {
+//    dbConnector dbc = new dbConnector();
+//    String query = "SELECT COUNT(*) FROM tbl_appointment WHERE date = '" + selectedDate + "' AND time = '" + selectedTime + "' AND u_id = " + selectedDoctorID;
+//    ResultSet resultSet = null;
+//    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+//    try {
+//        resultSet = dbc.getData(query);
+//        if (resultSet.next()) {
+//            int count = resultSet.getInt(1);
+//            if (count == 0) {
+//               
+//                return true; 
+//            } else {
+//             
+//                JOptionPane.showMessageDialog(null, "This time is already scheduled. Please select another time.", "Time Unavailable", JOptionPane.WARNING_MESSAGE);
+//                return false;
+//            }
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    } finally {
+//        if (resultSet != null) {
+//            try {
+//                resultSet.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//    return false; 
+//}
+    
+   private boolean isAppointmentTimeAvailable(String selectedDate, String selectedTime, String selectedDoctorID) {
     dbConnector dbc = new dbConnector();
-    String query = "SELECT COUNT(*) FROM tbl_appointment WHERE date = '" + selectedDate + "' AND time = '" + selectedTime + "' AND u_id = " + selectedDoctorID;
+    String query = "SELECT time FROM tbl_appointment WHERE date = '" + selectedDate + "' AND u_id = " + selectedDoctorID;
     ResultSet resultSet = null;
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     try {
         resultSet = dbc.getData(query);
-        if (resultSet.next()) {
-            int count = resultSet.getInt(1);
-            if (count == 0) {
-               
-                return true; 
-            } else {
-             
-                JOptionPane.showMessageDialog(null, "This time is already scheduled. Please select another time.", "Time Unavailable", JOptionPane.WARNING_MESSAGE);
+        Date selectedTimeDate = timeFormat.parse(selectedTime);
+
+        while (resultSet.next()) {
+            String existingTime = resultSet.getString("time");
+            Date existingTimeDate = timeFormat.parse(existingTime);
+
+            long timeDifference = Math.abs(selectedTimeDate.getTime() - existingTimeDate.getTime());
+            long timeDifferenceInMinutes = timeDifference / (60 * 1000);
+
+            if (timeDifferenceInMinutes < 60) {
+                JOptionPane.showMessageDialog(null, "This time is already scheduled within an hour. Please select another time.", "Time Unavailable", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
         }
-    } catch (SQLException e) {
+
+        return true;
+    } catch (SQLException | ParseException e) {
         e.printStackTrace();
     } finally {
         if (resultSet != null) {
@@ -125,9 +163,9 @@ public class addAppointment extends javax.swing.JFrame {
             }
         }
     }
-    return false; 
+    return false;
 }
-    
+
     
      
 
@@ -319,7 +357,7 @@ public class addAppointment extends javax.swing.JFrame {
             int deskID = sess.getId();
        
          if (isAppointmentTimeAvailable(selectedDate, selectedTime, selectedDoctorID)) {
-        String query = "INSERT INTO tbl_appointment (p_id, apptType, date, time, u_id, apptStatus,created_by,created_date) VALUES ('"+selectedpatientID+"','"+appttype.getSelectedItem()+"', '"+selectedDate+"', '"+selectedTime+"', "+selectedDoctorID+",'Scheduled','"+deskID+"',NOW())";
+        String query = "INSERT INTO tbl_appointment (p_id, apptType, date, time, u_id, apptStatus,staff_id  ,created_date) VALUES ('"+selectedpatientID+"','"+appttype.getSelectedItem()+"', '"+selectedDate+"', '"+selectedTime+"', "+selectedDoctorID+",'Scheduled','"+deskID+"',NOW())";
          boolean result = dbc.insertData(query);
         if (result) {
         JOptionPane.showMessageDialog(null, "Successfully Saved!");
